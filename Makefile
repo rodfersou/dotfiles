@@ -37,6 +37,12 @@ install:  ## Install dotfiles
 	ln -sf $(CURRENT_DIR)/common/rcrc $(HOME)/.rcrc
 	(cd $(HOME) && rcup)
 
+.PHONY: install-linux
+install-linux:  ## Install dotfiles for linux
+	@echo "$(GREEN)==> Install dotfiles for linux$(RESET)"
+	make install
+	(cd $(HOME) && rcup -t linux)
+
 .PHONY: uninstall
 uninstall:  ## Uninstall dotfiles
 	@echo "$(RED)==> Uninstall dotfiles$(RESET)"

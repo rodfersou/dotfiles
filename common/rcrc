@@ -1,5 +1,5 @@
 COPY_ALWAYS="rcrc vim-notes/*"
-EXCLUDES="rcrc _crypt"
+EXCLUDES="backup rcrc"
 DOTFILES_DIRS="$HOME/.dotfiles/common $HOME/.dotfiles/sensitive"
 SYMLINK_DIRS="fonts ssh irssi_rfs purple_rfs weechat_rfs Atom sublime-text-2"
-TAGS="oldvim"
+TAGS="oldvim linux"
