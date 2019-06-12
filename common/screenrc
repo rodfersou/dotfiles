@@ -1,0 +1,115 @@
+autodetach on
+startup_message off
+#shell -${SHELL}
+shell "/usr/bin/zsh"
+# term xterm-vt220
+# sudo apt-get install ncurses-term
+term screen-256color
+#term xterm-256color
+#term rxvt-unicode-256color
+defflow off # turn off stupid flow-control (also see: stty -ixon in ~/.zshrc)
+shelltitle ''
+
+maptimeout 0
+bind h hardstatus ignore
+bind g hardstatus alwayslastline
+zombie kr
+#escape ^Zz
+setenv SCREEN 1
+
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+
+bind h prev
+bind l next
+
+#hardstatus on
+hardstatus alwayslastline
+#hardstatus string "%w%=%m/%d %c"
+#hardstatus string "%{gk}[%{g}%H%{g}][ %{wk}%?%-Lw%?%{=b kR}|%{=d}%{W}%n*%f %t%?(%u)%?%{=b kR}|%{= kw}%?%+Lw%?%?%= %{G}][%{m}%l%{g}]%{=b g}[ %m/%d %c%a ]%{W}"
+hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]"
+
+
+# ctrl-a a 1 => screen 11
+bind a command -c select_1n
+bind -c select_1n 1 select 11
+bind -c select_1n 2 select 12
+bind -c select_1n 3 select 13
+bind -c select_1n 4 select 14
+bind -c select_1n 5 select 15
+bind -c select_1n 6 select 16
+bind -c select_1n 7 select 17
+bind -c select_1n 8 select 18
+bind -c select_1n 9 select 19
+bind -c select_1n 0 select 20
+
+# ctrl-a d 1 => screen 21
+#bind -c select_1n a command -c select_2n
+#bind -c select_2n 1 select 21
+#bind -c select_2n 2 select 22
+#bind -c select_2n 3 select 23
+#bind -c select_2n 4 select 24
+#bind -c select_2n 5 select 25
+#bind -c select_2n 6 select 26
+#bind -c select_2n 7 select 27
+#bind -c select_2n 8 select 28
+#bind -c select_2n 9 select 29
+#bind -c select_2n 0 select 30
+
+# finch -n
+# finch -c config_dir -n
+# sudo iptraf -i wlan0
+# htop
+# mc -x
+# ipython -p pysh
+# fish
+# mocp
+# sshuttle -r server 0/0 --dns -vv
+
+# screen -t T10  10 irssi --home=~/.irssi_rfs -c Freenode
+# screen -t T10  10 weechat -d ~/.weechat_rfs
+#screen -t T10  10
+#screen -t T9   9
+#screen -t T8   8
+#screen -t T7   7
+#screen -t T6   6
+#screen -t T5   5
+#screen -t T4   4
+#screen -t T3   3
+#screen -t T2   2
+#screen -t T1   1
+
+screen -t '' 01
+screen -t '' 02
+screen -t '' 03
+screen -t '' 04
+screen -t '' 05
+screen -t '' 06
+screen -t '' 07
+screen -t '' 08
+screen -t '' 09
+screen -t '' 10
+screen -t '' 11
+screen -t '' 12
+screen -t '' 13
+screen -t '' 14
+screen -t '' 15
+screen -t '' 16
+screen -t '' 17
+screen -t '' 18
+screen -t '' 19
+#screen -t '' 20
+screen -t '' 20 weechat -d /home/rodfersou/.weechat_rfs
+#screen -t '' 21
+#screen -t '' 22
+#screen -t '' 23
+#screen -t '' 24
+#screen -t '' 25
+#screen -t '' 26
+#screen -t '' 27
+#screen -t '' 28
+#screen -t '' 29
+#screen -t '' 30 weechat -d /home/rodfersou/.weechat_rfs
+
+select 01

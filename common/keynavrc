@@ -1,0 +1,101 @@
+# This is a keynavrc file. Yours should live in 
+# $HOME/.keynavrc
+#
+# Lines beginning with '#' are comments.
+# Format is:
+#   keysequence cmd1,cmd2,cmd3...
+#
+# Other special values are:
+#   'clear' on a line by itself (no quotes) will erase all keybindings
+#   (including the defaults)
+#   'daemonize' on a line by itself (no quotes) will make keynav background
+#   after parsing the configfile and having no critical errors.
+# 
+# The 'start' command alone is handled specially, in that any key sequence
+# mapped to 'start' will be grabbed when keynav starts up so you can invoke it
+# to activate keynav. The remaining keys are only recognized while keynav is
+# active
+#
+# Project page; http://www.semicomplete.com/projects/keynav
+
+# Use 'clear' to blow away any previous keybindings
+clear
+
+# Use 'daemonize' to background ourselves.
+daemonize
+
+ctrl+space start, cursorzoom 20 20
+Escape end
+
+# 40 movement
+ctrl+shift+h move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, warp
+ctrl+shift+j move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, warp
+ctrl+shift+k move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, warp
+ctrl+shift+l move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, warp
+
+ctrl+shift+Left move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, warp
+ctrl+shift+Down move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, warp
+ctrl+shift+Up move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, warp
+ctrl+shift+Right move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, warp
+
+# 20 movement
+ctrl+h move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, warp
+ctrl+j move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, warp
+ctrl+k move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, warp
+ctrl+l move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, warp
+
+ctrl+Left move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, move-left, warp
+ctrl+Down move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, move-down, warp
+ctrl+Up move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, move-up, warp
+ctrl+Right move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, move-right, warp
+
+# 3 movement
+shift+h move-left, move-left, move-left, warp
+shift+j move-down, move-down, move-down, warp
+shift+k move-up, move-up, move-up, warp
+shift+l move-right, move-right, move-right, warp
+
+shift+Left move-left, move-left, move-left, warp
+shift+Down move-down, move-down, move-down, warp
+shift+Up move-up, move-up, move-up, warp
+shift+Right move-right, move-right, move-right, warp
+
+# precise 1 movement
+h move-left, warp
+j move-down, warp
+k move-up, warp
+l move-right, warp
+
+Left move-left, warp
+Down move-down, warp
+Up move-up, warp
+Right move-right, warp
+
+# Click
+u click 1, end
+i click 2, end
+o click 3, end
+1 click 1, end
+2 click 2, end
+3 click 3, end
+space click 1, end
+
+shift+u doubleclick 1, end
+shift+1 doubleclick 1, end
+shift+space doubleclick 1, end
+
+ctrl+shift+u drag 1
+ctrl+shift+1 drag 1
+ctrl+shift+space drag 1
+
+# Zoom to the cursor location with a given height and width
+s cursorzoom 10 10
+
+# Record keynav actions
+q record
+
+### Drag examples
+# Start drag holding the left mouse button
+d drag 1
+# Start drag holding middle mouse + control and shift
+#w drag 2 ctrl+shift

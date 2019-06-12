@@ -1,0 +1,23 @@
+diff --git chameleon/exc.py chameleon/exc.py
+--- chameleon/exc.py
++++ chameleon/exc.py
+@@ -93,9 +93,6 @@
+ 
+ 
+ def ellipsify(string, limit):
+-    if len(string) > limit:
+-        return "... " + string[-(limit - 4):]
+-
+     return string
+ 
+ 
+@@ -265,8 +265,7 @@
+             _filename = ellipsify(filename, 60) if filename else "<string>"
+ 
+             out.append(" - Expression: \"%s\"" % expression)
+-            out.append(" - Filename:   %s" % _filename)
+-            out.append(" - Location:   (line %d: col %d)" % (line, column))
++            out.append(" - Filename:   %s:%d:%d" % (_filename, line, column))
+ 
+             if filename and line and column:
+                 try:

@@ -1,0 +1,12 @@
+diff --git Zope2/Startup/__init__.py Zope2/Startup/__init__.py
+--- Zope2/Startup/__init__.py
++++ Zope2/Startup/__init__.py
+@@ -99,6 +99,8 @@
+         # after it has emitted ZServer messages.
+ 
+         logger.info('Ready to handle requests')
++        logger.info('http://localhost:{0}/Plone'.format(config.servers[0].server_port))
++        logger.info('http://rodrigo.dedyn.io:5{0}/Plone'.format(config.servers[0].server_port))
+         self.sendEvents()
+ 
+     def run(self):

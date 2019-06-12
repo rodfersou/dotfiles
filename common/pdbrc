@@ -1,0 +1,44 @@
+import rlcompleter
+pdb.Pdb.complete=rlcompleter.Completer(locals()).complete
+
+# http://stackoverflow.com/a/32096090/2116850
+alias kk import os; os.system('kill -9 %d' % os.getpid())
+
+# import termios, sys
+# term_fd = sys.stdin.fileno()
+# term_echo = termios.tcgetattr(term_fd)
+# term_echo[3] = term_echo[3] | termios.ECHO
+# term_result = termios.tcsetattr(term_fd, termios.TCSADRAIN, term_echo)
+
+# 'inspect x' will print the source code for a method, class or function.
+alias inspect import inspect;print inspect.getsource(%1)
+alias i import inspect;print inspect.getsource(%1)
+# 'help x' opens the man-style help viewer from the interpretter on an object
+alias help !print help(%1)
+alias h !print help(%1)
+# For ordinary Python objects, ppo will pretty-print members and their values.
+alias ppo pp %1.__dict__
+# ppio runs ppo over a sequence of objects
+alias ppio pp [a.__dict__ for a in %1]
+# pph pretty print html as text
+alias pph import bs4; print bs4.BeautifulSoup(%1)
+# easier see
+alias see pp [i for i in dir(%1) if %2 in i.lower()]
+
+# see(catalog).filter(re.compile('index', re.I)).filter(re.compile('^((?!__).)*$'))
+# try:
+#     from see.output import SeeResult
+#     import re
+#     SeeResult._filter = SeeResult.filter
+#     SeeResult.filter = lambda self, pattern: SeeResult._filter(self, re.compile(pattern, re.I))
+#     SeeResult.filter_exclude = lambda self, pattern: SeeResult._filter(self, re.compile('^((?!{0}).)*$'.format(pattern)))
+# except ImportError:
+#     pass
+
+
+# try:
+#     from Products.PythonScripts.Utility import allow_module
+#     from pip import get_installed_distributions
+#     [allow_module(module.key) for module in get_installed_distributions()]
+# except:
+#     pass

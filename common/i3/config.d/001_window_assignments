@@ -1,0 +1,38 @@
+assign [class="^Firefox$"]          RF
+assign [title="^Robot Framework$"]  RF
+
+
+#for_window [instance="UKuake"]                              floating enable, border pixel 1, exec ~/.i3/resize.sh 57 77
+for_window  [title="Decrypt"]                                floating enable, border pixel 1
+for_window  [title="Run Dialog"]                             floating enable
+for_window  [title="xfce4-notifyd"]                          floating enable, border pixel 1, move RF
+for_window  [title="^Spreed - the speed reading extension$"] floating enable
+
+for_window [class="^Koala$"]       floating disable
+for_window [class="Google-chrome"] floating disable, fullscreen disable, border pixel 1
+
+for_window [class="^MPlayer$"] move scratchpad, border pixel 1, resize shrink width 400px, resize shrink height 400px
+
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+#for_window [class="^Steam$" title="^Friends$"]                                       floating enable
+#for_window [class="^Steam$" title="Steam - News"]                                    floating enable
+#for_window [class="^Steam$" title=".* - Chat"]                                       floating enable
+#for_window [class="^Steam$" title="^Settings$"]                                      floating enable
+#for_window [class="^Steam$" title=".* - event started"]                              floating enable
+#for_window [class="^Steam$" title=".* CD key"]                                       floating enable
+#for_window [class="^Steam$" title="^Steam - Self Updater$"]                          floating enable
+#for_window [class="^Steam$" title="^Screenshot Uploader$"]                           floating enable
+#for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+#for_window [title="^Steam Keyboard$"]                                                floating enable
+#for_window [instance="Steam"]                                                        move G
+for_window  [title="^Hollow Knight$"]                                                 floating enable, resize shrink width 800px
+
+
+# treat dialogs
+#for_window [window_role="pop-up"]      floating enable
+#for_window [window_role="bubble"]      floating enable
+#for_window [window_role="task_dialog"] floating enable
+#for_window [window_role="Preferences"] floating enable
+#for_window [window_type="menu"]        floating enable
+for_window  [window_type="dialog"]      floating enable

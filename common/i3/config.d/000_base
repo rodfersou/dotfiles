@@ -1,0 +1,27 @@
+set $mod1 Mod4
+set $mod2 Control+Mod1
+set $mod3 Mod1
+set $mod4 Mod3
+
+set $up    k
+set $down  j
+set $left  h
+set $right l
+
+
+workspace_layout tabbed
+
+
+focus_on_window_activation none
+no_focus [window_role="pop-up"]
+mouse_warping none
+force_focus_wrapping no
+
+# Use Mouse+$mod1 to drag floating windows to their wanted position
+floating_modifier $mod1
+
+# font for window titles. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+font pango:Terminus 11px

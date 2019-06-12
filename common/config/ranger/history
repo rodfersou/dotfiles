@@ -1,0 +1,50 @@
+rename Game_of_Thrones_-_S08E06.srt
+rename How.I.Met.Your.Mother.S04E13.720p.WEB-DL.2CH.x265.HEVC-PSA.mkv1
+search cd .asdf
+mkdir .asdf
+cd .asdf
+mkdir srv
+filter webm
+filter mp4
+mkdir encrypted
+cd /srv/
+cd .asdf/
+search rui
+open_with google-chrome-stable
+sort 
+help sort
+search redux
+search vue
+search ipad
+search react
+search cinco
+rename oops.gif
+mkdir AudioBooks
+mkdir A
+search shou
+s
+mkdir Downloads
+rename Desktop
+shell o
+sort
+mkdir Work
+mkdir Serie
+mkdir Videos
+mkdir Books
+search tmux
+mkdir Data
+mkdir Fun
+kdir Study
+mkdir Study
+mkdir Games
+open_with
+rename Backup
+cd
+
+open_withm
+cd .dotfiles/
+shell 
+mkdir Courses
+open_with 1
+delete
+rename 11. Instalação Redux e Redux.mp41

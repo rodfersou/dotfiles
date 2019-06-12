@@ -1,0 +1,304 @@
+# start a terminal
+bindsym $mod1+Return exec urxvt -cd "`xcwd`" -title 'URxvt'
+bindsym $mod1+Shift+Return exec thunar "`xcwd`"
+# bindsym $mod1+Return exec i3-sensible-terminal -e zsh
+
+# kill focused window
+bindsym $mod1+x kill
+bindsym $mod1+Shift+x exec xkill
+# bindsym $mod3+F4 kill
+
+# start dmenu (a program launcher)
+bindsym $mod1+p exec urxvt -title "Run Dialog" -g 80x25 -keysym.0xff0d " &\nexit\n" -keysym.C-0xff0d "\n" -keysym.0xff1b "exit\n"
+# bindsym $mod1+p exec /srv/env/bin/dmenu.sh
+# bindsym $mod1+p exec dmenu_run
+# bindsym $mod3+F2 exec dmenu_run
+
+# lock screen
+bindsym $mod2+l exec sflock -h
+bindsym $mod2+backslash exec sflock -h
+# bindsym $mod2+l exec sxlock
+# bindsym $mod2+backslash exec sxlock
+# bindsym $mod2+l workspace LOCK, exec sxlock
+# bindsym $mod2+l workspace LOCK, exec i3lock -c 000000 -I 0
+# bindsym $mod2+l workspace LOCK, exec /srv/env/bin/i3lock_wrapper
+
+
+# change focus
+bindsym $mod1+$left  focus left
+bindsym $mod1+$down  focus down
+bindsym $mod1+$up    focus up
+bindsym $mod1+$right focus right
+
+# move focused window
+bindsym $mod1+Shift+$left  move left
+bindsym $mod1+Shift+$down  move down
+bindsym $mod1+Shift+$up    move up
+bindsym $mod1+Shift+$right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod1+f fullscreen
+
+# toggle tiling / floating
+bindsym $mod1+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod1+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod1+a focus parent
+
+# focus the child container
+bindcode $mod1+d focus child
+
+# switch to workspace
+bindsym $mod1+1     workspace  1
+bindsym $mod1+2     workspace  2
+bindsym $mod1+3     workspace  3
+bindsym $mod1+4     workspace  4
+bindsym $mod1+5     workspace  5
+bindsym $mod1+6     workspace  6
+bindsym $mod1+7     workspace  7
+bindsym $mod1+8     workspace  8
+bindsym $mod1+9     workspace  9
+bindsym $mod1+0     workspace  10
+bindsym $mod1+equal workspace  RF
+bindsym $mod1+minus scratchpad show
+# bindsym $mod1+Left  workspace  prev
+# bindsym $mod1+Right workspace  next
+
+# move focused container to workspace
+bindsym $mod1+Shift+1     move container to workspace 1
+bindsym $mod1+Shift+2     move container to workspace 2
+bindsym $mod1+Shift+3     move container to workspace 3
+bindsym $mod1+Shift+4     move container to workspace 4
+bindsym $mod1+Shift+5     move container to workspace 5
+bindsym $mod1+Shift+6     move container to workspace 6
+bindsym $mod1+Shift+7     move container to workspace 7
+bindsym $mod1+Shift+8     move container to workspace 8
+bindsym $mod1+Shift+9     move container to workspace 9
+bindsym $mod1+Shift+0     move container to workspace 10
+bindsym $mod1+Shift+minus move scratchpad
+# bindsym $mod1+Shift+Left  move workspace prev
+# bindsym $mod1+Shift+Right move workspace next
+
+bindsym $mod1+Shift+F1 move workspace to LVDS1
+bindsym $mod1+Shift+F2 move workspace to VGA1
+bindsym $mod1+Shift+F3 move workspace to HDMI1
+bindsym $mod1+Shift+F4 move workspace to eDP1
+
+# reload the configuration file
+bindsym $mod1+Shift+C reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod1+Shift+R exec cat ~/.i3/config.d/* > ~/.i3/config && i3-msg restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod1+Shift+E exit
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left  will shrink the window’s width.
+    # Pressing right will grow   the window’s width.
+    # Pressing up    will shrink the window’s height.
+    # Pressing down  will grow   the window’s height.
+    bindsym $left  resize grow   width  10 px or 10 ppt
+    bindsym $down  resize shrink height 10 px or 10 ppt
+    bindsym $up    resize grow   height 10 px or 10 ppt
+    bindsym $right resize shrink width  10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    # bindsym Left  resize grow   width  10 px or 10 ppt
+    # bindsym Right resize shrink width  10 px or 10 ppt
+    # bindsym Up    resize grow   height 10 px or 10 ppt
+    # bindsym Down  resize shrink height 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+r mode "resize"
+
+# change container layout (stacked, tabbed, default)
+mode "layout" {
+    bindsym s layout stacking, mode "default"
+    bindsym w layout tabbed,   mode "default"
+    bindsym e layout default,  mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+w mode "layout"
+
+# split in horizontal orientation
+bindsym $mod1+s split h
+
+# split in vertical orientation
+bindsym $mod1+v split v
+
+# enable or disable touchpad
+bindsym $mod1+Shift+t exec synclient TouchpadOff=1, mode "default"
+bindsym $mod1+t exec synclient TouchpadOff=0, mode "default"
+
+# Multimedia Keys
+# increase volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+# decrease volume
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+# mute volume
+bindsym XF86AudioMute exec amixer -q set Master mute
+# pause / play / next / previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+mode "environment" {
+    bindsym e       exec ~/.screenlayout/office.sh,                                       \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+                    #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+    bindsym $mod1+e exec ~/.screenlayout/office.sh,                                       \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+    bindsym o       exec ~/.screenlayout/office.sh,                                       \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+                    #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+    bindsym m       exec ~/.screenlayout/monitor.sh,                                      \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+                    #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+    bindsym n       exec ~/.screenlayout/monitor.sh,                                      \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+    bindsym t       exec ~/.screenlayout/tv.sh,                                           \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+    bindsym c       exec ~/.screenlayout/tv.sh,                                           \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys",           \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+    bindsym l       exec ~/.screenlayout/laptop.sh,                                       \
+                    exec "xbacklight -set 5"                                              \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+    bindsym a       exec arandr,                                                          \
+                    mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+e mode "environment"
+
+mode "keyboard" {
+    bindsym t exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek", \
+              mode "default"
+    bindsym a exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys", \
+              mode "default"
+    bindsym u exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+              mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+y mode "keyboard"
+
+# change monitor back light
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym $mod1+XF86AudioLowerVolume exec xbacklight -dec 5
+bindsym $mod1+XF86AudioRaiseVolume exec xbacklight -inc 5
+
+# change window oppacity
+bindsym $mod1+Shift+XF86AudioLowerVolume exec compton-trans -c -- -10
+bindsym $mod1+Shift+XF86AudioRaiseVolume exec compton-trans -c -- +10
+# bindsym --whole-window $mod+button4 exec compton-trans -c -5
+# bindsym --whole-window $mod+button5 exec compton-trans -c +5
+
+# screenshots
+bindsym Print exec escrotum -C -s
+
+mode "xgamma" {
+    bindsym 1       exec xgamma -gamma .1
+    bindsym 2       exec xgamma -gamma .2
+    bindsym 3       exec xgamma -gamma .3
+    bindsym 4       exec xgamma -gamma .4
+    bindsym 5       exec xgamma -gamma .5
+    bindsym 6       exec xgamma -gamma .6
+    bindsym 7       exec xgamma -gamma .7
+    bindsym 8       exec xgamma -gamma .8
+    bindsym 9       exec xgamma -gamma .9
+    bindsym 0       exec xgamma -gamma 1
+    bindsym g       exec xgamma -gamma 1, mode "default"
+    bindsym $mod1+g exec xgamma -gamma .7, mode "default"
+    bindsym $mod1+1 exec xgamma -gamma 1.1
+    bindsym $mod1+2 exec xgamma -gamma 1.2
+    bindsym $mod1+3 exec xgamma -gamma 1.3
+    bindsym $mod1+4 exec xgamma -gamma 1.4
+    bindsym $mod1+5 exec xgamma -gamma 1.5
+    bindsym $mod1+6 exec xgamma -gamma 1.6
+    bindsym $mod1+7 exec xgamma -gamma 1.7
+    bindsym $mod1+8 exec xgamma -gamma 1.8
+    bindsym $mod1+9 exec xgamma -gamma 1.9
+    bindsym $mod1+0 exec xgamma -gamma 2
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+g mode "xgamma"
+
+mode "open" {
+    bindsym $mod1+g exec google-chrome-stable --profile-directory=Guest,              mode "default"
+    bindsym $mod1+k exec google-chrome-stable --profile-directory=KitConcept,         mode "default"
+    bindsym $mod1+p exec google-chrome-stable --profile-directory=PretaGov,           mode "default"
+    bindsym $mod1+f exec google-chrome-stable --profile-directory=ForContent,         mode "default"
+    bindsym $mod1+s exec google-chrome-stable --profile-directory=SimplesConsultoria, mode "default"
+    bindsym $mod1+o exec google-chrome-stable --profile-directory=Pessoal,            mode "default"
+    bindsym d       exec discord,                                                     mode "default"
+    bindsym f       exec firefox --class Firefox_pessoal,                             mode "default"
+    bindsym o       exec opera,                                                       mode "default"
+    bindsym s       exec apulse skypeforlinux,                                        mode "default"
+    bindsym g       exec optirun -c jpeg steam,                                       mode "default"
+    bindsym v       exec vlc,                                                         mode "default"
+    bindsym t       exec thunderbird,                                                 mode "default"
+    bindsym m       exec megasync,                                                    mode "default"
+    bindsym l       exec /srv/koala/koala,                                            mode "default"
+    bindsym k       exec fusermount -uz ~/Encrypted/Mega,                                                                                               \
+                    exec urxvt -title "Decrypt" -g 80x25 -e sh -c "encfs -s ~/Cloud/Mega/encrypted ~/Encrypted/Mega && ls ~/Encrypted/Mega && sleep 1", \
+                    mode "default"
+    bindsym $mod1+m exec pkill -9 megasync,                                           mode "default"
+    bindsym $mod1+s exec pkill -9 skypeforlinux,                                      mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod1+o mode "open"

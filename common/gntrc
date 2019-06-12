@@ -1,0 +1,38 @@
+[general]
+mouse = 1
+
+[GntWM::binding]
+a-right = window-next
+a-left  = window-prev
+
+[colors]
+# The RGB values range in [0, 1000]
+brightred = 1000; 0; 0
+brightgreen = 0; 1000; 0
+brightblue = 360; 360; 1000
+brightwhite = 1000; 1000; 1000
+brightgray = 580; 580; 580
+brightcyan = 0; 1000; 1000
+brightyellow = 1000; 1000; 0
+
+[colorpairs]
+normal = brightwhite; black
+highlight = brightwhite; blue
+highlightd = black; brightgray
+shadow = black; brightdarkgray
+title = brightwhite; blue
+titled = brightwhite; gray
+text = brightwhite; blue
+disabled = brightgray; black
+urgent = brightgreen; black
+
+[Finch]
+color-available = brightgreen; black
+color-away = brightblue; black
+color-idle = brightgray; black
+color-offline = brightred; black
+color-message-sent = brightcyan; default
+color-message-received = brightred; default
+color-message-highlight = black; brightgreen
+color-message-action = brightyellow; default
+color-timestamp = brightblue; default

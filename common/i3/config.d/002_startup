@@ -1,0 +1,35 @@
+#exec --no-startup-id sxlock
+#exec --no-startup-id xsetroot -solid "#000000"
+#exec --no-startup-id volumeicon
+#exec --no-startup-id megasync
+#exec --no-startup-id nitrogen --restore
+#exec --no-startup-id numlockx on
+#exec --no-startup-id gnome-sound-applet
+#exec --no-startup-id nm-applet
+#exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id system-config-printer-applet
+#exec --no-startup-id xfce4-volumed
+#exec --no-startup-id tilda
+#exec --no-startup-id update-notifier
+#exec --no-startup-id setxkbmap 'br'
+#exec --no-startup-id xcape -e 'Control_L=Escape'
+
+
+exec --no-startup-id compton
+exec --no-startup-id hsetroot -solid "#000000"
+exec --no-startup-id xbacklight -set 10
+exec --no-startup-id xgamma -gamma .7
+exec --no-startup-id sflock -h
+exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
+#exec --no-startup-id synclient TouchpadOff=1
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
+exec --no-startup-id udiskie -a -s
+exec --no-startup-id keynav
+exec --no-startup-id ~/.screenlayout/laptop.sh
+#exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
+exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
+
+
+exec i3-msg 'workspace 1'
