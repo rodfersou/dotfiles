@@ -1,5 +1,5 @@
 COPY_ALWAYS="rcrc vim-notes/*"
 EXCLUDES="rcrc _crypt"
-DOTFILES_DIRS="$HOME/.dotfiles $HOME/Encrypted/Mega/.dotfiles"
-SYMLINK_DIRS="fonts ssh irssi_rfs purple_rfs weechat_rfs Atom sublime-text-2 rodfersou ForContent SimplesConsultoria Pessoal"
+DOTFILES_DIRS="$HOME/.dotfiles/common $HOME/.dotfiles/sensitive"
+SYMLINK_DIRS="fonts ssh irssi_rfs purple_rfs weechat_rfs Atom sublime-text-2"
 TAGS="oldvim"
