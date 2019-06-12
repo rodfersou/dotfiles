@@ -7,7 +7,7 @@ export ZSH="/Users/rodrigo/.oh-my-zsh"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="bullet-train"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -24,7 +24,7 @@ ZSH_THEME="agnoster"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -55,14 +55,14 @@ DISABLE_AUTO_TITLE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.zsh-custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  git asdf wd
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -97,9 +97,392 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 prompt_context() {}
 
-. $HOME/.asdf/asdf.sh
+alias -g X='> /dev/null 2> /dev/null &'
+alias -g R='reset;'
+alias -g C='clear;'
+alias -g L='| less'
 
-. $HOME/.asdf/completions/asdf.bash
+alias -g Lr='--layer Robot'
+alias -g Li='--layer Integration'
+alias -g Lf='--layer Functional'
+
+alias sshhome='ssh -p 50022 rodfersou@rodrigo.dedyn.io'
+alias scphome='scp -P 50022 rodfersou@rodrigo.dedyn.io'
+alias -g S='-t screen -RRaAD'
+alias -g Sx='-t screen -RRaAx'
+alias -g Mn='-t "reset; while true; do clear; curl -s http://localhost/nginx_stub_status; sleep 5; done"'
+alias -g Mn1='-t "reset; sudo tail -f /var/log/nginx/access.log | egrep --color '"'"'HTTP/1.1\" (5..|4..)'"'"'"'
+alias -g Mn2='-t "reset; sudo tail -f /var/log/nginx/access.log | egrep --color '"'"'HTTP/1.1\" 503'"'"'"'
+# fail2ban-client set nginx-req-limit banip {ip}
+# grep HEAD /var/log/nginx/access.log | egrep -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c | sort -nr | head
+# grep HEAD /var/log/nginx/access.log | egrep -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}" | sort | uniq -c | sort -nr | head
+# tail -f /var/log/nginx/error.log
+alias -g Mn3='-t "reset; sudo tail -f /var/log/nginx/access.log | grep '"'"' HTTP/1..\" 400'"'"'"'
+alias -g Mip='-t "reset; while true; do clear; sudo grep `echo date +'"'"'%d/%b/%Y:%H'"'"'` /var/log/nginx/access.log | awk '"'"'{print $1}'"'"' | sort | uniq -c | sort -nr | head; sleep 5; done"'
+alias -g Mua='-t "reset; sudo awk -F'"'"'\"'"'"' '"'"'/GET/ {print $6}'"'"' /var/log/nginx/access.log | cut -d'"'"' '"'"' -f1 | sort | uniq -c | sort -rn | head"'
+alias -g Mv='-t "reset; sudo varnishlog | egrep --color \"(RxStatus|TxStatus)\""'
+
+alias -g Py='--py'
+alias -g Js='--js'
+alias -g Css='--css'
+alias -g Less='-G "\.less$"'
+alias -g Sass='-G "\.sass$"'
+alias -g Xml='--xml'
+alias -g Pt='-G "\.pt$"'
+alias -g Cfg='-G "\.cfg$"'
+alias -g Zcml='-G "\.zcml$"'
+alias -g Rf='-G "\.robot$"'
+
+alias reload='R source ~/.zshrc'
+alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
+
+# alias vi='vim'
+# yaourt -S vi-vim-symlink
+
+_ag() {
+  dir=`pwd`
+  cd /
+  ag -f --nogroup --pager="less -XFR" $@ $dir
+  cd $dir
+}
+alias ag_='declare -f _ag'
+alias ag='_ag'
+
+alias F='find -L . -print | grep '
+
+alias Sb='subl . X &'
+
+alias Sv='./bin/supervisorctl status'
+alias Svd='./bin/supervisord'
+alias Svk='./bin/supervisorctl shutdown'
+
+_Svs() {
+  if [[ $# -gt 0 ]]; then
+    ./bin/supervisorctl start "$@"
+  else
+    ./bin/supervisorctl start all
+  fi
+}
+alias Svs_='declare -f _Svs'
+alias Svs='_Svs'
+
+_Svx() {
+  if [[ $# -gt 0 ]]; then
+    ./bin/supervisorctl stop "$@"
+  else
+    ./bin/supervisorctl stop all
+  fi
+}
+alias Svx_='declare -f _Svx'
+alias Svx='_Svx'
+
+alias Svr='./bin/supervisorctl reload'
+
+_Bs() {
+  README='Bootstrap custom environment'
+  cp $HOME/.buildout/custom.bootstrap.py .
+  if [ ! -e buildout.cfg ]
+  then
+    ln -sf development.cfg buildout.cfg
+  fi
+  if [ ! -e custom.buildout.cfg ]
+  then
+    cp buildout.cfg custom.buildout.cfg
+  fi
+  cp -R $HOME/.buildout/custom.d .
+  if [ ! -f custom.cfg ]
+  then
+    cp $HOME/.buildout/custom.cfg .
+  fi
+  for i in custom.d/*
+  do
+    if [ ! grep -q $i custom.cfg ]
+    then
+      echo 'WARNING: $i config file not loaded.'
+    fi
+  done
+  C python custom.bootstrap.py -c custom.cfg --setuptools-version=33.1.1 --buildout-version=2.9.5
+}
+alias Bs_='declare -f _Bs'
+alias -g Bs='_Bs'
+
+_Bc() {
+  README='Clear environment'
+  rm bootstrap-buildout.py
+  rm buildout.cfg.custom
+  rm buildout.custom.cfg
+  rm -rf custom*
+}
+alias Bc_='declare -f _Bc'
+alias -g Bc='_Bc'
+
+alias -g B='R Bs; ./bin/buildout -c custom.cfg'
+alias Ba='R ./bin/buildout -c custom.cfg annotate'
+alias Bv='R ./bin/buildout -c custom.cfg -vvvv'
+alias Bn='R ./bin/buildout -c custom.cfg -N'
+alias Br='Bc; B'
+
+_Cs() {
+  README='Cache search'
+  ag -i $1 -G "requires\.txt$" /srv/cache/eggs/*
+}
+alias Cs_='declare -f _Cs'
+alias Cs='_Cs'
+
+_Csg() {
+  README='Cache search with grep'
+  grep -Ri --include="requires.txt" "$1" /srv/cache/eggs/*
+}
+alias Csg_='declare -f _Csg'
+alias Csg='_Csg'
+
+alias Z='./bin/zeo status'
+alias Zs='./bin/zeo start'
+alias Zx='./bin/zeo stop'
+
+# alias I='R echo "http://localhost:8080/Plone"; echo "http://rodrigo.dedyn.io:58080/Plone"; RELOAD_PATH=src/ ./bin/instance fg'
+alias I='R RELOAD_PATH=src/ ./bin/instance fg'
+alias I4='R RELOAD_PATH=src/ ./bin/instance4x fg'
+alias I5='R RELOAD_PATH=src/ ./bin/instance5x fg'
+alias Ib='R PATH=`pwd`/bin:$PATH RELOAD_PATH=src/ ./bin/instance fg'
+alias Ist='./bin/instance status'
+alias Is='./bin/instance start'
+alias Ix='./bin/instance stop'
+
+_Id() {
+  if [[ $# -gt 0 ]]; then
+    R ./bin/instance-debug -O $1 debug
+  else
+    R ./bin/instance-debug -O Plone debug
+  fi
+}
+alias Id_='declare -f _Id'
+alias Id='_Id'
+
+alias Ir='R ./bin/instance -O Plone run'
+alias Ia='./bin/instance adduser admin admin'
+
+# alias I1='R echo "http://localhost:8081/Plone"; echo "http://rodrigo.dedyn.io:58081/Plone"; RELOAD_PATH=src/ ./bin/instance1 fg'
+alias I1='R RELOAD_PATH=src/ ./bin/instance1 fg'
+alias I1b='R PATH=`pwd`/bin:$PATH RELOAD_PATH=src/ ./bin/instance1 fg'
+alias I1st='./bin/instance1 status'
+alias I1s='./bin/instance1 start'
+alias I1x='./bin/instance1 stop'
+
+_I1d() {
+  if [[ $# -gt 0 ]]; then
+    R ./bin/instance1 -O $1 debug
+  else
+    R ./bin/instance1 -O Plone debug
+  fi
+}
+alias I1d_='declare -f _I1d'
+alias I1d='_I1d'
+
+alias I1r='R ./bin/instance1 run'
+alias I1a='./bin/instance1 adduser admin admin'
+
+alias Ww='R ./bin/watch-'
+alias Ew='R ./bin/env-'
+alias Bw='R ./bin/build-'
+alias Dw='R ./bin/debug-'
+
+# alias O='R echo "http://localhost:8069"; echo "http://rodrigo.dedyn.io:58069"; ./bin/start_odoo'
+
+# _N() {
+#   # trap ctrl-c and call ctrl_c()
+#   trap ctrl_c INT
+#   function ctrl_c() {
+#     R ./bin/npm_build
+#   }
+#   R ./bin/npm_watch
+# }
+# alias N='R ./bin/npm_watch'
+# alias Nd='R ./bin/npm_dev'
+# alias Nb='R ./bin/npm_build'
+# alias Nt='R ./bin/npm_test'
+# alias Ntw='R ./bin/npm_test_watch'
+# alias W='R ./bin/webpack_env'
+
+alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; python manage.py runserver 0:8080'
+
+export FIREFOX_ROBOT='/srv/firefox-45.8.0'
+alias T='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test'
+alias Tl='C ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test --list L'
+alias Tt='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -t'
+alias Tp='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -s'
+alias Tr='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH giturl=`git config --get remote.origin.url`; package=${${giturl##*/}%.*}; echo "http://localhost:55001/plone"; ./bin/robot-server $package.testing.ROBOT_TESTING'
+alias Trc='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=8080 bin/robot-server cxc.testing.CXC_ROBOT_TESTING'
+
+alias Pi='pip install '
+alias Ppu='Pi -U setuptools==33.1.1'
+alias Pp='Pi virtualenv debug bs4'
+alias Pv='R pyenv virtualenv 2.7.12 ${PWD##*/} && pyenv local ${PWD##*/} && Ppu && Pp'
+alias Pu='R pyenv uninstall ${PWD##*/} && rm -f .python-version'
+alias Pk='for i in `find . -print | grep "\.py[co]$"`; do rm $i; done'
+
+alias V='varnishadm backend.list'
+# Check Port
+alias Nc='nc -z -v'
+alias ClearNginx='cd /var/lib/nginx/cache && rm -rf {0..9} {a..f}'
+
+export KEYTIMEOUT=1
+
+
+# _ssh() {
+#   ssh "$@"
+# }
+# alias ssh_='declare -f _ssh'
+# alias ssh='_ssh'
+
+# No arguments: `git status`
+# # With arguments: acts like `git`
+_g() {
+  if [[ $# -gt 0 ]]
+  then
+    git "$@"
+  else
+    C git status
+  fi
+}
+alias g_='declare -f _g'
+alias g='_g'
+# setopt COMPLETE_ALIASES
+# compdef _git g=git
+
+_gsa() {
+  for i in *
+  do
+    echo $i
+    cd $i
+    git status
+    ..
+    echo
+  done
+}
+alias gsa_='declare -f _gsa'
+alias gsa='_gsa'
+
+_greload() {
+  git fetch
+  git reset --hard origin/$(git symbolic-ref HEAD | sed -e "s,refs/heads/\(.*\),\1,")
+}
+alias greload_='declare -f _greload'
+alias greload='_greload'
+
+# go to git root directory
+_cdr() {
+  current=$PWD
+  while [[ ! "${PWD##*/}" =~ "\." ]]
+  do
+    ..
+    [[ "$PWD" == "/" ]] && break
+  done
+  if [[ "$PWD" == "/" ]]
+  then
+    cd $current
+    gitroot=`git rev-parse --show-toplevel`
+    cd ${gitroot/\/home\/rodfersou\/.projects/\/srv}
+  fi
+}
+alias cdr_='declare -f _cdr'
+alias cdr='_cdr'
+
+alias cdrr='cdr; ..; cdr'
+
+_cdpp() {
+  README='Go to git project directory'
+  cdr
+  giturl=`git config --get remote.origin.url`
+  gitfolder=${${${giturl##*/}%.*}//.//}
+  folder=${${PWD##*/}//.//}
+  if [ -d "$folder" ]
+  then
+    cd "$folder"
+  elif [ -d "src/$folder" ]
+  then
+    cd "src/$folder"
+  elif [ -d "$gitfolder" ]
+  then
+    cd "$gitfolder"
+  elif [ -d "src/$gitfolder" ]
+  then
+    cd "src/$gitfolder"
+  fi
+}
+alias cdpp_='declare -f _cdpp'
+alias cdpp='_cdpp'
+
+alias cdp_='cdpp_; echo "vim"'
+alias cdp='cdpp; vim'
+
+# go to omelette directory
+_cdo() {
+  cdr
+  om1=parts/packages
+  om2=parts/omelette
+  if [ -d "$om1" ]
+  then
+    cd "$om1"
+  elif [ -d "$om2" ]
+  then
+    cd "$om2"
+  fi
+}
+alias cdo_='declare -f _cdo'
+alias cdo='_cdo'
+
+alias cds='cd `python -c "import pip; print(pip.__path__[0].rstrip(\"\/pip\"))"`'
+
+alias cdh='cd $PWD'
+alias cdww='cdr; cd webpack'
+alias cdw='cdww; vim'
+
+_Cc() {
+  if [[ $# -gt 0 ]]; then
+    if [[ $1 == *.css ]]; then
+      ln -sf $1 ${1%.css}.less
+      csscomb ${1%.css}.less
+      rm ${1%.css}.less
+    else
+      csscomb $1
+    fi
+  else
+    echo "Usage: Cc <file>"
+  fi
+}
+alias Cc_='declare -f _cdo'
+alias Cc='_Cc'
+
+alias winetricks32='WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks'
+alias wine32='WINEPREFIX=~/.wine32 WINEARCH=win32 wine'
+alias steam='optirun -c jpeg steam'
+alias bwrap='bwrap --dev-bind / / bash'
+alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
+alias handbrake-gtk='ghb'
+alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4'
+
+bindkey "^R" history-incremental-search-backward
+
+# expand-aliases() {
+#   unset 'functions[_expand-aliases]'
+#   functions[_expand-aliases]=$BUFFER
+#   (($+functions[_expand-aliases])) &&
+#     BUFFER=${functions[_expand-aliases]#$'\t'} &&
+#     CURSOR=$#BUFFER
+# }
+
+# zle -N expand-aliases
+# bindkey "^E" expand-aliases
+bindkey -M emacs " " magic-space
+bindkey -M viins " " magic-space
+bindkey -M emacs "^E" globalias
+bindkey -M viins "^E" globalias
+bindkey -s "^\\" "fg\n"
+
+# . $HOME/.asdf/asdf.sh
+
+# . $HOME/.asdf/completions/asdf.bash
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/expat/bin:$PATH"
@@ -127,3 +510,9 @@ export LDFLAGS="-L$(brew --prefix sqlite)/lib $LDFLAGS"
 # about expat
 export LDFLAGS="-L$(brew --prefix expat)/lib"
 export CPPFLAGS="-I$(brew --prefix expat)/include"
+
+if [[ "$(tty)" == '/dev/ttys001' ]]; then
+  if [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; then
+    (cd $HOME/.dotfiles && make)
+  fi
+fi

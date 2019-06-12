@@ -1,7 +1,7 @@
 autodetach on
 startup_message off
-#shell -${SHELL}
-shell "/usr/bin/zsh"
+shell -${SHELL}
+#shell "/usr/bin/zsh"
 # term xterm-vt220
 # sudo apt-get install ncurses-term
 term screen-256color
@@ -99,8 +99,8 @@ screen -t '' 16
 screen -t '' 17
 screen -t '' 18
 screen -t '' 19
-#screen -t '' 20
-screen -t '' 20 weechat -d /home/rodfersou/.weechat_rfs
+screen -t '' 20
+#screen -t '' 20 weechat -d /home/rodfersou/.weechat_rfs
 #screen -t '' 21
 #screen -t '' 22
 #screen -t '' 23
