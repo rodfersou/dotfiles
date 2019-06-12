@@ -511,8 +511,10 @@ export LDFLAGS="-L$(brew --prefix sqlite)/lib $LDFLAGS"
 export LDFLAGS="-L$(brew --prefix expat)/lib"
 export CPPFLAGS="-I$(brew --prefix expat)/include"
 
-if [[ "$(tty)" == '/dev/ttys001' ]]; then
-  if [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; then
+if [[ "$(tty)" == '/dev/ttys001' ]]
+then
+  while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
+  do
     (cd $HOME/.dotfiles && make)
-  fi
+  done
 fi
