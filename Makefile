@@ -43,6 +43,12 @@ install-linux:  ## Install dotfiles for linux
 	make install
 	(cd $(HOME) && rcup -t linux)
 
+.PHONY: install-osx
+install-osx:  ## Install dotfiles for osx
+	@echo "$(GREEN)==> Install dotfiles for osx$(RESET)"
+	make install
+	(cd $(HOME) && rcup -t osx)
+
 .PHONY: uninstall
 uninstall:  ## Uninstall dotfiles
 	@echo "$(RED)==> Uninstall dotfiles$(RESET)"
