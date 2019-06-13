@@ -19,3 +19,4 @@ qa.cfg
 TAGS
 yarn.lock
 __pycache__
+Pipfile

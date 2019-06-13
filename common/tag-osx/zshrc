@@ -62,10 +62,12 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git asdf wd
+  git wd globalias asdf
 )
 
 source $ZSH/oh-my-zsh.sh
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # User configuration
 
@@ -86,6 +88,15 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+autoload -U zsh-mime-setup
+zsh-mime-setup
+
+setopt nosharehistory
+setopt autocd
+
+# Disable software flow control
+stty -ixon
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -201,7 +212,7 @@ _Bs() {
       echo 'WARNING: $i config file not loaded.'
     fi
   done
-  C python custom.bootstrap.py -c custom.cfg --setuptools-version=33.1.1 --buildout-version=2.9.5
+  C pipenv run python custom.bootstrap.py -c custom.cfg --setuptools-version=33.1.1 --buildout-version=2.9.5
 }
 alias Bs_='declare -f _Bs'
 alias -g Bs='_Bs'
@@ -304,7 +315,7 @@ alias Dw='R ./bin/debug-'
 # alias Ntw='R ./bin/npm_test_watch'
 # alias W='R ./bin/webpack_env'
 
-alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; python manage.py runserver 0:8080'
+alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; pipenv run python manage.py runserver 0:8080'
 
 export FIREFOX_ROBOT='/srv/firefox-45.8.0'
 alias T='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test'
@@ -314,11 +325,11 @@ alias Tp='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PAT
 alias Tr='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH giturl=`git config --get remote.origin.url`; package=${${giturl##*/}%.*}; echo "http://localhost:55001/plone"; ./bin/robot-server $package.testing.ROBOT_TESTING'
 alias Trc='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=8080 bin/robot-server cxc.testing.CXC_ROBOT_TESTING'
 
-alias Pi='pip install '
+alias Pi='pipenv run pip install '
 alias Ppu='Pi -U setuptools==33.1.1'
-alias Pp='Pi virtualenv debug bs4'
-alias Pv='R pyenv virtualenv 2.7.12 ${PWD##*/} && pyenv local ${PWD##*/} && Ppu && Pp'
-alias Pu='R pyenv uninstall ${PWD##*/} && rm -f .python-version'
+alias Pp='Pi debug bs4'
+alias Pv='R pipenv --two && Ppu && Pp'
+alias Pu='R pipenv --rm'
 alias Pk='for i in `find . -print | grep "\.py[co]$"`; do rm $i; done'
 
 alias V='varnishadm backend.list'
@@ -432,7 +443,7 @@ _cdo() {
 alias cdo_='declare -f _cdo'
 alias cdo='_cdo'
 
-alias cds='cd `python -c "import pip; print(pip.__path__[0].rstrip(\"\/pip\"))"`'
+alias cds='cd `pipenv run python -c "import pip; print(pip.__path__[0].rstrip(\"\/pip\"))"`'
 
 alias cdh='cd $PWD'
 alias cdww='cdr; cd webpack'
@@ -480,12 +491,23 @@ bindkey -M emacs "^E" globalias
 bindkey -M viins "^E" globalias
 bindkey -s "^\\" "fg\n"
 
-# . $HOME/.asdf/asdf.sh
-
-# . $HOME/.asdf/completions/asdf.bash
+export PYTHONSTARTUP=~/.pythonrc.py
+export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
+export XMODIFIERS=''
+export EDITOR=vim
+export BULLETTRAIN_VIRTUALENV_SHOW=false
+export BULLETTRAIN_RUBY_SHOW=false
+export BULLETTRAIN_TIME_SHOW=false
+export PYTEST_ADDOPTS="-s"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/expat/bin:$PATH"
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
+
+setopt NO_HUP
+setopt NO_CHECK_JOBS
 
 # brew install readline openssl xz zlib
 # ~/.env-exporter
