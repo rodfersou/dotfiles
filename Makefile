@@ -1,6 +1,7 @@
 # convenience makefile to boostrap & run buildout
 SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+CURRENT_OS:=$(shell uname -s)
 
 
 # We like colors
@@ -33,20 +34,13 @@ umount:  ## Umount crypted dir
 .PHONY: install
 install:  ## Install dotfiles
 	@echo "$(GREEN)==> Install dotfiles$(RESET)"
-	ln -sf $(CURRENT_DIR)/common/rcrc $(HOME)/.rcrc
+ifeq ($(CURRENT_OS),Linux)
+	ln -sf $(CURRENT_DIR)/rcrc-linux $(HOME)/.rcrc
+endif
+ifeq ($(CURRENT_OS),Darwin)
+	ln -sf $(CURRENT_DIR)/rcrc-osx $(HOME)/.rcrc
+endif
 	(cd $(HOME) && rcup)
-
-.PHONY: install-linux
-install-linux:  ## Install dotfiles for linux
-	@echo "$(GREEN)==> Install dotfiles for linux$(RESET)"
-	make install
-	(cd $(HOME) && rcup -t linux)
-
-.PHONY: install-osx
-install-osx:  ## Install dotfiles for osx
-	@echo "$(GREEN)==> Install dotfiles for osx$(RESET)"
-	make install
-	(cd $(HOME) && rcup -t osx)
 
 .PHONY: uninstall
 uninstall:  ## Uninstall dotfiles
