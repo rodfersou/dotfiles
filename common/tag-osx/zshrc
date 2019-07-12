@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/rodrigo/.oh-my-zsh"
@@ -317,7 +317,7 @@ alias Dw='R ./bin/debug-'
 
 alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; pipenv run python manage.py runserver 0:8080'
 
-export FIREFOX_ROBOT='/srv/firefox-45.8.0'
+export FIREFOX_ROBOT='/Applications/Firefox.app/Contents/MacOS'
 alias T='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test'
 alias Tl='C ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test --list L'
 alias Tt='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -t'
@@ -327,10 +327,15 @@ alias Trc='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PA
 
 alias Pi='pipenv run pip install '
 alias Ppu='Pi -U setuptools==33.1.1'
-alias Pp='Pi debug bs4'
+alias Ppu3='Pi -U setuptools==41.0.1'
+alias Pp='Pi debug bs4 virtualenv'
 alias Pv='R pipenv --two && Ppu && Pp'
+alias Pv3='R pipenv --three && Ppu3 && Pp'
 alias Pu='R pipenv --rm'
 alias Pk='for i in `find . -print | grep "\.py[co]$"`; do rm $i; done'
+alias Pa='. $(pipenv --venv)/bin/activate'
+alias Pd='deactivate'
+alias Pr='pipenv run pip install -r requirements.txt --upgrade'
 
 alias V='varnishadm backend.list'
 # Check Port
@@ -472,6 +477,7 @@ alias bwrap='bwrap --dev-bind / / bash'
 alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'
 alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4'
+alias fix-video='killall VDCAssistant'
 
 bindkey "^R" history-incremental-search-backward
 
@@ -533,10 +539,15 @@ export LDFLAGS="-L$(brew --prefix sqlite)/lib $LDFLAGS"
 export LDFLAGS="-L$(brew --prefix expat)/lib"
 export CPPFLAGS="-I$(brew --prefix expat)/include"
 
+export TZ="America/Sao_Paulo"
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
 if [[ "$(tty)" == '/dev/ttys001' ]]
 then
   while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
   do
     (cd $HOME/.dotfiles && make)
+    R
   done
 fi

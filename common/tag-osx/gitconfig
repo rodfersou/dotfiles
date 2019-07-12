@@ -1,0 +1,41 @@
+[diff]
+  tool = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+  ;tool = meld
+
+[merge]
+  tool = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+  ;tool = meld
+
+[color]
+  diff   = auto
+  branch = auto
+  status = auto
+
+[alias]
+  ; br      = branch
+  ; ci      = commit -v
+  ; co      = checkout
+  df      = diff
+  dt      = difftool -y
+  l       = log --name-only
+  ll      = log -p
+  mt      = mergetool -y
+  ; pl      = pull --rebase
+  ; ps      = push
+  ; st      = status
+  unci    = reset --soft HEAD^
+  unstage = reset HEAD
+  ; unpull  = reset --hard HEAD^
+
+[user]
+  name  = Rodrigo Ferreira de Souza
+  email = rodfersou@gmail.com
+
+[push]
+  default = simple
+
+[core]
+  excludesfile = ~/.gitignore
+
+[http]
+  sslVerify = false

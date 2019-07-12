@@ -1,0 +1,274 @@
+let skip_loading_mswin=1
+source ~/.vim/dwiw-loader.vim
+
+set nofoldenable    " disable folding
+set encoding=UTF-8
+set number
+set autoread
+set clipboard=unnamed
+let mapleader=","
+" set shell=/bin/zsh\ -i
+
+" let @s='msgg/^fromV)k:sort i/^importV)k:sort i`s:noh'
+let @s='msgg/^fromV)k;sort i/^importV)k;sort i`s;noh'
+let @d='oimport ipdb; ipdb.set_trace()'
+let @u='ofrom Products.CMFPlone.utils import safe_unicode'
+
+" Plugin 'sickill/vim-monokai'
+" syntax enable
+" colorscheme monokai
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+
+colorscheme solarized
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
+" Plugin 'trusktr/seti.vim'
+
+function! ToggleSideEffects()
+    if mapcheck("dd", "n") == ""
+        noremap dd "_dd
+        noremap D "_D
+        noremap d "_d
+        noremap X "_X
+        noremap x "_x
+        echo 'side effects off'
+    else
+        unmap dd
+        unmap D
+        unmap d
+        unmap X
+        unmap x
+        echo 'side effects on'
+    endif
+endfunction
+" nnoremap ,, :call ToggleSideEffects()<CR>
+
+let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':.'
+" let g:airline#extensions#tabline#fnamecollapse = 0
+
+Plugin 'editorconfig/editorconfig-vim'
+autocmd BufRead,BufNewFile *.zcml :set filetype=xml
+autocmd BufRead,BufNewFile *.cfg :set commentstring=#%s
+autocmd FileType javascript setl shiftwidth=2 sts=2 et
+
+Plugin 'mattn/emmet-vim'
+" Plugin 'zxqfl/tabnine-vim'
+Plugin 'w0rp/ale'
+let b:ale_fixers = ['prettier', 'eslint', 'black']
+" Plugin 'kevinw/pyflakes-vim'
+" Plugin 'prettier/vim-prettier'
+
+Plugin 'digitaltoad/vim-pug'
+autocmd BufRead,BufNewFile *.pug :set filetype=pug
+autocmd BufRead,BufNewFile *.jade :set filetype=pug
+
+Plugin 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+
+Plugin 'mfukar/robotframework-vim'
+autocmd BufRead,BufNewFile *.robot :set filetype=robot
+
+"autocmd BufRead,BufNewFile *.py :set foldmethod=indent foldnestmax=3
+
+Plugin 'Chiel92/vim-autoformat'
+let g:formatdef_htmlbeautify = '"html-beautify -s 2 -i 4 -A force -I -E [] -f -"'
+let g:formatters_html = ['htmlbeautify']
+let g:formatdef_tidy_xml = '"tidy -q -xml --show-errors 0 --show-warnings 0 --force-output --indent yes --indent-attributes yes --indent-spaces 2 --vertical-space yes --tidy-mark no -wrap 90"'
+let g:formatters_xml = ['tidy_xml']
+let g:formatdef_jsbeautify_javascript = '"js-beautify -f - -s 2").(&textwidth ? " -w ".&textwidth : "")'
+let g:formatters_javascript = ['jsbeautify_javascript']
+
+Plugin 'scrooloose/nerdtree'
+let g:NERDTreeChDirMode=0
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+let NERDTreeMouseMode=2
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeWinPos = "right"
+let NERDTreeKeepTreeInNewTab=1
+let NERDTreeQuitOnOpen=1
+function! s:CloseIfOnlyControlWinLeft()
+  if winnr("$") != 1
+    return
+  endif
+  if (exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1)
+        \ || &buftype == 'quickfix'
+    q
+  endif
+endfunction
+augroup CloseIfOnlyControlWinLeft
+  au!
+  au BufEnter * call s:CloseIfOnlyControlWinLeft()
+augroup END
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+if has('gui_running')
+  " Open by mouse click
+  noremap <F12> :NERDTreeToggle %<CR>
+else
+  noremap <F12> :NERDTreeToggle<CR>
+endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"Plugin 'mhinz/vim-startify'
+
+" Plugin 'fabi1cazenave/cua-mode.vim'
+" let g:cua_mode = 3
+noremap <C-\> <C-Z>
+
+Plugin 'terryma/vim-multiple-cursors'
+set selection=inclusive
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_quit_key='<Esc>'
+
+Plugin 'groenewege/vim-less'
+autocmd BufRead,BufNewFile *.less :set filetype=less
+
+Plugin 'cakebaker/scss-syntax.vim'
+
+Plugin 'csscomb/vim-csscomb'
+" Map bc to run CSScomb. bc stands for beautify css
+autocmd FileType css noremap <buffer> <leader>bc :CSScomb<CR>
+" Automatically comb your CSS on save
+" autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
+
+" Plugin 'mustache/vim-mustache-handlebars'
+
+" Plugin 'heartsentwined/vim-emblem'
+" autocmd BufRead,BufNewFile *.emblem :set filetype=emblem
+" autocmd BufRead,BufNewFile *.em :set filetype=emblem
+
+" Plugin 'kchmck/vim-coffee-script'
+" autocmd BufRead,BufNewFile *.coffee :set filetype=coffee
+
+Plugin 'easymotion/vim-easymotion'
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+"nmap f <Plug>(easymotion-s2)
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Plugin 'python-mode/python-mode'
+" let g:pymode_trim_whitespaces = 1
+" let g:pymode_options_max_line_length = 89
+" let g:pymode_folding = 0
+
+" select blocks by indentation
+"
+" Key Mapping       Description
+"
+" <count>ai         (A)n (I)ndentation level and line above.
+" <count>ii         (I)nner (I)ndentation level (no line above).
+" <count>aI         (A)n (I)ndentation level and lines above/below.
+" <count>iI         (I)nner (I)ndentation level (no lines above/below).
+"
+" vii
+" vai
+Plugin 'michaeljsmith/vim-indent-object'
+
+Plugin 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['d'] = {
+\ 'pattern': ' \ze\S\+\s*[;=]',
+\ 'left_margin': 0, 'right_margin': 0
+\ }
+
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+
+Plugin 'othree/yajs.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
+Plugin 'ryanoasis/vim-devicons'
+
+let g:notes_directories = ['~/.vim-notes']
+
+let g:ctrlp_working_path_mode = 'a'
+
+" Remove diacritical signs from characters in specified range of lines.
+" Examples of characters replaced: á -> a, ç -> c, Á -> A, Ç -> C.
+" Uses substitute so changes can be confirmed.
+function! s:RemoveDiacritics(line1, line2)
+  let diacs = 'áâãàçéêíóôõüú'  " lowercase diacritical signs
+  let repls = 'aaaaceeiooouu'  " corresponding replacements
+  let diacs .= toupper(diacs)
+  let repls .= toupper(repls)
+  let diaclist = split(diacs, '\zs')
+  let repllist = split(repls, '\zs')
+  let trans = {}
+  for i in range(len(diaclist))
+    let trans[diaclist[i]] = repllist[i]
+  endfor
+  execute a:line1.','.a:line2 . 's/['.diacs.']/\=trans[submatch(0)]/gIce'
+endfunction
+command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>, <line2>)
+
+" Easy move beetween frames
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap H gT
+nnoremap L gt
+
+nnoremap ss :wa<cr>
+nnoremap SS :xa<cr>
+nnoremap ZZ :qa!<cr>
+
+noremap j gj
+noremap k gk
+noremap <Down> gj
+noremap <Up> gk
+
+" map gn :bn<cr>
+" map gp :bp<cr>
+" map gd :bd<cr>
+
+cmap w!! w !sudo tee %
+noremap ; :
+noremap : ;
+" nnoremap \ :!
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+autocmd BufWrite * :retab
+
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>

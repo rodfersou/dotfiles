@@ -1,0 +1,4 @@
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 9 "make sure to escape the spaces in the name properly
+set guioptions-=T  "remove toolbar
+set guioptions-=m  "remove menu
+set guioptions-=L  "remove left scroll bar
