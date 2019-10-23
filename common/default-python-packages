@@ -1,0 +1,8 @@
+pipenv
+youtube-dl
+debug
+virtualenv
+black
+py-spy
+requests
+lxml

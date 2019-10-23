@@ -29,7 +29,7 @@ mount:  ## Mount crypted dir
 .PHONY: umount
 umount:  ## Umount crypted dir
 	@echo "$(YELLOW)==> Umount crypted dir$(RESET)"
-	encfs -u $(CURRENT_DIR)/sensitive
+	fusermount -u $(CURRENT_DIR)/sensitive
 
 .PHONY: install
 install:  ## Install dotfiles
