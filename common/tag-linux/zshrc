@@ -198,7 +198,7 @@ _Bs() {
       echo 'WARNING: $i config file not loaded.'
     fi
   done
-  C pipenv run python custom.bootstrap.py -c custom.cfg --setuptools-version=33.1.1 --buildout-version=2.9.5
+  C pipenv run python custom.bootstrap.py -c custom.cfg --setuptools-version=40.4.3 --buildout-version=2.12.2
 }
 alias Bs_='declare -f _Bs'
 alias -g Bs='_Bs'
@@ -314,10 +314,12 @@ alias Trc='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PA
 alias Pi='pipenv run pip install '
 alias Pa='source $(pipenv --venv)/bin/activate'
 alias Pd='deactivate'
-alias Ppu='Pi -U setuptools==33.1.1'
+alias Ppu='Pi -U setuptools==40.4.3'
 alias Pp='Pi virtualenv debug'
 alias Pv='R pipenv --two && Ppu && Pp'
 alias Pv3='R pipenv --three && Ppu && Pp'
+alias Pr='pipenv run pip install -r requirements.txt'
+alias Pf='pipenv run pip freeze'
 alias Pu='R pipenv --rm'
 alias Pk='for i in `find . -print | grep "\.py[co]$"`; do rm $i; done'
 
