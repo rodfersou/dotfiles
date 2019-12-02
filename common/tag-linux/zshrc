@@ -47,7 +47,7 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git docker autojump vi-mode)
-plugins=(git wd globalias asdf)
+plugins=(git wd globalias asdf yarn)
 
 # User configuration
 
@@ -468,6 +468,16 @@ alias youtube-dl-720p='youtube-dl -f "bestvideo[height<=720]+bestaudio/best[heig
 alias youtube-dl-sub='youtube-dl --write-sub --sub-lang en --skip-download'
 alias youtube-dl-music='youtube-dl --extract-audio --audio-format mp3'
 
+_castnow-youtube() {
+  if [[ $# -gt 0 ]]; then
+    youtube-dl -o - $1 | castnow --quiet -
+  else
+    echo "Usage: castnow-youtube <url>"
+  fi
+}
+alias castnow-youtube_='declare -f _castnow-youtube'
+alias castnow-youtube='_castnow-youtube'
+
 bindkey "^R" history-incremental-search-backward
 
 # expand-aliases() {
@@ -492,6 +502,7 @@ bindkey -s "^\\" "fg\n"
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
 export PYTHONDONTWRITEBYTECODE=
+export PYTHONWARNINGS=ignore
 # export XDG_CACHE_HOME=/srv/cache
 # export PYENV_VIRTUALENV_CACHE_PATH=/srv/cache/pyenv
 export XMODIFIERS=''
