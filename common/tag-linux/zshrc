@@ -279,6 +279,9 @@ alias I1d='_I1d'
 alias I1r='R ./bin/instance1 run'
 alias I1a='./bin/instance1 adduser admin admin'
 
+alias Ms='tmux new-session "make start-backend" \; split-window -h "make start-frontend" \; select-pane -t 0'
+alias Mst='tmux new-session "make start-test-backend" \; split-window -h "make start-test-frontend" \; split-window -f "make start-test" \;  select-pane -t 0'
+
 alias Ww='R ./bin/watch-'
 alias Ew='R ./bin/env-'
 alias Bw='R ./bin/build-'
@@ -453,7 +456,7 @@ _Cc() {
     echo "Usage: Cc <file>"
   fi
 }
-alias Cc_='declare -f _cdo'
+alias Cc_='declare -f _Cc'
 alias Cc='_Cc'
 
 alias winetricks32='WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks'
@@ -467,6 +470,17 @@ alias youtube-dl-480p='youtube-dl -f "bestvideo[height<=480]+bestaudio/best[heig
 alias youtube-dl-720p='youtube-dl -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4'
 alias youtube-dl-sub='youtube-dl --write-sub --sub-lang en --skip-download'
 alias youtube-dl-music='youtube-dl --extract-audio --audio-format mp3'
+
+_K() {
+  if [[ $# -gt 0 ]]; then
+    ps axf | egrep -i $1 | grep -v grep | awk '{print "kill -9 " $1}' | sh
+  else
+    echo "Usage: K <program>"
+  fi
+}
+alias K_='declare -f _cdo'
+alias K='_K'
+alias Kp='K interpreter'
 
 _castnow-youtube() {
   if [[ $# -gt 0 ]]; then
