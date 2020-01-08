@@ -48,4 +48,9 @@ uninstall:  ## Uninstall dotfiles
 	(cd $(HOME) && rcdn)
 	rm $(HOME)/.rcrc
 
+.PHONY: uninstall
+reinstall:  ## Uninstall dotfiles
+	make uninstall
+	make install
+
 .PHONY: all
