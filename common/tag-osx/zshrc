@@ -499,13 +499,15 @@ bindkey -s "^\\" "fg\n"
 
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
+export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+export MACOSX_DEPLOYMENT_TARGET="10.15"
 export XMODIFIERS=''
 export EDITOR=vim
 export BULLETTRAIN_VIRTUALENV_SHOW=false
 export BULLETTRAIN_RUBY_SHOW=false
 export BULLETTRAIN_TIME_SHOW=false
 export PYTEST_ADDOPTS="-s"
-export PATH="/usr/local/Cellar/openssl@1.1/1.1.1c/bin:$PATH"
+export PATH="/usr/local/Cellar/openssl@1.1/1.1.1d/bin:$PATH"
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/expat/bin:$PATH"
 unset LSCOLORS
@@ -515,11 +517,11 @@ export CLICOLOR_FORCE=1
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-# brew install readline openssl xz zlib
+# brew install readline openssl xz zlib expat
 # ~/.env-exporter
 
 # about zlib
-export CFLAGS="-I /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"
+export CFLAGS="-I $SDKROOT/usr/include"
 export LDFLAGS="-L /usr/local/opt/zlib/lib"
 export CPPFLAGS="-I /usr/local/opt/zlib/include"
 
@@ -528,16 +530,16 @@ export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
 export LDFLAGS="-L /usr/local/opt/readline/lib $LDFLAGS"
 
 # about openssl
-export CFLAGS="-I /usr/local/Cellar/openssl@1.1/1.1.1c/include $CFLAGS"
-export LDFLAGS="-L /usr/local/Cellar/openssl@1.1/1.1.1c/lib $LDFLAGS"
+export CFLAGS="-I /usr/local/Cellar/openssl@1.1/1.1.1d/include $CFLAGS"
+export LDFLAGS="-L /usr/local/Cellar/openssl@1.1/1.1.1d/lib $LDFLAGS"
 
 # about SQLite (maybe not necessary)
 export CFLAGS="-I /usr/local/opt/sqlite/include $CFLAGS"
 export LDFLAGS="-L /usr/local/opt/sqlite/lib $LDFLAGS"
 
 # about expat
-export LDFLAGS="-L /usr/local/opt/expat/lib"
-export CPPFLAGS="-I /usr/local/opt/expat/include"
+export LDFLAGS="-L /usr/local/opt/expat/lib $LDFLAGS"
+export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
 
 export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
