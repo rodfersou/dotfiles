@@ -293,6 +293,9 @@ alias I1d='_I1d'
 alias I1r='R ./bin/instance1 run'
 alias I1a='./bin/instance1 adduser admin admin'
 
+alias Ms='tmux new-session "make start-backend" \; split-window -h "make start-frontend" \; select-pane -t 0'
+alias Mst='tmux new-session "make start-test-backend" \; split-window -h "make start-test-frontend" \; split-window -f "make start-test" \;  select-pane -t 0'
+
 alias Ww='R ./bin/watch-'
 alias Ew='R ./bin/env-'
 alias Bw='R ./bin/build-'
@@ -435,14 +438,18 @@ alias cdp='cdpp; vim'
 # go to omelette directory
 _cdo() {
   cdr
-  om1=parts/packages
-  om2=parts/omelette
+  om1=api/parts/omelette
+  om2=parts/packages
+  om3=parts/omelette
   if [ -d "$om1" ]
   then
     cd "$om1"
   elif [ -d "$om2" ]
   then
     cd "$om2"
+  elif [ -d "$om3" ]
+  then
+    cd "$om3"
   fi
 }
 alias cdo_='declare -f _cdo'
@@ -478,6 +485,31 @@ alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'
 alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4'
 alias fix-video='killall VDCAssistant'
+alias youtube-dl-480p='youtube-dl -f "bestvideo[height<=480]+bestaudio/best[height<=480]" --merge-output-format mp4'
+alias youtube-dl-720p='youtube-dl -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4'
+alias youtube-dl-sub='youtube-dl --write-sub --sub-lang en --skip-download'
+alias youtube-dl-music='youtube-dl --extract-audio --audio-format mp3'
+
+_K() {
+  if [[ $# -gt 0 ]]; then
+    ps -ax | egrep -i $1 | grep -v grep | awk '{print "kill -9 " $1}' | sh
+  else
+    echo "Usage: K <program>"
+  fi
+}
+alias K_='declare -f _cdo'
+alias K='_K'
+alias Kp='K interpreter'
+
+_castnow-youtube() {
+  if [[ $# -gt 0 ]]; then
+    youtube-dl -o - $1 | castnow --quiet -
+  else
+    echo "Usage: castnow-youtube <url>"
+  fi
+}
+alias castnow-youtube_='declare -f _castnow-youtube'
+alias castnow-youtube='_castnow-youtube'
 
 bindkey "^R" history-incremental-search-backward
 
