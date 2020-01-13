@@ -11,8 +11,7 @@ custom.buildout.cfg
 custom.bootstrap.py
 api/bootstrap-buildout.py
 custom.cfg
-custom.d/*
-*/custom.d/*
+custom.d/
 share
 package-lock.json
 qa.cfg
