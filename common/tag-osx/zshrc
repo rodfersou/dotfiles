@@ -553,9 +553,11 @@ setopt NO_CHECK_JOBS
 # ~/.env-exporter
 
 # about zlib
+export CPATH="$SDKROOT/usr/include"
 export CFLAGS="-I $SDKROOT/usr/include"
 export LDFLAGS="-L /usr/local/opt/zlib/lib"
 export CPPFLAGS="-I /usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 # about readline
 export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
