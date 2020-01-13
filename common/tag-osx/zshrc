@@ -564,8 +564,8 @@ export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
 export LDFLAGS="-L /usr/local/opt/readline/lib $LDFLAGS"
 
 # about openssl
-export CFLAGS="-I /usr/local/Cellar/openssl@1.1/1.1.1d/include $CFLAGS"
-export LDFLAGS="-L /usr/local/Cellar/openssl@1.1/1.1.1d/lib $LDFLAGS"
+export CFLAGS="-I /usr/local/opt/openssl@1.1/include $CFLAGS"
+export LDFLAGS="-L /usr/local/opt/openssl@1.1/lib $LDFLAGS"
 
 # about SQLite (maybe not necessary)
 export CFLAGS="-I /usr/local/opt/sqlite/include $CFLAGS"
@@ -578,6 +578,10 @@ export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
 # about icuac
 export LDFLAGS="-L/usr/local/opt/icu4c/lib $LDFLAGS"
 export CPPFLAGS="-I/usr/local/opt/icu4c/include $CPPFLAGS"
+
+# about libyaml
+export LDFLAGS="-L/usr/local/opt/libyaml/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/libyaml/include $CPPFLAGS"
 
 export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
