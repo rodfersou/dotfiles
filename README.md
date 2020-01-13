@@ -21,10 +21,25 @@ https://www.google.com/chrome/
 brew cask install google-chrome
 ```
 
+## Install Firefox
+```bash
+brew cask install firefox
+```
+
+## Install VSCode
+```bash
+code | brew cask install visual-studio-code
+```
+
+## Install harvest
+```bash
+brew cask install harvest
+```
+
 ## Install iTerm2
 https://iterm2.com/downloads.html
 ```bash
-brew cask install iterm2
+iterm | brew cask install iterm2 
 ```
 
 In iTerm2:
@@ -58,11 +73,44 @@ https://github.com/jwise/HoRNDIS/issues/102
 brew cask install horndis
 ```
 
+### Install encfs
+```bash
+brew cask install osxfuse
+brew install encfs
+```
+
+## Install NTFS-3G
+https://github.com/osxfuse/osxfuse/wiki/NTFS-3G
+```bash
+brew install ntfs-3g
+```
+
+* Reboot macOS to Recovery Mode (Turn on your Mac and immediately press and hold Command (⌘)-R.)
+* Open Terminal in Recovery Mode from Menu bar -> Utilities -> Terminal
+
+```bash
+csrutil disable
+diskutil list
+```
+
+* Find the label `Macintosh HD` (my case `disk2s5`)
+
+```bash
+diskutil apfs unlockVolume disk2s5
+cd "/Volumes/Macintosh HD/sbin"
+mv mount_ntfs mount_ntfs.orig
+ln -s "/Volumes/Macintosh HD/usr/local/sbin/mount_ntfs" mount_ntfs
+csrutil enable
+```
+
+* Reboot to normal mac
+
 ## Configure dotfiles
 https://github.com/rodfersou/dotfiles
 ```bash
 git clone https://github.com/rodfersou/dotfiles.git .dotfiles
 ```
+
 ### Update git reference
 ```bash
 (cd .dotfiles/.git && vi config)
@@ -76,12 +124,6 @@ git clone https://github.com/rodfersou/dotfiles.git .dotfiles
 ### Install Kdiff3
 ```bash
 brew cask install https://raw.githubusercontent.com/Homebrew/homebrew-cask/6a96e5ea44803e52a43c0c89242390f75d1581ab/Casks/kdiff3.rb
-```
-
-### Install encfs
-```bash
-brew cask install osxfuse
-brew install encfs
 ```
 
 ### Install RCM
@@ -194,9 +236,12 @@ brew install libmagic
 *** WEBPMUX support not available
 ```
 
+```bash
+brew install libpng libtiff freetype little-cms2 webp jpeg
+```
+
 ### Speed up terminal
 ```bash
-defaults write NSGlobalDomain KeyRepeat -int 0
-defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 15
+defaults write -g KeyRepeat -int 1
 ```
