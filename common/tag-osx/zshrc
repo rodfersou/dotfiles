@@ -575,6 +575,10 @@ export LDFLAGS="-L /usr/local/opt/sqlite/lib $LDFLAGS"
 export LDFLAGS="-L /usr/local/opt/expat/lib $LDFLAGS"
 export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
 
+# about icuac
+export LDFLAGS="-L/usr/local/opt/icu4c/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include $CPPFLAGS"
+
 export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
