@@ -64,7 +64,7 @@ brew cask install wechat
 
 ## Install extra utilities
 ```bash
-brew install p7zip htop zsh ranger
+brew install p7zip htop zsh ranger watch
 ```
 
 ## Enable USB Tethering
@@ -173,6 +173,7 @@ brew cask install karabiner-elements
 ### Some dependencies
 ```bash
 brew install readline openssl xz zlib expat
+brew link zlib --force
 ```
 
 ### Install asdf
@@ -237,7 +238,7 @@ brew install libmagic
 ```
 
 ```bash
-brew install libpng libtiff freetype little-cms2 webp jpeg
+brew install libpng libtiff freetype little-cms2 webp openjpeg freetype harfbuzz fribidi
 ```
 
 ### Speed up terminal
