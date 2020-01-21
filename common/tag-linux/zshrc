@@ -1,15 +1,27 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="agnoster"
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bullet-train"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 DISABLE_AUTO_UPDATE="true"
@@ -36,7 +48,10 @@ DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -46,17 +61,17 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git docker autojump vi-mode)
-plugins=(git wd globalias asdf yarn)
-
-# User configuration
-
-# export PATH="/snap/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(
+  git wd globalias asdf
+)
 
 source $ZSH/oh-my-zsh.sh
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -72,7 +87,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 autoload -U zsh-mime-setup
 zsh-mime-setup
@@ -91,8 +106,7 @@ stty -ixon
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$HOME/.bin:$PATH"
-# eval "$(anyenv init -)"
+prompt_context() {}
 
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
@@ -313,9 +327,9 @@ alias Dw='R ./bin/debug-'
 # alias Ntw='R ./bin/npm_test_watch'
 # alias W='R ./bin/webpack_env'
 
-alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; python manage.py runserver 0:8080'
+alias Dj='R echo "http://localhost:8080"; echo "http://rodrigo.dedyn.io:58080"; pipenv run python manage.py runserver 0:8080'
 
-export FIREFOX_ROBOT='/srv/firefox-45.8.0'
+export FIREFOX_ROBOT='/Applications/Firefox.app/Contents/MacOS'
 alias T='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test'
 alias Tl='C ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test --list L'
 alias Tt='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -t'
@@ -334,6 +348,9 @@ alias Pr='pipenv run pip install -r requirements.txt'
 alias Pf='pipenv run pip freeze'
 alias Pu='R pipenv --rm'
 alias Pk='for i in `find . -print | grep "\.py[co]$"`; do rm $i; done'
+alias Pa='. $(pipenv --venv)/bin/activate'
+alias Pd='deactivate'
+alias Pr='pipenv run pip install -r requirements.txt --upgrade'
 
 alias V='varnishadm backend.list'
 # Check Port
@@ -446,7 +463,7 @@ _cdo() {
 alias cdo_='declare -f _cdo'
 alias cdo='_cdo'
 
-alias cds='cd `python -c "import pip; print(pip.__path__[0].rstrip(\"\/pip\"))"`'
+alias cds='cd `pipenv run python -c "import pip; print(pip.__path__[0].rstrip(\"\/pip\"))"`'
 
 alias cdh='cd $PWD'
 alias cdww='cdr; cd webpack'
@@ -475,6 +492,7 @@ alias bwrap='bwrap --dev-bind / / bash'
 alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'
 alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4'
+alias fix-video='killall VDCAssistant'
 alias youtube-dl-480p='youtube-dl -f "bestvideo[height<=480]+bestaudio/best[height<=480]" --merge-output-format mp4'
 alias youtube-dl-720p='youtube-dl -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4'
 alias youtube-dl-sub='youtube-dl --write-sub --sub-lang en --skip-download'
@@ -519,11 +537,10 @@ bindkey -M emacs "^E" globalias
 bindkey -M viins "^E" globalias
 bindkey -s "^\\" "fg\n"
 
-
-# export GOPATH=/srv/cache/gopath/`goenv version`
-# export PATH=$GOPATH:$GOPATH/bin:$PATH
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
+export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+export MACOSX_DEPLOYMENT_TARGET="10.15"
 export PYTHONDONTWRITEBYTECODE=
 export PYTHONWARNINGS=ignore
 # export XDG_CACHE_HOME=/srv/cache
@@ -533,21 +550,44 @@ export EDITOR=vim
 export BULLETTRAIN_VIRTUALENV_SHOW=false
 export BULLETTRAIN_RUBY_SHOW=false
 export BULLETTRAIN_TIME_SHOW=false
-export ANDROID_HOME=/opt/android-sdk
 export PYTEST_ADDOPTS="-s"
+export PATH="/usr/local/Cellar/openssl@1.1/1.1.1d/bin:$PATH"
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/expat/bin:$PATH"
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
 
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-# . $HOME/.tmuxinator.zsh
+# brew install readline openssl xz zlib expat
+# ~/.env-exporter
 
-if [[ "$(tty)" == '/dev/tty1' ]]; then
-    exec startx
-fi
+# about zlib
+export CFLAGS="-I $SDKROOT/usr/include"
+export LDFLAGS="-L /usr/local/opt/zlib/lib"
+export CPPFLAGS="-I /usr/local/opt/zlib/include"
 
-prompt_context() {}
+# about readline
+export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
+export LDFLAGS="-L /usr/local/opt/readline/lib $LDFLAGS"
 
-# xmodmap ~/.Xmodmap
+# about openssl
+export CFLAGS="-I /usr/local/Cellar/openssl@1.1/1.1.1d/include $CFLAGS"
+export LDFLAGS="-L /usr/local/Cellar/openssl@1.1/1.1.1d/lib $LDFLAGS"
+
+# about SQLite (maybe not necessary)
+export CFLAGS="-I /usr/local/opt/sqlite/include $CFLAGS"
+export LDFLAGS="-L /usr/local/opt/sqlite/lib $LDFLAGS"
+
+# about expat
+export LDFLAGS="-L /usr/local/opt/expat/lib $LDFLAGS"
+export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
+
+export TZ="America/Sao_Paulo"
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 if [[ "$WINDOW" == '1' ]]
 then

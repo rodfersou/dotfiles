@@ -293,6 +293,9 @@ alias I1d='_I1d'
 alias I1r='R ./bin/instance1 run'
 alias I1a='./bin/instance1 adduser admin admin'
 
+alias Ms='tmux new-session "make start-backend" \; split-window -h "make start-frontend" \; select-pane -t 0'
+alias Mst='tmux new-session "make start-test-backend" \; split-window -h "make start-test-frontend" \; split-window -f "make start-test" \;  select-pane -t 0'
+
 alias Ww='R ./bin/watch-'
 alias Ew='R ./bin/env-'
 alias Bw='R ./bin/build-'
@@ -435,14 +438,18 @@ alias cdp='cdpp; vim'
 # go to omelette directory
 _cdo() {
   cdr
-  om1=parts/packages
-  om2=parts/omelette
+  om1=api/parts/omelette
+  om2=parts/packages
+  om3=parts/omelette
   if [ -d "$om1" ]
   then
     cd "$om1"
   elif [ -d "$om2" ]
   then
     cd "$om2"
+  elif [ -d "$om3" ]
+  then
+    cd "$om3"
   fi
 }
 alias cdo_='declare -f _cdo'
@@ -478,6 +485,31 @@ alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'
 alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4'
 alias fix-video='killall VDCAssistant'
+alias youtube-dl-480p='youtube-dl -f "bestvideo[height<=480]+bestaudio/best[height<=480]" --merge-output-format mp4'
+alias youtube-dl-720p='youtube-dl -f "bestvideo[height<=720]+bestaudio/best[height<=720]" --merge-output-format mp4'
+alias youtube-dl-sub='youtube-dl --write-sub --sub-lang en --skip-download'
+alias youtube-dl-music='youtube-dl --extract-audio --audio-format mp3'
+
+_K() {
+  if [[ $# -gt 0 ]]; then
+    ps -ax | egrep -i $1 | grep -v grep | awk '{print "kill -9 " $1}' | sh
+  else
+    echo "Usage: K <program>"
+  fi
+}
+alias K_='declare -f _cdo'
+alias K='_K'
+alias Kp='K interpreter'
+
+_castnow-youtube() {
+  if [[ $# -gt 0 ]]; then
+    youtube-dl -o - $1 | castnow --quiet -
+  else
+    echo "Usage: castnow-youtube <url>"
+  fi
+}
+alias castnow-youtube_='declare -f _castnow-youtube'
+alias castnow-youtube='_castnow-youtube'
 
 bindkey "^R" history-incremental-search-backward
 
@@ -499,13 +531,15 @@ bindkey -s "^\\" "fg\n"
 
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
+export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+export MACOSX_DEPLOYMENT_TARGET="10.15"
 export XMODIFIERS=''
 export EDITOR=vim
 export BULLETTRAIN_VIRTUALENV_SHOW=false
 export BULLETTRAIN_RUBY_SHOW=false
 export BULLETTRAIN_TIME_SHOW=false
 export PYTEST_ADDOPTS="-s"
-export PATH="/usr/local/Cellar/openssl@1.1/1.1.1c/bin:$PATH"
+export PATH="/usr/local/Cellar/openssl@1.1/1.1.1d/bin:$PATH"
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/expat/bin:$PATH"
 unset LSCOLORS
@@ -515,35 +549,45 @@ export CLICOLOR_FORCE=1
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-# brew install readline openssl xz zlib
+# brew install readline openssl xz zlib expat
 # ~/.env-exporter
 
 # about zlib
-export CFLAGS="-I /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"
+export CPATH="$SDKROOT/usr/include"
+export CFLAGS="-I $SDKROOT/usr/include"
 export LDFLAGS="-L /usr/local/opt/zlib/lib"
 export CPPFLAGS="-I /usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 # about readline
 export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
 export LDFLAGS="-L /usr/local/opt/readline/lib $LDFLAGS"
 
 # about openssl
-export CFLAGS="-I /usr/local/Cellar/openssl@1.1/1.1.1c/include $CFLAGS"
-export LDFLAGS="-L /usr/local/Cellar/openssl@1.1/1.1.1c/lib $LDFLAGS"
+export CFLAGS="-I /usr/local/opt/openssl@1.1/include $CFLAGS"
+export LDFLAGS="-L /usr/local/opt/openssl@1.1/lib $LDFLAGS"
 
 # about SQLite (maybe not necessary)
 export CFLAGS="-I /usr/local/opt/sqlite/include $CFLAGS"
 export LDFLAGS="-L /usr/local/opt/sqlite/lib $LDFLAGS"
 
 # about expat
-export LDFLAGS="-L /usr/local/opt/expat/lib"
-export CPPFLAGS="-I /usr/local/opt/expat/include"
+export LDFLAGS="-L /usr/local/opt/expat/lib $LDFLAGS"
+export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
+
+# about icuac
+export LDFLAGS="-L/usr/local/opt/icu4c/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include $CPPFLAGS"
+
+# about libyaml
+export LDFLAGS="-L/usr/local/opt/libyaml/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/libyaml/include $CPPFLAGS"
 
 export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
-if [[ "$(tty)" == '/dev/ttys001' ]]
+if [[ "$WINDOW" == '1' ]]
 then
   while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
   do
