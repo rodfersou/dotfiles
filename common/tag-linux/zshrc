@@ -247,10 +247,19 @@ alias Is='./bin/instance start'
 alias Ix='./bin/instance stop'
 
 _Id() {
-  if [[ $# -gt 0 ]]; then
-    R ./bin/instance-debug -O $1 debug
+  if [ -f ./bin/pip ]; then
+    R ./bin/pip install debug 'ipykernel<5.0.0' 'ipython<7.0.0'
   else
-    R ./bin/instance-debug -O Plone debug
+    R Pi debug 'ipykernel<5.0.0' 'ipython<7.0.0'
+  fi
+  COMMAND='./bin/instance-debug'
+  if [ ! -f $COMMAND ]; then
+    COMMAND='./bin/instance'
+  fi
+  if [[ $# -gt 0 ]]; then
+    R $COMMAND -O $1 debug
+  else
+    R $COMMAND -O Plone debug
   fi
 }
 alias Id_='declare -f _Id'
