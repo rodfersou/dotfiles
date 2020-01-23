@@ -62,9 +62,18 @@ https://apps.apple.com/br/app/line/id539883307?l=en&mt=12
 brew cask install wechat
 ```
 
+## Install SSH
+* Enable full access to filesystem to iTerm
+```bash
+brew install openssh
+sudo systemsetup -getremotelogin
+sudo systemsetup -setremotelogin on
+sudo systemsetup -getremotelogin
+```
+
 ## Install extra utilities
 ```bash
-brew install p7zip htop zsh ranger watch
+brew install p7zip htop zsh ranger watch httpie jq
 ```
 
 ## Enable USB Tethering
@@ -100,6 +109,10 @@ diskutil apfs unlockVolume disk2s5
 cd "/Volumes/Macintosh HD/sbin"
 mv mount_ntfs mount_ntfs.orig
 ln -s "/Volumes/Macintosh HD/usr/local/sbin/mount_ntfs" mount_ntfs
+
+cd "/Volumes/Macintosh HD"
+ln -s "/Volumes/Macintosh HD/Users/rodrigo/.projects" srv
+
 csrutil enable
 ```
 
@@ -223,6 +236,11 @@ ln -s /opt/X11/include/X11 /usr/local/include/X11
 Error `ImportError: failed to find libmagic.  Check your installation`
 ```bash
 brew install libmagic
+```
+
+Error `ext/_yaml.h:2:10: fatal error: 'yaml.h' file not found`
+```bash
+brew install libyaml
 ```
 
 ### Setup Pillow
