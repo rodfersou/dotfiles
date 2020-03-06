@@ -8,3 +8,6 @@ py-spy
 requests
 lxml
 mypy
+pdftotext
+unidecode
+beautifulsoup4

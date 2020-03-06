@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -582,6 +582,22 @@ export CPPFLAGS="-I/usr/local/opt/icu4c/include $CPPFLAGS"
 # about libyaml
 export LDFLAGS="-L/usr/local/opt/libyaml/lib $LDFLAGS"
 export CPPFLAGS="-I/usr/local/opt/libyaml/include $CPPFLAGS"
+
+# about liblzma
+export LDFLAGS="-L/usr/local/opt/xz/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/xz/include $CPPFLAGS"
+
+# about pcre
+export LDFLAGS="-L/usr/local/opt/pcre/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/pcre/include $CPPFLAGS"
+
+# about QT
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/qt/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/qt/include $CPPFLAGS"
+
+# about pdftotext
+# export CPPFLAGS="-std=c++11 $CPPFLAGS"
 
 export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
