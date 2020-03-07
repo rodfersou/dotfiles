@@ -587,6 +587,10 @@ export CPPFLAGS="-I/usr/local/opt/libyaml/include $CPPFLAGS"
 export LDFLAGS="-L/usr/local/opt/xz/lib $LDFLAGS"
 export CPPFLAGS="-I/usr/local/opt/xz/include $CPPFLAGS"
 
+# about libjpeg
+export LDFLAGS="-L/usr/local/opt/jpeg/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/jpeg/include $CPPFLAGS"
+
 # about pcre
 export LDFLAGS="-L/usr/local/opt/pcre/lib $LDFLAGS"
 export CPPFLAGS="-I/usr/local/opt/pcre/include $CPPFLAGS"
