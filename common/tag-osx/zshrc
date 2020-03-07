@@ -111,7 +111,7 @@ prompt_context() {}
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
 alias -g C='clear;'
-alias -g L='| less'
+alias -g L='2>&1 | less'
 
 alias -g Lr='--layer Robot'
 alias -g Li='--layer Integration'
@@ -552,6 +552,13 @@ setopt NO_CHECK_JOBS
 # brew install readline openssl xz zlib expat
 # ~/.env-exporter
 
+# # libs
+# export CPATH="$SDKROOT/usr/include /usr/local/include"
+# export CFLAGS="-I $SDKROOT/usr/include /usr/local/include"
+# export LDFLAGS="-L $SDKROOT/usr/lib /usr/local/lib"
+# export CPPFLAGS="-I $SDKROOT/usr/include /usr/local/include"
+# export PKG_CONFIG_PATH="$SDKROOT/usr/lib/pkgconfig /usr/local/lib/pkgconfig"
+
 # about zlib
 export CPATH="$SDKROOT/usr/include"
 export CFLAGS="-I $SDKROOT/usr/include"
@@ -594,6 +601,10 @@ export CPPFLAGS="-I/usr/local/opt/jpeg/include $CPPFLAGS"
 # about pcre
 export LDFLAGS="-L/usr/local/opt/pcre/lib $LDFLAGS"
 export CPPFLAGS="-I/usr/local/opt/pcre/include $CPPFLAGS"
+
+# about gettext
+export LDFLAGS="-L/usr/local/opt/gettext/lib $LDFLAGS"
+export CPPFLAGS="-I/usr/local/opt/gettext/include $CPPFLAGS"
 
 # about QT
 export PATH="/usr/local/opt/qt/bin:$PATH"
