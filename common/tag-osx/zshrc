@@ -163,6 +163,8 @@ alias F='find -L . -print | grep '
 
 alias Sb='subl . X &'
 
+alias Rl='\R'
+
 alias Sv='./bin/supervisorctl status'
 alias Svd='./bin/supervisord'
 alias Svk='./bin/supervisorctl shutdown'
