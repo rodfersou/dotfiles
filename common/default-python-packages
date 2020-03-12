@@ -11,3 +11,4 @@ mypy
 pdftotext
 unidecode
 beautifulsoup4
+git+git://github.com/muhasturk/gitim.git#egg=gitim
