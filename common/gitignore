@@ -5,6 +5,7 @@
 .ropeproject
 .tool-versions
 .webpack
+.mypy_cache/
 audit.log
 buildout.cfg
 custom.buildout.cfg
