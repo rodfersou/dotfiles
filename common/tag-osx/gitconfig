@@ -15,16 +15,17 @@
   ; br      = branch
   ; ci      = commit -v
   ; co      = checkout
-  df      = diff
-  dt      = difftool -y
-  l       = log --name-only
-  ll      = log -p
-  mt      = mergetool -y
+  df        = diff
+  dt        = difftool -y
+  l         = log --name-only
+  ll        = log -p
+  mt        = mergetool -y
   ; pl      = pull --rebase
   ; ps      = push
   ; st      = status
-  unci    = reset --soft HEAD^
-  unstage = reset HEAD
+  unci      = reset --soft HEAD^
+  unshallow = !git fetch --unshallow && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch origin && :
+  unstage   = reset HEAD
   ; unpull  = reset --hard HEAD^
 
 [user]
