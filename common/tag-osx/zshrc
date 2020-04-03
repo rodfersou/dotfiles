@@ -564,7 +564,10 @@ export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
-source ~/.asdf/plugins/java/set-java-home.sh
+if [ -f ~/.asdf/plugins/java/set-java-home.sh ]
+then
+  source ~/.asdf/plugins/java/set-java-home.sh
+fi
 
 if [[ "$WINDOW" == '1' ]]
 then
