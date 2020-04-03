@@ -564,6 +564,8 @@ export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
+source ~/.asdf/plugins/java/set-java-home.sh
+
 if [[ "$WINDOW" == '1' ]]
 then
   while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]

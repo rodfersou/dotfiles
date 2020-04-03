@@ -11,7 +11,7 @@ let mapleader=","
 
 " let @s='msgg/^fromV)k:sort i/^importV)k:sort i`s:noh'
 let @s='msgg/^fromV)k;sort i/^importV)k;sort i`s;noh'
-let @d='oimport pdb; pdb.set_trace()'
+let @d='oimport pdb; pdb.set_trace()import ipdb; ipdb.set_trace()import debug'
 let @u='ofrom Products.CMFPlone.utils import safe_unicode'
 
 " Plugin 'sickill/vim-monokai'
