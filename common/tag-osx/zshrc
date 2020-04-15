@@ -117,6 +117,7 @@ alias -g Lr='--layer Robot'
 alias -g Li='--layer Integration'
 alias -g Lf='--layer Functional'
 
+alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
 alias sshhome='ssh -p 50022 rodfersou@rodrigo.dedyn.io'
 alias scphome='scp -P 50022 rodfersou@rodrigo.dedyn.io'
 alias -g S='-t screen -RRaAD'
@@ -537,31 +538,117 @@ setopt NO_CHECK_JOBS
 
 # libs
 export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
-export CPATH="$SDKROOT/usr/include:/usr/local/include"
+# export CPATH="$SDKROOT/usr/include:/usr/local/include"
 export CFLAGS="-I $SDKROOT/usr/include -I /usr/local/include"
-export LDFLAGS="-L $SDKROOT/usr/lib -L /usr/local/lib"
+# export LDFLAGS="-L $SDKROOT/usr/lib -L /usr/local/lib"
 export CPPFLAGS="-I $SDKROOT/usr/include -I /usr/local/include"
-export PKG_CONFIG_PATH="$SDKROOT/usr/lib/pkgconfig:/usr/local/lib/pkgconfig"
+# export PKG_CONFIG_PATH="$SDKROOT/usr/lib/pkgconfig:/usr/local/lib/pkgconfig"
 
 # about llvm
-export LDFLAGS="-Wl,-rpath,/usr/local/lib $LDFLAGS"
+# export LDFLAGS="-Wl,-rpath,/usr/local/lib $LDFLAGS"
 # export CC="clang"
 # export CXX="$(CC)++"
 
-# about QT
-export PATH="/usr/local/opt/qt/bin:$PATH"
+for lib in `find /usr/local/opt/* -depth 0`
+do
+  # if [[ "$lib" == "/usr/local/opt/zimg" ]]
+  # then
+  #   # it is a 32bit library used by mpv
+  #   continue;
+  # fi
+  # if [[ "$lib" == "/usr/local/opt/zlib" ]]
+  # then
+  #   # don't know why this is not 64 bit
+  #   continue;
+  # fi
+  if [ -d "$lib/bin" ]
+  then
+    export PATH="$lib/bin:$PATH";
+  fi
+  if [ -d "$lib/include" ]
+  then
+    # export CPATH="$lib/include:$CPATH";
+    export CFLAGS="-I $lib/include $CFLAGS";
+    export CPPFLAGS="-I $lib/include $CPPFLAGS";
+  fi
+  # if [ -d "$lib/lib" ]
+  # then
+  #   export LDFLAGS="-L $lib/lib $LDFLAGS";
+  # fi
+  # if [ -d "$lib/lib/pkgconfig" ]
+  # then
+  #   export PKG_CONFIG_PATH="$lib/lib/pkgconfig:$PKG_CONFIG_PATH";
+  # fi
+done
+
+# # about libxml2
+# export PATH="/usr/local/opt/libxml2/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/libxml2/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/libxml2/include $CPPFLAGS"
+export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# # about bison
+# export PATH="/usr/local/opt/bison/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/bison/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/bison/include $CPPFLAGS"
+# export PKG_CONFIG_PATH="/usr/local/opt/bison/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# # about readline
+# export CFLAGS="-I /usr/local/opt/readline/include $CFLAGS"
+# export LDFLAGS="-L /usr/local/opt/readline/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/readline/include $CPPFLAGS"
+# export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 # about openssl
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-# about expat
-export PATH="/usr/local/opt/expat/bin:$PATH"
+# # about SQLite (maybe not necessary)
+# export CFLAGS="-I /usr/local/opt/sqlite/include $CFLAGS"
+# export LDFLAGS="-L /usr/local/opt/sqlite/lib $LDFLAGS"
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-# about libxml2
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/libxml2/lib $LDFLAGS"
-export CPPFLAGS="-I/usr/local/opt/libxml2/include $CPPFLAGS"
-export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig:$PKG_CONFIG_PATH"
+# # about expat
+# export PATH="/usr/local/opt/expat/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/expat/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/expat/include $CPPFLAGS"
+
+# about icu4c
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# # about libyaml
+# export LDFLAGS="-L /usr/local/opt/libyaml/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/libyaml/include $CPPFLAGS"
+
+# # about liblzma
+# export LDFLAGS="-L /usr/local/opt/xz/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/xz/include $CPPFLAGS"
+
+# # about libjpeg
+# export LDFLAGS="-L /usr/local/opt/jpeg/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/jpeg/include $CPPFLAGS"
+
+# # about libiconv
+# export PATH="/usr/local/opt/libiconv/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/libiconv/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/libiconv/include $CPPFLAGS"
+
+# # about libzip
+# export PATH="/usr/local/opt/libzip/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/libzip/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/libzip/include $CPPFLAGS"
+
+# # about pcre
+# export LDFLAGS="-L /usr/local/opt/pcre/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/pcre/include $CPPFLAGS"
+
+# # about gettext
+# export LDFLAGS="-L /usr/local/opt/gettext/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/gettext/include $CPPFLAGS"
+
+# # about QT
+# export PATH="/usr/local/opt/qt/bin:$PATH"
+# export LDFLAGS="-L /usr/local/opt/qt/lib $LDFLAGS"
+# export CPPFLAGS="-I /usr/local/opt/qt/include $CPPFLAGS"
 
 # about pdftotext
 # export CPPFLAGS="-std=c++11 $CPPFLAGS"
