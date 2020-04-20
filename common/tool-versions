@@ -7,3 +7,5 @@ elixir 1.10.2-otp-22
 dotnet-core 3.1.201
 golang 1.14.1
 ruby 2.7.1
+erlang 22.3.2
+php 7.4.4
