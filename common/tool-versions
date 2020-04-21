@@ -1,5 +1,5 @@
-python 3.7.7 2.7.17 anaconda3-2019.10
-nodejs 10.14.2
+python 3.7.7 2.7.17
+nodejs 12.16.2
 R 3.6.3
 java adopt-openjdk-8u242-b08
 maven 3.6.3
@@ -9,3 +9,4 @@ golang 1.14.1
 ruby 2.7.1
 erlang 22.3.2
 php 7.4.4
+rlang 3.6.3
