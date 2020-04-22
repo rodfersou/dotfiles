@@ -1,12 +1,18 @@
 alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
 
-alias adsm='adb connect 192.168.9.3:5555'
-alias adsh='adb connect 192.168.9.3:5555'
-alias adk='adb kill-server'
-alias adcm='scrcpy -s 192.168.9.3:5555 -S X'
-alias adch='scrcpy -s 192.168.9.4:5555 -S X'
-alias adfm='scrcpy -s 192.168.9.3:5555 -S -b2M -m800 --max-fps 15 X'
-alias adfh='scrcpy -s 192.168.9.4:5555 -S -b2M -m800 --max-fps 15 X'
+_android() {
+  if [ "$(adb devices | grep $1)" = "" ]
+  then
+    adb connect $1
+  fi
+  scrcpy -s $1 -S -b2M -m800 --max-fps 15
+}
+alias android_='declare -f _android'
+alias android='_android'
+alias moto='android 192.168.9.3:5555 > /dev/null 2> /dev/null &'
+alias motod='android 192.168.9.3:5555'
+alias htc='android 192.168.9.4:5555 > /dev/null 2> /dev/null &'
+alias htcd='android 192.168.9.4:5555'
 
 alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
 # alias vi='vim'
@@ -31,7 +37,7 @@ _Cc() {
     echo "Usage: Cc <file>"
   fi
 }
-alias Cc_='declare -f _cdo'
+alias Cc_='declare -f _Cc'
 alias Cc='_Cc'
 
 alias winetricks32='WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks'
