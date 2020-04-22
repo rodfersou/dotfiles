@@ -1,4 +1,13 @@
 alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
+
+alias adsm='adb connect 192.168.9.3:5555'
+alias adsh='adb connect 192.168.9.3:5555'
+alias adk='adb kill-server'
+alias adcm='scrcpy -s 192.168.9.3:5555 -S X'
+alias adch='scrcpy -s 192.168.9.4:5555 -S X'
+alias adfm='scrcpy -s 192.168.9.3:5555 -S -b2M -m800 --max-fps 15 X'
+alias adfh='scrcpy -s 192.168.9.4:5555 -S -b2M -m800 --max-fps 15 X'
+
 alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
 # alias vi='vim'
 # yaourt -S vi-vim-symlink
