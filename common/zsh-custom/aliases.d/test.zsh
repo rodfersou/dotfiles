@@ -1,3 +1,12 @@
 alias -g Lr='--layer Robot'
 alias -g Li='--layer Integration'
 alias -g Lf='--layer Functional'
+
+export FIREFOX_ROBOT='/Applications/Firefox.app/Contents/MacOS'
+alias T='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test'
+alias Td='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -D'
+alias Tl='C ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test --list L'
+alias Tt='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -t'
+alias Tp='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ./bin/test -s'
+alias Tr='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH giturl=`git config --get remote.origin.url`; package=${${giturl##*/}%.*}; echo "http://localhost:55001/plone"; ./bin/robot-server $package.testing.ROBOT_TESTING'
+alias Trc='R ROBOT_SELENIUM2LIBRARY_RUN_ON_FAILURE=Debug PATH=$FIREFOX_ROBOT:$PATH ZSERVER_HOST=0.0.0.0 ZSERVER_PORT=8080 bin/robot-server cxc.testing.CXC_ROBOT_TESTING'

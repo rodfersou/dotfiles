@@ -1,4 +1,9 @@
 _default_environ() {
+  if [ "$(uname -s)" != "Darwin" ]
+  then
+    return
+  fi
+
   unset SDKROOT
   unset CPATH
   unset CFLAGS
@@ -49,6 +54,11 @@ _default_environ() {
 
 
 _php_environ() {
+  if [ "$(uname -s)" != "Darwin" ]
+  then
+    return
+  fi
+
   _default_environ
 
   unset CPATH
@@ -67,6 +77,11 @@ _php_environ() {
 
 
 _erlang_environ() {
+  if [ "$(uname -s)" != "Darwin" ]
+  then
+    return
+  fi
+
   unset SDKROOT
   unset CPATH
   unset CFLAGS
