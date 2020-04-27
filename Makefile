@@ -29,7 +29,7 @@ mount:  ## Mount crypted dir
 .PHONY: umount
 umount:  ## Umount crypted dir
 	@echo "$(YELLOW)==> Umount crypted dir$(RESET)"
-	fusermount -u $(CURRENT_DIR)/sensitive
+	encfs -u $(CURRENT_DIR)/sensitive
 
 .PHONY: install
 install:  ## Install dotfiles
@@ -41,6 +41,7 @@ ifeq ($(CURRENT_OS),Darwin)
 	ln -sf $(CURRENT_DIR)/rcrc-osx $(HOME)/.rcrc
 endif
 	(cd $(HOME) && rcup)
+	(cd $(HOME)/.ssh/ids && chmod 600 *)
 
 .PHONY: uninstall
 uninstall:  ## Uninstall dotfiles

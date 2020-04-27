@@ -142,8 +142,6 @@ alias install_python='_install_python'
 _install_nodejs() {
   _default_environ
 
-  export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
-
   if [[ $# -gt 0 ]]; then
     asdf install nodejs $1
   else
@@ -233,12 +231,56 @@ alias install_rlang='_install_rlang'
 
 
 _install_asdf() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    brew install \
+      coreutils automake autoconf openssl \
+      libyaml readline libxml2 libxslt libtool unixodbc \
+      unzip curl
+  else
+    sudo apt -y install automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt1-dev libffi-dev libtool unixodbc-dev llvm
+  fi
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 }
 alias install_asdf_='declare -f _install_asdf'
 alias install_asdf='_install_asdf'
 
 
+_install_asdf_plugins_python() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    brew install openssl readline sqlite3 xz zlib
+    brew install readline openssl xz zlib expat
+    brew link zlib --eeeee
+    brew install autoconf openssl@1.1 pkg-config readline sqlite3 xz zlib
+  else
+    sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+    # maybe need to run software-properties-gtk to review software sources
+    sudo apt build-dep -y python2.7 python3.8
+  fi
+  asdf plugin-add python 
+}
+alias install_asdf_plugins_python_='declare -f _install_asdf_plugins_python'
+alias install_asdf_plugins_python='_install_asdf_plugins_python'
+
+
+_install_asdf_plugins_nodejs() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    brew install coreutils gnupg
+  else
+    sudo apt install -y dirmngr gpg
+  fi
+  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+}
+alias install_asdf_plugins_nodejs_='declare -f _install_asdf_plugins_nodejs'
+alias install_asdf_plugins_nodejs='_install_asdf_plugins_nodejs'
+
+
 _install_asdf_plugins() {
+    install_asdf_plugins_python
+    install_asdf_plugins_nodejs
 }
 alias install_asdf_plugins_='declare -f _install_asdf_plugins'
 alias install_asdf_plugins='_install_asdf_plugins'
