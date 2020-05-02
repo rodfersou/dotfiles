@@ -70,11 +70,18 @@ alias Is='./bin/instance start'
 alias Ix='./bin/instance stop'
 
 _Id() {
-  if [[ $# -gt 0 ]]; then
-    R ./bin/instance-debug -O $1 debug
-  else
-    R ./bin/instance-debug -O Plone debug
+  handler=bin/instance
+  if [ -f bin/instance-debug ]
+  then
+    handler=bin/instance-debug
   fi
+  reset
+  if [[ $# -gt 0 ]]
+  then
+    $handler -O $1 debug
+    return
+  fi
+  $handler -O Plone debug
 }
 alias Id_='declare -f _Id'
 alias Id='_Id'

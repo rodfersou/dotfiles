@@ -14,3 +14,4 @@ beautifulsoup4
 git+git://github.com/muhasturk/gitim.git#egg=gitim
 yq
 pylint
+flake8
