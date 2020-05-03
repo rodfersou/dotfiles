@@ -1,11 +1,8 @@
 ansible
 beautifulsoup4
-pipenv
-youtube-dl
-debug
-virtualenv
 black
 debug
+flake8
 git+git://github.com/muhasturk/gitim.git#egg=gitim
 lxml
 mario
@@ -19,4 +16,3 @@ unidecode
 virtualenv==16.7.9
 youtube-dl
 yq
-flake8
