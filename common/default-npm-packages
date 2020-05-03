@@ -1,6 +1,6 @@
-yarn
-csscomb
+@angular/cli
 castnow
 create-react-app
 create-volto-app
-@angular/cli
+csscomb
+yarn

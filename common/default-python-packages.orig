@@ -1,9 +1,5 @@
 ansible
 beautifulsoup4
-pipenv
-youtube-dl
-debug
-virtualenv
 black
 debug
 git+git://github.com/muhasturk/gitim.git#egg=gitim
@@ -19,4 +15,8 @@ unidecode
 virtualenv==16.7.9
 youtube-dl
 yq
+<<<<<<< Updated upstream
+pylint
 flake8
+=======
+>>>>>>> Stashed changes

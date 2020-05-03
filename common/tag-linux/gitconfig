@@ -24,6 +24,7 @@
   ; ps      = push
   ; st      = status
   unci    = reset --soft HEAD^
+  unshallow = !git fetch --unshallow && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch origin && :
   unstage = reset HEAD
   ; unpull  = reset --hard HEAD^
 
