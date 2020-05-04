@@ -2,6 +2,9 @@
 SHELL := /bin/bash
 CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 CURRENT_OS:=$(shell uname -s)
+ifeq ($(CURRENT_OS),Linux)
+	CURRENT_OS:=$(shell lsb_release -si)
+endif
 
 
 # We like colors
@@ -31,10 +34,76 @@ umount:  ## Umount crypted dir
 	@echo "$(YELLOW)==> Umount crypted dir$(RESET)"
 	encfs -u $(CURRENT_DIR)/sensitive
 
+.PHONY: install-apps
+install-apps:  ## Install Apps
+	@echo "$(GREEN)==> Install Apps$(RESET)"
+ifeq ($(CURRENT_OS),Ubuntu)
+	sudo apt -y install   \
+		build-essential   \
+		curl              \
+		deluge            \
+		encfs             \
+		git               \
+		gnome-tweak-tool  \
+		handbrake         \
+		handbrake-cli     \
+		htop              \
+		httpie            \
+		jq                \
+		kdiff3            \
+		mkchromecast      \
+		mpv               \
+		neovim            \
+		ranger            \
+		rcm               \
+		scrcpy            \
+		screen            \
+		silversearcher-ag \
+		smplayer          \
+		tidy              \
+		tilda             \
+		tree              \
+		vim-gtk           \
+		wget              \
+		zsh
+	sudo snap install --classic \
+		code                    \
+		discord                 \
+		slack
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	rm google-chrome-stable_current_amd64.deb
+endif
+ifeq ($(CURRENT_OS),Darwin)
+endif
+
+.PHONY: install-plone-deps
+install:  ## Install Plone dependencies
+	@echo "$(GREEN)==> Install Plone dependencies$(RESET)"
+ifeq ($(CURRENT_OS),Ubuntu)
+	sudo apt -y install   \
+		 htmldoc          \
+		 libfreetype6-dev \
+		 libjpeg62-dev    \
+		 liblcms2-dev     \
+		 libldap2-dev     \
+		 libpng-dev       \
+		 libreadline-dev  \
+		 libsasl2-dev     \
+		 libxml2-dev      \
+		 libxslt1-dev     \
+		 libyaml-dev      \
+		 lynx             \
+		 recode           \
+		 zlib1g-dev
+endif
+ifeq ($(CURRENT_OS),Darwin)
+endif
+
 .PHONY: install
 install:  ## Install dotfiles
 	@echo "$(GREEN)==> Install dotfiles$(RESET)"
-ifeq ($(CURRENT_OS),Linux)
+ifeq ($(CURRENT_OS),Ubuntu)
 	ln -sf $(CURRENT_DIR)/rcrc-linux $(HOME)/.rcrc
 endif
 ifeq ($(CURRENT_OS),Darwin)
@@ -42,6 +111,12 @@ ifeq ($(CURRENT_OS),Darwin)
 endif
 	(cd $(HOME) && rcup)
 	(cd $(HOME)/.ssh/ids && chmod 600 *)
+
+.PHONY: install-all
+install-all:  ## Install everything
+	@echo "$(GREEN)==> Install everything$(RESET)"
+	make install-apps
+	make install
 
 .PHONY: uninstall
 uninstall:  ## Uninstall dotfiles
