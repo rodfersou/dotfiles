@@ -1,4 +1,7 @@
-alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
+if [ "$(uname -s)" = "Darwin" ]
+then
+    alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
+fi
 
 _android() {
   if [ "$(adb devices | grep $1)" = "" ]
