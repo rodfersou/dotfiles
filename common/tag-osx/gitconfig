@@ -23,6 +23,7 @@
   ; pl      = pull --rebase
   ; ps      = push
   ; st      = status
+  empty     = commit --allow-empty -m 'Empty commit to run CI'
   unci      = reset --soft HEAD^
   unshallow = !git fetch --unshallow && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch origin && :
   unstage   = reset HEAD
