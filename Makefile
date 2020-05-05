@@ -38,34 +38,35 @@ umount:  ## Umount crypted dir
 install-apps:  ## Install Apps
 	@echo "$(GREEN)==> Install Apps$(RESET)"
 ifeq ($(CURRENT_OS),Ubuntu)
-	sudo apt -y install    \
-		build-essential    \
-		curl               \
-		chrome-gnome-shell \
-		deluge             \
-		encfs              \
-		git                \
-		gnome-tweak-tool   \
-		handbrake          \
-		handbrake-cli      \
-		htop               \
-		httpie             \
-		jq                 \
-		kdiff3             \
-		mkchromecast       \
-		mpv                \
-		neovim             \
-		ranger             \
-		rcm                \
-		scrcpy             \
-		screen             \
-		silversearcher-ag  \
-		smplayer           \
-		tidy               \
-		tilda              \
-		tree               \
-		vim-gtk            \
-		wget               \
+	sudo apt -y install                   \
+		build-essential                   \
+		curl                              \
+		chrome-gnome-shell                \
+		deluge                            \
+		encfs                             \
+		git                               \
+		gnome-tweak-tool                  \
+		handbrake                         \
+		handbrake-cli                     \
+		htop                              \
+		httpie                            \
+		jq                                \
+		kdiff3                            \
+		mkchromecast                      \
+		mpv                               \
+		neovim                            \
+		network-manager-openconnect-gnome \
+		ranger                            \
+		rcm                               \
+		scrcpy                            \
+		screen                            \
+		silversearcher-ag                 \
+		smplayer                          \
+		tidy                              \
+		tilda                             \
+		tree                              \
+		vim-gtk                           \
+		wget                              \
 		zsh
 	sudo snap install --classic \
 		code                    \

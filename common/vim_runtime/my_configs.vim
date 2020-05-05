@@ -80,6 +80,35 @@ let g:multi_cursor_next_key            = '<C-d>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-easy-align
+" (cd .vim_runtime/my_plugins && git clone --depth=1 https://github.com/junegunn/vim-easy-align.git)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['d'] = {
+\ 'pattern': ' \ze\S\+\s*[;=]',
+\ 'left_margin': 0, 'right_margin': 0
+\ }
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => supertab
+" (cd .vim_runtime/my_plugins && git clone --depth=1 https://github.com/ervandew/supertab.git)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-devicons
+" (cd /srv && git clone --depth=1 https://github.com/ryanoasis/nerd-fonts.git)
+" (cd /srv/nerd-fonts && ./install.sh Hack)
+" (cd .vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Use ; as :
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap ; :
