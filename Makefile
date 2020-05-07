@@ -68,13 +68,15 @@ ifeq ($(CURRENT_OS),Ubuntu)
 		vim-gtk                           \
 		wget                              \
 		zsh
-	sudo snap install --classic \
-		code                    \
-		discord                 \
-		slack
+	sudo snap install --classic code
+	sudo snap install --classic discord
+	sudo snap install --classic slack
+	sudo snap install --classic signal-desktop
+ifeq (,$(wildcard /usr/bin/google-chrome-stable))
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb
 	rm google-chrome-stable_current_amd64.deb
+endif
 endif
 ifeq ($(CURRENT_OS),Darwin)
 endif
