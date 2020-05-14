@@ -62,6 +62,7 @@ ifeq ($(CURRENT_OS),Ubuntu)
 		screen                            \
 		silversearcher-ag                 \
 		smplayer                          \
+		ssh                               \
 		texlive-full                      \
 		tidy                              \
 		tilda                             \
@@ -71,10 +72,11 @@ ifeq ($(CURRENT_OS),Ubuntu)
 		zsh
 	sudo snap install --classic code
 	sudo snap install --classic discord
-	sudo snap install --classic slack
-	sudo snap install --classic signal-desktop
+	sudo snap install --classic gitter-desktop
 	sudo snap install --classic hub
+	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
+	sudo snap install --classic slack
 ifeq (,$(wildcard /usr/bin/google-chrome-stable))
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb
