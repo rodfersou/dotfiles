@@ -6,7 +6,8 @@
 !URxvt.boldFont: xft:bitstream vera sans mono:bold:size=9:antialias=true
 !  - use powerline font
 !URxvt*font: xft:Source Code Pro Medium:pixelsize=11:antialias=true:hinting=true
-URxvt*font: xft:SauceCodePro Nerd Font:pixelsize=11:antialias=true:hinting=true
+!URxvt*font: xft:SauceCodePro Nerd Font:pixelsize=11:antialias=true:hinting=true
+URxvt*font: xft:Hack Nerd Font:pixelsize=11:antialias=true:hinting=true
 !URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true
 !URxvt*font: xft:Source Code Pro Medium-10
 !URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
@@ -31,7 +32,8 @@ ukuake.scrollBar: false
 !URxvt.modifier: super
 
 !! perl extensions
-URxvt.perl-ext-common:             matcher,clipboard
+!URxvt.perl-ext-common:             matcher,clipboard
+URxvt.perl-ext-common:             matcher
 
 ! matcher
 URxvt.url-launcher:       google-chrome-stable
@@ -40,20 +42,27 @@ URxvt.keysym.M-Delete:    perl:matcher:list
 URxvt.keysym.C-M-Delete:  perl:matcher:select
 URxvt.matcher.button:     1
 URxvt.matcher.pattern.1:  \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt.matcher.launcher.1: gvim +$2 $1
+!URxvt.matcher.launcher.1: gvim +$2 $1
+URxvt.matcher.launcher.1: code -g $1:$2
 !  File "/home/rodfersou/.projects/collective.cover.p5/src/collective/cover/tests/test_widget_preview.py", line 39, in test_layout_structure
 !    ZopeXMLConfigurationError: File "/home/rodfersou/.projects/migration-plone5/src/kitconcept.migrator/src/kitconcept/migrator/browser/configure.zcml", line 57.4-60.10
 !  File "/home/rodfersou/.projects/migration-plone5/src/plone.staticresources/src/plone/staticresources/static/components/cs-jqtree-contextmenu/node_modules/jqtree/_entries/insert.py", line 44
 URxvt.matcher.pattern.2:  "(/\\S+?)",\\sline\\s(\\d+)\(,\|.\|$\)
-URxvt.matcher.launcher.2: gvim +$2 $1
+!URxvt.matcher.launcher.2: gvim +$2 $1
+URxvt.matcher.launcher.2: code -g $1:$2
 ! > /home/rodfersou/.projects/cache/eggs/transmogrify.dexterity-1.6.3-py2.7.egg/transmogrify/dexterity/schemaupdater.py(169)__iter__()
 URxvt.matcher.pattern.3:  \\ (/\\S+?)\\((\\d+)\\)
-URxvt.matcher.launcher.3: gvim +$2 $1
+!URxvt.matcher.launcher.3: gvim +$2 $1
+URxvt.matcher.launcher.3: code -g $1:$2
 
 
 ! Nastavuje kopirovani
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
 
 ! disable the stupid ctrl+shift 'feature'
 URxvt.iso14755: false

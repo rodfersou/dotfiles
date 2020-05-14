@@ -38,6 +38,11 @@ umount:  ## Umount crypted dir
 install-apps:  ## Install Apps
 	@echo "$(GREEN)==> Install Apps$(RESET)"
 ifeq ($(CURRENT_OS),Ubuntu)
+ifeq (,$(wildcard /usr/bin/google-chrome-stable))
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	rm google-chrome-stable_current_amd64.deb
+endif
 	sudo apt -y install                   \
 		build-essential                   \
 		chrome-gnome-shell                \
@@ -52,6 +57,7 @@ ifeq ($(CURRENT_OS),Ubuntu)
 		httpie                            \
 		jq                                \
 		kdiff3                            \
+		libappindicator-dev               \
 		mkchromecast                      \
 		mpv                               \
 		neovim                            \
@@ -77,11 +83,6 @@ ifeq ($(CURRENT_OS),Ubuntu)
 	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
 	sudo snap install --classic slack
-ifeq (,$(wildcard /usr/bin/google-chrome-stable))
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	sudo dpkg -i google-chrome-stable_current_amd64.deb
-	rm google-chrome-stable_current_amd64.deb
-endif
 endif
 ifeq ($(CURRENT_OS),Darwin)
 endif
