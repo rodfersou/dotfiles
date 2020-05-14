@@ -1,7 +1,8 @@
 if [ "$(uname -s)" = "Darwin" ]
 then
-    alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge X'
+    alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge > /dev/null 2> /dev/null &'
 fi
+alias signal-desktop='signal-desktop --start-in-tray > /dev/null 2> /dev/null &'
 
 _android() {
   if [ "$(adb devices | grep $1)" = "" ]

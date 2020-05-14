@@ -179,6 +179,7 @@ _install_php() {
   else
     asdf install php 7.4.4
     asdf global php 7.4.4
+    composer global require laravel/installer
   fi
 }
 alias install_php_='declare -f _install_php'
@@ -233,12 +234,32 @@ alias install_rlang='_install_rlang'
 _install_asdf() {
   if [ "$(uname -s)" = "Darwin" ]
   then
-    brew install \
-      coreutils automake autoconf openssl \
-      libyaml readline libxml2 libxslt libtool unixodbc \
-      unzip curl
+    brew install   \
+         autoconf  \
+         automake  \
+         coreutils \
+         curl      \
+         libtool   \
+         libxml2   \
+         libxslt   \
+         libyaml   \
+         openssl   \
+         readline  \
+         unixodbc  \
+         unzip
   else
-    sudo apt -y install automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt1-dev libffi-dev libtool unixodbc-dev llvm
+    sudo apt -y install  /
+         autoconf        /
+         automake        /
+         libffi-dev      /
+         libncurses-dev  /
+         libreadline-dev /
+         libssl-dev      /
+         libtool         /
+         libxslt1-dev    /
+         libyaml-dev     /
+         llvm            /
+         unixodbc-dev 
   fi
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.8
 }
@@ -249,14 +270,41 @@ alias install_asdf='_install_asdf'
 _install_asdf_plugins_python() {
   if [ "$(uname -s)" = "Darwin" ]
   then
-    brew install openssl readline sqlite3 xz zlib
-    brew install readline openssl xz zlib expat
+    brew install     \
+         autoconf    \
+         expat       \
+         openssl@1.1 \
+         pkg-config  \
+         readline    \
+         sqlite3     \
+         xz          \
+         zlib
     brew link zlib --eeeee
-    brew install autoconf openssl@1.1 pkg-config readline sqlite3 xz zlib
   else
-    sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+    sudo apt -y install  \
+         build-essential \
+         curl            \
+         libbz2-dev      \
+         libffi-dev      \
+         liblzma-dev     \
+         libncurses5-dev \
+         libreadline-dev \
+         libsqlite3-dev  \
+         libssl-dev      \
+         libxml2-dev     \
+         libxmlsec1-dev  \
+         llvm            \
+         make            \
+         tk-dev          \
+         wget            \
+         xz-utils        \
+         zlib1g-dev 
     # maybe need to run software-properties-gtk to review software sources
-    sudo apt build-dep -y python2.7 python3.8
+    sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+    sudo apt-get update
+    sudo apt -y build-dep \
+         python2.7        \
+         python3.8
   fi
   asdf plugin-add python 
 }
@@ -278,9 +326,38 @@ alias install_asdf_plugins_nodejs_='declare -f _install_asdf_plugins_nodejs'
 alias install_asdf_plugins_nodejs='_install_asdf_plugins_nodejs'
 
 
+_install_asdf_plugins_java() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    brew install coreutils jq curl sha256sum
+  else
+    sudo apt install -y coreutils jq curl
+  fi
+  asdf plugin-add java https://github.com/halcyon/asdf-java.git
+  asdf plugin-add maven
+}
+alias install_asdf_plugins_java_='declare -f _install_asdf_plugins_java'
+alias install_asdf_plugins_java='_install_asdf_plugins_java'
+
+
+_install_asdf_plugins_php() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    brew install bison libiconv re2c libzip
+  else
+    sudo apt install -y bison libiconv-hook-dev re2c libzip-dev libcurl4-nss-dev libonig-dev
+  fi
+  asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+}
+alias install_asdf_plugins_php_='declare -f _install_asdf_plugins_php'
+alias install_asdf_plugins_php='_install_asdf_plugins_php'
+
+
 _install_asdf_plugins() {
     install_asdf_plugins_python
     install_asdf_plugins_nodejs
+    install_asdf_plugins_java
+    install_asdf_plugins_php
 }
 alias install_asdf_plugins_='declare -f _install_asdf_plugins'
 alias install_asdf_plugins='_install_asdf_plugins'
@@ -292,11 +369,11 @@ _install_languages() {
 
   install_python
   install_nodejs
-  install_ruby
-  install_php
   install_java
-  install_erlang
-  install_rlang
+  install_php
+  # install_ruby
+  # install_erlang
+  # install_rlang
 }
 alias install_languages_='declare -f _install_languages'
 alias install_languages='_install_languages'

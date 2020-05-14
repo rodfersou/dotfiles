@@ -40,8 +40,8 @@ install-apps:  ## Install Apps
 ifeq ($(CURRENT_OS),Ubuntu)
 	sudo apt -y install                   \
 		build-essential                   \
-		curl                              \
 		chrome-gnome-shell                \
+		curl                              \
 		deluge                            \
 		encfs                             \
 		git                               \
@@ -62,6 +62,7 @@ ifeq ($(CURRENT_OS),Ubuntu)
 		screen                            \
 		silversearcher-ag                 \
 		smplayer                          \
+		texlive-full                      \
 		tidy                              \
 		tilda                             \
 		tree                              \
@@ -72,6 +73,8 @@ ifeq ($(CURRENT_OS),Ubuntu)
 	sudo snap install --classic discord
 	sudo snap install --classic slack
 	sudo snap install --classic signal-desktop
+	sudo snap install --classic hub
+	sudo snap install --classic skype
 ifeq (,$(wildcard /usr/bin/google-chrome-stable))
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	sudo dpkg -i google-chrome-stable_current_amd64.deb
@@ -132,5 +135,16 @@ uninstall:  ## Uninstall dotfiles
 reinstall:  ## Uninstall dotfiles
 	make uninstall
 	make install
+
+.PHONY: generalfixes
+generalfixes:  ## General Fixes
+ifeq ($(CURRENT_OS),Ubuntu)
+	sed -e '/^\%sudo/ s/\ ALL$/\ NOPASSWD:ALL/' -i /etc/sudoers
+	sed -e '/pattern\=\"PDF\"/ s/\(.*\)/\<\!\-\- \1 \-\-\/\>/' -i /etc/ImageMagick-6/policy.xml
+	# Fix anaconda shims
+	# http https://raw.githubusercontent.com/pyenv/pyenv/master/pyenv.d/rehash/conda.d/default.list | grep -v "\#" | xargs rm
+endif
+ifeq ($(CURRENT_OS),Darwin)
+endif
 
 .PHONY: all
