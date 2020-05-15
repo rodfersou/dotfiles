@@ -91,7 +91,7 @@ ifeq ($(CURRENT_OS),Darwin)
 endif
 
 .PHONY: install-plone-deps
-install:  ## Install Plone dependencies
+install-plone-apps:  ## Install Plone dependencies
 	@echo "$(GREEN)==> Install Plone dependencies$(RESET)"
 ifeq ($(CURRENT_OS),Ubuntu)
 	sudo apt -y install   \
