@@ -133,6 +133,9 @@ _install_python() {
     asdf install python 3.7.7
     asdf install python 3.8.2
     asdf global python 3.7.7 2.7.17
+    asdf install python anaconda3-2020.02
+    (cd .asdf/installs/python/anaconda3-2020.02/bin && http https://raw.githubusercontent.com/pyenv/pyenv/master/pyenv.d/rehash/conda.d/default.list | grep -v "\#" | xargs rm)
+    asdf reshim python
   fi
 }
 alias install_python_='declare -f _install_python'
@@ -184,6 +187,21 @@ _install_php() {
 }
 alias install_php_='declare -f _install_php'
 alias install_php='_install_php'
+
+
+_install_golang() {
+  _default_environ
+
+  if [[ $# -gt 0 ]]; then
+    asdf install golang $1
+  else
+    asdf install golang 1.14.1
+    asdf global golang 1.14.1
+    go get github.com/prasmussen/gdrive
+  fi
+}
+alias install_golang_='declare -f _install_golang'
+alias install_golang='_install_golang'
 
 
 _install_java() {
@@ -353,10 +371,18 @@ alias install_asdf_plugins_php_='declare -f _install_asdf_plugins_php'
 alias install_asdf_plugins_php='_install_asdf_plugins_php'
 
 
+_install_asdf_plugins_golang() {
+  asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+}
+alias install_asdf_plugins_golang_='declare -f _install_asdf_plugins_golang'
+alias install_asdf_plugins_golang='_install_asdf_plugins_golang'
+
+
 _install_asdf_plugins() {
     install_asdf_plugins_python
     install_asdf_plugins_nodejs
     install_asdf_plugins_java
+    install_asdf_plugins_golang
     install_asdf_plugins_php
 }
 alias install_asdf_plugins_='declare -f _install_asdf_plugins'
@@ -371,6 +397,7 @@ _install_languages() {
   install_nodejs
   install_java
   install_php
+  install_golang
   # install_ruby
   # install_erlang
   # install_rlang

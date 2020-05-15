@@ -80,9 +80,12 @@ endif
 	sudo snap install --classic discord
 	sudo snap install --classic gitter-desktop
 	sudo snap install --classic hub
+	sudo snap install --classic jdownloader2
 	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
 	sudo snap install --classic slack
+	gnome-extensions install TopIcons@phocean.net
+	gnome-extensions install wsmatrix@martin.zurowietz.de
 endif
 ifeq ($(CURRENT_OS),Darwin)
 endif
