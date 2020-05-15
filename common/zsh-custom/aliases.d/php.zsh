@@ -1,8 +1,7 @@
-if [ "$(uname -s)" = "Darwin" ]
+if [ -d ~/.composer/vendor/bin ]
 then
     export PATH="$HOME/.composer/vendor/bin:$PATH"
-fi
-if [ "$(lsb_release -si)" = "Ubuntu" ]
+elif [ -d ~/.config/composer/vendor/bin ]
 then
     export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 fi

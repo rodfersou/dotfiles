@@ -1,4 +1,7 @@
-if [ -f ~/.asdf/plugins/java/set-java-home.zsh ]
+if [ -f ~/.asdf/plugins/java/set-java-home.sh ]
+then
+  source ~/.asdf/plugins/java/set-java-home.sh
+elif [ -f ~/.asdf/plugins/java/set-java-home.zsh ]
 then
   source ~/.asdf/plugins/java/set-java-home.zsh
 fi

@@ -1,7 +1,8 @@
 autodetach on
 startup_message off
 # shell -${SHELL}
-shell "/usr/bin/zsh"
+# shell "/usr/bin/zsh"
+shell "zsh"
 # term xterm-vt220
 # sudo apt-get install ncurses-term
 term screen-256color
