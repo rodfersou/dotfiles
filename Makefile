@@ -51,6 +51,7 @@ endif
 		encfs                             \
 		git                               \
 		gnome-tweak-tool                  \
+		gparted                           \
 		handbrake                         \
 		handbrake-cli                     \
 		htop                              \
