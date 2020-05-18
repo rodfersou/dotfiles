@@ -7,6 +7,9 @@ set number
 set autoread
 set clipboard=unnamedplus
 
+colorscheme solarized
+highlight Normal guibg=NONE ctermbg=NONE
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fix Alt (Meta)
