@@ -73,7 +73,6 @@ endif
 		ssh                               \
 		texlive-full                      \
 		tidy                              \
-		tilda                             \
 		tree                              \
 		vim-gtk                           \
 		wget                              \
