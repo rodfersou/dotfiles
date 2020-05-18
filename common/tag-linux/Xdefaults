@@ -28,12 +28,13 @@ urxvt*cursorColor: #DCDCCC
 urxvt.scrollBar: false
 ukuake.scrollBar: false
 
+
 ! Meta modifier for keybindings
 !URxvt.modifier: super
 
 !! perl extensions
 !URxvt.perl-ext-common:             matcher,clipboard
-URxvt.perl-ext-common:             matcher
+URxvt.perl-ext-common:             matcher,fullscreen
 
 ! matcher
 URxvt.url-launcher:       google-chrome-stable
@@ -54,6 +55,9 @@ URxvt.matcher.launcher.2: code -g $1:$2
 URxvt.matcher.pattern.3:  \\ (/\\S+?)\\((\\d+)\\)
 !URxvt.matcher.launcher.3: gvim +$2 $1
 URxvt.matcher.launcher.3: code -g $1:$2
+
+! Fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
 
 
 ! Nastavuje kopirovani

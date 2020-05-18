@@ -48,6 +48,7 @@ endif
 		chrome-gnome-shell                \
 		curl                              \
 		deluge                            \
+		devilspie                         \
 		encfs                             \
 		git                               \
 		gnome-tweak-tool                  \
@@ -76,6 +77,7 @@ endif
 		tree                              \
 		vim-gtk                           \
 		wget                              \
+		wmctrl                            \
 		zsh
 	sudo snap install --classic code
 	sudo snap install --classic discord
