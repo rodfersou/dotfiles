@@ -1,3 +1,5 @@
+export PATH="$HOME/.bin:$PATH"
+
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
 alias -g C='clear;'
