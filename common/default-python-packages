@@ -6,6 +6,7 @@ flake8
 git+git://github.com/muhasturk/gitim.git#egg=gitim
 lxml
 mario
+mercurial
 mypy
 pdftotext
 pipenv
