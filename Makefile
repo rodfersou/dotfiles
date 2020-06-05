@@ -54,6 +54,8 @@ endif
 		curl                              \
 		deluge                            \
 		devilspie                         \
+		dia                               \
+		dia2code                          \
 		encfs                             \
 		entr                              \
 		git                               \
@@ -69,8 +71,10 @@ endif
 		libappindicator-dev               \
 		mkchromecast                      \
 		mpv                               \
+		mysql-serve                       \
 		neovim                            \
 		network-manager-openconnect-gnome \
+		pgmodeler                         \
 		ranger                            \
 		rcm                               \
 		scrcpy                            \
@@ -87,14 +91,17 @@ endif
 		zsh
 	sudo snap install --classic code
 	sudo snap install --classic discord
-	sudo snap install --classic docker
+	# sudo snap install --classic docker
+	sudo snap install docker --channel=17.06/stable
 	sudo groupadd docker
 	sudo usermod -aG docker $${USER}
+	sudo snap install --candidate mysql-workbench-community
 	sudo snap install --classic gitter-desktop
 	sudo snap install --classic hub
 	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
 	sudo snap install --classic slack
+	sudo snap install --classic umbrello
 	sudo snap install --classic zoom-client
 	gnome-extensions install TopIcons@phocean.net
 	gnome-extensions install wsmatrix@martin.zurowietz.de

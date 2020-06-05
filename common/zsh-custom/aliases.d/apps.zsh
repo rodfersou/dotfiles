@@ -5,18 +5,37 @@ fi
 alias signal-desktop='signal-desktop --start-in-tray > /dev/null 2> /dev/null &'
 
 _android() {
+  ip=$1
   if [ "$(adb devices | grep $1)" = "" ]
   then
-    adb connect $1
+    adb connect $ip
   fi
-  scrcpy -s $1 -S -b2M -m800 --max-fps 15
+  scrcpy -s $ip -S -b2M -m800 --max-fps 15 > /dev/null 2> /dev/null &
+  pid=$!
+
+  # If this script is killed, kill the command.
+  trap "kill $pid 2> /dev/null" EXIT
+  # While command is running...
+  while kill -0 $pid 2> /dev/null
+  do
+      adb -s $ip shell input keyevent mouse
+      sleep 5
+  done
+  # Disable the trap on a normal exit.
+  trap - EXIT
 }
 alias android_='declare -f _android'
 alias android='_android'
-alias moto='android 192.168.9.3:5555 > /dev/null 2> /dev/null &'
-alias motod='android 192.168.9.3:5555'
-alias htc='android 192.168.9.4:5555 > /dev/null 2> /dev/null &'
-alias htcd='android 192.168.9.4:5555'
+alias moto='android 192.168.9.3:5555 &'
+alias htc='android 192.168.9.4:5555 &'
+
+_xgamma() {
+    xrandr --output eDP-1-1 --gamma $1:$1:$1
+}
+alias xgamma_='declare -f _xgamma'
+alias xgamma='_xgamma'
+
+
 
 alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
 # alias vi='vim'
