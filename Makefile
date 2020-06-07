@@ -107,6 +107,8 @@ endif
 	gnome-extensions install wsmatrix@martin.zurowietz.de
 endif
 ifeq ($(CURRENT_OS),Darwin)
+	brew install graphviz
+	brew cask install steam
 endif
 
 .PHONY: install-plone-deps
