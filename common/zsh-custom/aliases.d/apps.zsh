@@ -35,6 +35,16 @@ _xgamma() {
 alias xgamma_='declare -f _xgamma'
 alias xgamma='_xgamma'
 
+_show_ip() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    ipconfig getifaddr en0
+  else
+    hostname -I
+  fi
+}
+alias show_ip_='declare -f _show_ip'
+alias show_ip='_show_ip'
 
 
 alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
