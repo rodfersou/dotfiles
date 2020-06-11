@@ -182,6 +182,7 @@ _install_php() {
   else
     asdf install php 7.4.4
     asdf global php 7.4.4
+    source "$ZSH_CUSTOM/aliases.d/php.zsh"
     composer global require laravel/installer
   fi
 }
