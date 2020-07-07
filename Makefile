@@ -69,6 +69,7 @@ endif
 		jq                                \
 		kdiff3                            \
 		libappindicator-dev               \
+		mc                                \
 		mkchromecast                      \
 		mpv                               \
 		mysql-serve                       \
@@ -81,6 +82,7 @@ endif
 		screen                            \
 		silversearcher-ag                 \
 		smplayer                          \
+		socat                             \
 		ssh                               \
 		texlive-full                      \
 		tidy                              \

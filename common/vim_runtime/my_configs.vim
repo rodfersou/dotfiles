@@ -7,7 +7,8 @@ set number
 set autoread
 set clipboard=unnamedplus
 
-colorscheme solarized
+set background=dark
+colorscheme zenburn
 highlight Normal guibg=NONE ctermbg=NONE
 
 
@@ -15,14 +16,16 @@ highlight Normal guibg=NONE ctermbg=NONE
 " => Fix Alt (Meta)
 " https://stackoverflow.com/a/10216459
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
-set timeout ttimeoutlen=50
-" set ttimeout ttimeoutlen=50
+if ! has("nvim")
+    let c='a'
+    while c <= 'z'
+      exec "set <A-".c.">=\e".c
+      exec "imap \e".c." <A-".c.">"
+      let c = nr2char(1+char2nr(c))
+    endw
+    set timeout ttimeoutlen=50
+    " set ttimeout ttimeoutlen=50
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -46,16 +46,42 @@ _show_ip() {
 alias show_ip_='declare -f _show_ip'
 alias show_ip='_show_ip'
 
+_topcpu() {
+    top -b -n1                                                                                  \
+        | tail -n +8                                                                            \
+        | awk '{ print $12, $9, $10 }'                                                          \
+        | awk '{ CPU[$1] += $2; MEM[$1] += $3 } END { for (k in CPU) print k, CPU[k], MEM[k] }' \
+        | sort -k3 -n                                                                           \
+        | tail -n 10                                                                            \
+        | column -t                                                                             \
+        | tac
+}
+alias topcpu_='declare -f _topcpu'
+alias topcpu='_topcpu'
+
+
+_topmem() {
+    top -b -n1                                                                                  \
+        | tail -n +8                                                                            \
+        | awk '{ print $12, $9, $10 }'                                                          \
+        | awk '{ CPU[$1] += $2; MEM[$1] += $3 } END { for (k in CPU) print k, CPU[k], MEM[k] }' \
+        | sort -k2 -n                                                                           \
+        | tail -n 10                                                                            \
+        | column -t                                                                             \
+        | tac
+}
+alias topmem_='declare -f _topmem'
+alias topmem='_topmem'
+
+
 
 alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
 # alias vi='vim'
 # yaourt -S vi-vim-symlink
 alias Sb='subl . X &'
 
-alias V='varnishadm backend.list'
 # Check Port
 alias Nc='nc -z -v'
-alias ClearNginx='cd /var/lib/nginx/cache && rm -rf {0..9} {a..f}'
 
 _Cc() {
   if [[ $# -gt 0 ]]; then

@@ -9,3 +9,5 @@ alias -g Mn3='-t "reset; sudo tail -f /var/log/nginx/access.log | grep '"'"' HTT
 alias -g Mip='-t "reset; while true; do clear; sudo grep `echo date +'"'"'%d/%b/%Y:%H'"'"'` /var/log/nginx/access.log | awk '"'"'{print $1}'"'"' | sort | uniq -c | sort -nr | head; sleep 5; done"'
 alias -g Mua='-t "reset; sudo awk -F'"'"'\"'"'"' '"'"'/GET/ {print $6}'"'"' /var/log/nginx/access.log | cut -d'"'"' '"'"' -f1 | sort | uniq -c | sort -rn | head"'
 alias -g Mv='-t "reset; sudo varnishlog | egrep --color \"(RxStatus|TxStatus)\""'
+alias V='varnishadm backend.list'
+alias ClearNginx='cd /var/lib/nginx/cache && rm -rf {0..9} {a..f}'
