@@ -47,11 +47,12 @@ alias show_ip_='declare -f _show_ip'
 alias show_ip='_show_ip'
 
 _topcpu() {
+    echo "APP              CPU   MEM";
     top -b -n1                                                                                  \
         | tail -n +8                                                                            \
         | awk '{ print $12, $9, $10 }'                                                          \
         | awk '{ CPU[$1] += $2; MEM[$1] += $3 } END { for (k in CPU) print k, CPU[k], MEM[k] }' \
-        | sort -k3 -n                                                                           \
+        | sort -k2 -n                                                                           \
         | tail -n 10                                                                            \
         | column -t                                                                             \
         | tac
@@ -61,11 +62,12 @@ alias topcpu='_topcpu'
 
 
 _topmem() {
+    echo "APP              CPU   MEM";
     top -b -n1                                                                                  \
         | tail -n +8                                                                            \
         | awk '{ print $12, $9, $10 }'                                                          \
         | awk '{ CPU[$1] += $2; MEM[$1] += $3 } END { for (k in CPU) print k, CPU[k], MEM[k] }' \
-        | sort -k2 -n                                                                           \
+        | sort -k3 -n                                                                           \
         | tail -n 10                                                                            \
         | column -t                                                                             \
         | tac
