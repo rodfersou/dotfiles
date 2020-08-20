@@ -1,6 +1,7 @@
 ansible
 beautifulsoup4
 black
+cookiecutter
 debug
 flake8
 git+git://github.com/muhasturk/gitim.git#egg=gitim
@@ -10,6 +11,7 @@ mercurial
 mypy
 pdftotext
 pipenv
+plonecli
 py-spy
 pylint
 requests

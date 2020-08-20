@@ -10,7 +10,8 @@ _android() {
   then
     adb connect $ip
   fi
-  scrcpy -s $ip -S -b2M -m800 --max-fps 15 > /dev/null 2> /dev/null &
+  # scrcpy -s $ip -S -b2M -m800 --max-fps 15 > /dev/null 2> /dev/null &
+  scrcpy -s $ip -S > /dev/null 2> /dev/null &
   pid=$!
 
   # If this script is killed, kill the command.
