@@ -5,7 +5,7 @@ set nofoldenable    " disable folding
 set encoding=UTF-8
 set number
 set autoread
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 set background=dark
 colorscheme zenburn
@@ -127,6 +127,11 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " (cd .vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-progress
+" (cd /srv && git clone --depth=1 https://github.com/komissarex/vim-progress.git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:progress_uppercase = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Use ; as :
