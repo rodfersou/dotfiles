@@ -11,3 +11,4 @@ erlang 22.3.2
 php 7.4.4
 rlang 3.6.3
 docker-slim 1.24
+mongodb 4.4.0
