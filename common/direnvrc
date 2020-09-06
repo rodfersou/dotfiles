@@ -1,0 +1,17 @@
+use_nix
+# direnv_load sh -c "nix-shell --pure --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
+
+alias_dir=$PWD/.aliases
+rm -rf "$alias_dir"
+
+# Example: export_alias zz "ls -la"
+export_alias() {
+  local name=$1
+  shift
+  local target="$alias_dir/$name"
+  mkdir -p "$alias_dir"
+  PATH_add "$alias_dir"
+  echo "#!/usr/bin/env bash -e" > "$target"
+  echo "$@" >> "$target"
+  chmod +x "$target"
+}

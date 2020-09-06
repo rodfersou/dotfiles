@@ -107,11 +107,16 @@ endif
 	sudo snap install --classic zoom-client
 	gnome-extensions install TopIcons@phocean.net
 	gnome-extensions install wsmatrix@martin.zurowietz.de
+
+	sh <(curl -L https://nixos.org/nix/install)
 endif
 ifeq ($(CURRENT_OS),Darwin)
 	brew install graphviz
 	brew cask install steam
+
+	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 endif
+	nix-env -i direnv
 
 .PHONY: install-plone-deps
 install-plone-apps:  ## Install Plone dependencies
