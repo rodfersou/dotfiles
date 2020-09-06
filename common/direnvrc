@@ -2,7 +2,7 @@ use_nix
 # direnv_load sh -c "nix-shell --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 # direnv_load sh -c "nix-shell --pure --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 
-alias_dir=$PWD/.aliases
+alias_dir=$PWD/.direnv/aliases
 rm -rf "$alias_dir"
 
 # Example: export_alias zz "ls -la"

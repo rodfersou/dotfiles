@@ -7,6 +7,8 @@
 .ropeproject
 .tool-versions
 .webpack
+.direnv/
+.envrc
 __pycache__
 api/bootstrap-buildout.py
 audit.log
