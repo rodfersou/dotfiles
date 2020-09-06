@@ -1,4 +1,5 @@
 use_nix
+# direnv_load sh -c "nix-shell --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 # direnv_load sh -c "nix-shell --pure --run \"DIRENV_DUMP_FILE_PATH=\$DIRENV_DUMP_FILE_PATH $direnv dump\""
 
 alias_dir=$PWD/.aliases
@@ -10,6 +11,7 @@ export_alias() {
   shift
   local target="$alias_dir/$name"
   mkdir -p "$alias_dir"
+  PATH_rm "$alias_dir"
   PATH_add "$alias_dir"
   echo "#!/usr/bin/env bash -e" > "$target"
   echo "$@" >> "$target"
