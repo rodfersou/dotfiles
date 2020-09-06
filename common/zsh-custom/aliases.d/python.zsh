@@ -1,3 +1,6 @@
+PIPENV_IGNORE_VIRTUALENVS=1
+PIPENV_VERBOSITY=-1
+
 # alias Pi='pipenv run pip install '
 # alias Ppu='Pi -U setuptools==33.1.1'
 # alias Ppu3='Pi -U setuptools==41.0.1'
