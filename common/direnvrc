@@ -1,9 +1,6 @@
 CURRENT_DIR=$PWD
-if [ -f ".envrc" ]; then
-    ENV_DIR=$CURRENT_DIR
-else
-    ENV_DIR=${$(cd .. && find_up ".envrc")%/*}
-fi
+ENV_DIR=$(find_up ".envrc")
+ENV_DIR=${ENV_DIR%/*}
 
 cd $ENV_DIR
 use_nix
