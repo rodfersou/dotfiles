@@ -1,6 +1,6 @@
-CURRENT_DIR=$PWD
+export CURRENT_DIR=$PWD
 ENV_DIR=$(find_up ".envrc")
-ENV_DIR=${ENV_DIR%/*}
+export ENV_DIR=${ENV_DIR%/*}
 
 cd $ENV_DIR
 use_nix

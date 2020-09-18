@@ -3,7 +3,7 @@ export PATH="$HOME/.bin:$PATH"
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
 alias -g C='clear;'
-alias -g L='2>&1 | less'
+alias -g L='2>&1 | less -r'
 
 alias reload='R source ~/.zshrc'
 alias F='find -L . -print | grep '
