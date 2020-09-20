@@ -33,17 +33,17 @@ hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= 
 
 
 # ctrl-a a 1 => screen 11
-bind a command -c select_1n
-bind -c select_1n 1 select 11
-bind -c select_1n 2 select 12
-bind -c select_1n 3 select 13
-bind -c select_1n 4 select 14
-bind -c select_1n 5 select 15
-bind -c select_1n 6 select 16
-bind -c select_1n 7 select 17
-bind -c select_1n 8 select 18
-bind -c select_1n 9 select 19
-bind -c select_1n 0 select 20
+#bind a command -c select_1n
+#bind -c select_1n 1 select 11
+#bind -c select_1n 2 select 12
+#bind -c select_1n 3 select 13
+#bind -c select_1n 4 select 14
+#bind -c select_1n 5 select 15
+#bind -c select_1n 6 select 16
+#bind -c select_1n 7 select 17
+#bind -c select_1n 8 select 18
+#bind -c select_1n 9 select 19
+#bind -c select_1n 0 select 20
 
 # ctrl-a d 1 => screen 21
 #bind -c select_1n a command -c select_2n
@@ -91,16 +91,16 @@ screen -t '' 07
 screen -t '' 08
 screen -t '' 09
 screen -t '' 10
-screen -t '' 11
-screen -t '' 12
-screen -t '' 13
-screen -t '' 14
-screen -t '' 15
-screen -t '' 16
-screen -t '' 17
-screen -t '' 18
-screen -t '' 19
-screen -t '' 20
+#screen -t '' 11
+#screen -t '' 12
+#screen -t '' 13
+#screen -t '' 14
+#screen -t '' 15
+#screen -t '' 16
+#screen -t '' 17
+#screen -t '' 18
+#screen -t '' 19
+#screen -t '' 20
 #screen -t '' 20 weechat -d /home/rodfersou/.weechat_rfs
 #screen -t '' 21
 #screen -t '' 22
