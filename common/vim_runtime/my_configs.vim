@@ -5,7 +5,13 @@ set nofoldenable    " disable folding
 set encoding=UTF-8
 set number
 set autoread
-set clipboard=unnamed
+let s:uname = system("uname -s")
+if s:uname == "Darwin\n"
+    set clipboard=unnamed
+endif
+if s:uname == "Linux\n"
+    set clipboard=unnamedplus
+endif
 
 set background=dark
 colorscheme zenburn
