@@ -162,6 +162,9 @@ noremap j gj
 noremap k gk
 noremap <Down> gj
 noremap <Up> gk
+" tabs
+nnoremap H gT
+nnoremap L gt
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
