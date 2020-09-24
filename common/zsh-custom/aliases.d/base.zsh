@@ -1,4 +1,5 @@
 export PATH="$HOME/.bin:$PATH"
+export MACOSX_DEPLOYMENT_TARGET=10.15
 
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
