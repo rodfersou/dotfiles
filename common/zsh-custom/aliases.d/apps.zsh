@@ -47,6 +47,17 @@ _show_ip() {
 alias show_ip_='declare -f _show_ip'
 alias show_ip='_show_ip'
 
+_caffeinate() {
+  if [ "$(uname -s)" = "Darwin" ]
+  then
+    caffeinate -dim
+  else
+    systemd-inhibit
+  fi
+}
+alias caffeinate_='declare -f _caffeinate'
+alias caffeinate='_caffeinate'
+
 _topcpu() {
     echo "APP              CPU   MEM";
     top -b -n1                                                                                  \
