@@ -118,7 +118,7 @@ ifeq ($(CURRENT_OS),Darwin)
 endif
 	nix-env -i direnv
 	nix-env -i python3-3.8.5
-	nix-env -i pipenv
+	nix-env -i pipx
 	nix-env -i nodejs
 	nix-env -i yarn
 	nix-env -i node_castnow
