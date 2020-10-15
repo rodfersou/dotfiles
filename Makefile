@@ -100,6 +100,8 @@ endif
 	sudo snap install --candidate mysql-workbench-community
 	sudo snap install --classic gitter-desktop
 	sudo snap install --classic hub
+	sudo snap install --classic postman
+	sudo snap install --classic pycharm-community
 	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
 	sudo snap install --classic slack
