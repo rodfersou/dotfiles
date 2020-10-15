@@ -58,6 +58,7 @@ endif
 		dia2code                          \
 		encfs                             \
 		entr                              \
+		gimp                              \
 		git                               \
 		gnome-tweak-tool                  \
 		gparted                           \
