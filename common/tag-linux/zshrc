@@ -66,6 +66,18 @@ plugins=(
   # asdf
 )
 
+while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
+do
+    clear
+    if [[ "$WINDOW" == '1' ]]
+    then
+        (cd $HOME/.dotfiles && make)
+        R
+    else
+        sleep 1
+    fi
+done
+
 source $ZSH/oh-my-zsh.sh
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -170,11 +182,3 @@ setopt NO_CHECK_JOBS
 if [ -e /home/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval "$(direnv hook zsh)"
 
-if [[ "$WINDOW" == '1' ]]
-then
-  while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
-  do
-    (cd $HOME/.dotfiles && make)
-    R
-  done
-fi
