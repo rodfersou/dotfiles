@@ -49,6 +49,7 @@ ifeq (,$(wildcard /usr/bin/steam))
 	rm steam.deb
 endif
 	sudo apt -y install                   \
+		adb                               \
 		build-essential                   \
 		chrome-gnome-shell                \
 		curl                              \
@@ -79,7 +80,6 @@ endif
 		pgmodeler                         \
 		ranger                            \
 		rcm                               \
-		scrcpy                            \
 		screen                            \
 		silversearcher-ag                 \
 		smplayer                          \
@@ -103,6 +103,7 @@ endif
 	sudo snap install --classic hub
 	sudo snap install --classic postman
 	sudo snap install --classic pycharm-community
+	sudo snap install --classic scrcpy
 	sudo snap install --classic signal-desktop
 	sudo snap install --classic skype
 	sudo snap install --classic slack
