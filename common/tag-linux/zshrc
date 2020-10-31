@@ -72,7 +72,7 @@ do
     if [[ "$WINDOW" == '1' ]]
     then
         (cd $HOME/.dotfiles && make)
-        R
+        clear
     else
         sleep 1
     fi

@@ -120,12 +120,7 @@ ifeq ($(CURRENT_OS),Darwin)
 
 	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 endif
-	nix-env -i direnv
-	nix-env -i python3-3.8.5
-	nix-env -i pipx
-	nix-env -i nodejs
-	nix-env -i yarn
-	nix-env -i node_castnow
+	nix-env -i -f packages.nix
 
 .PHONY: install-plone-deps
 install-plone-apps:  ## Install Plone dependencies
