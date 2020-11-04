@@ -108,7 +108,6 @@ endif
 	sudo snap install --classic skype
 	sudo snap install --classic slack
 	sudo snap install --classic umbrello
-	sudo snap install --classic zoom-client
 	gnome-extensions install TopIcons@phocean.net
 	gnome-extensions install wsmatrix@martin.zurowietz.de
 

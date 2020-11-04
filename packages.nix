@@ -10,5 +10,6 @@ with import <nixpkgs> {};
 
   direnv
   robo3t
+  zoom-us
   emacs
 ]
