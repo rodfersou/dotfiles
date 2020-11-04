@@ -81,20 +81,24 @@ for_window  [window_type="dialog"]      floating enable
 #exec --no-startup-id xcape -e 'Control_L=Escape'
 
 
-exec --no-startup-id compton
+exec --no-startup-id DISPLAY=:1 compton
 exec --no-startup-id hsetroot -solid "#000000"
-exec --no-startup-id xbacklight -set 10
-exec --no-startup-id xgamma -gamma .7
-exec --no-startup-id sflock -h
+exec --no-startup-id DISPLAY=:1 devilspie
+#exec --no-startup-id xbacklight -set 10
+exec --no-startup-id sflock -f fixed -h
+# exec --no-startup-id ~/.bin/i3lock-dpms.sh
 exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
 #exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id start-pulseaudio-x11
-exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
+# exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
+exec --no-startup-id ~/.bin/ukuake.sh
 exec --no-startup-id udiskie -a -s
 exec --no-startup-id keynav
 exec --no-startup-id ~/.screenlayout/laptop.sh
-#exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
-exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
+#exec --no-startup-id xgamma -gamma .7
+exec --no-startup-id xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7
+exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
+#exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
 
 
 exec i3-msg 'workspace 1'
@@ -115,8 +119,10 @@ bindsym $mod1+p exec urxvt -title "Run Dialog" -g 80x25 -keysym.0xff0d " &\nexit
 # bindsym $mod3+F2 exec dmenu_run
 
 # lock screen
-bindsym $mod2+l exec sflock -h
-bindsym $mod2+backslash exec sflock -h
+bindsym $mod2+l exec sflock -f fixed -h
+bindsym $mod2+backslash exec sflock -f fixed -h
+# bindsym $mod2+l exec ~/.bin/i3lock-dpms.sh
+# bindsym $mod2+backslash exec ~/.bin/i3lock-dpms.sh
 # bindsym $mod2+l exec sxlock
 # bindsym $mod2+backslash exec sxlock
 # bindsym $mod2+l workspace LOCK, exec sxlock
@@ -377,20 +383,19 @@ bindsym $mod1+g mode "xgamma"
 
 mode "open" {
     bindsym $mod1+g exec google-chrome-stable --profile-directory=Guest,              mode "default"
+    bindsym $mod1+b exec google-chrome-stable --profile-directory=BoughtByMany,       mode "default"
     bindsym $mod1+k exec google-chrome-stable --profile-directory=KitConcept,         mode "default"
-    bindsym $mod1+p exec google-chrome-stable --profile-directory=PretaGov,           mode "default"
-    bindsym $mod1+f exec google-chrome-stable --profile-directory=ForContent,         mode "default"
-    bindsym $mod1+s exec google-chrome-stable --profile-directory=SimplesConsultoria, mode "default"
     bindsym $mod1+o exec google-chrome-stable --profile-directory=Pessoal,            mode "default"
     bindsym d       exec discord,                                                     mode "default"
     bindsym f       exec firefox --class Firefox_pessoal,                             mode "default"
     bindsym o       exec opera,                                                       mode "default"
-    bindsym s       exec apulse skypeforlinux,                                        mode "default"
+    bindsym s       exec slack,                                                       mode "default"
+    # bindsym s       exec apulse skypeforlinux,                                        mode "default"
     bindsym g       exec optirun -c jpeg steam,                                       mode "default"
     bindsym v       exec vlc,                                                         mode "default"
     bindsym t       exec thunderbird,                                                 mode "default"
     bindsym m       exec megasync,                                                    mode "default"
-    bindsym l       exec /srv/koala/koala,                                            mode "default"
+    # bindsym l       exec /srv/koala/koala,                                            mode "default"
     bindsym k       exec fusermount -uz ~/Encrypted/Mega,                                                                                               \
                     exec urxvt -title "Decrypt" -g 80x25 -e sh -c "encfs -s ~/Cloud/Mega/encrypted ~/Encrypted/Mega && ls ~/Encrypted/Mega && sleep 1", \
                     mode "default"
