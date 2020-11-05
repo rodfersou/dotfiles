@@ -1,5 +1,13 @@
-if [ "$(uname -s)" = "Darwin" ]
-then
+export CURRENT_OS="$(uname -s)"
+if [ $CURRENT_OS = "Linux" ]; then
+    export CURRENT_OS="$(lsb_release -si)"
+fi
+
+if [ $CURRENT_OS = "Ubuntu" ]; then
+    export DISPLAY=:1
+fi
+
+if [ $CURRENT_OS = "Darwin" ]; then
     alias deluge='/Applications/Deluge.app/Contents/MacOS/Deluge > /dev/null 2> /dev/null &'
 fi
 alias signal-desktop='signal-desktop --start-in-tray > /dev/null 2> /dev/null &'

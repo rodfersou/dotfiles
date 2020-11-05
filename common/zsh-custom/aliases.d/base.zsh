@@ -1,6 +1,11 @@
 export PATH="$HOME/.bin:$PATH"
 export MACOSX_DEPLOYMENT_TARGET=10.15
 
+export CURRENT_OS="$(uname -s)"
+if [ $CURRENT_OS = "Linux" ]; then
+    export CURRENT_OS="$(lsb_release -si)"
+fi
+
 alias -g X='> /dev/null 2> /dev/null &'
 alias -g R='reset;'
 alias -g C='clear;'

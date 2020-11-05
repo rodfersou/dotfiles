@@ -2,6 +2,7 @@ set $mod1 Mod4
 set $mod2 Control+Mod1
 set $mod3 Mod1
 set $mod4 Mod3
+set $mod5 Control+Mod4
 
 set $up    k
 set $down  j

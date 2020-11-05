@@ -51,6 +51,7 @@ endif
 	sudo apt -y install                   \
 		adb                               \
 		build-essential                   \
+		bumblebee                         \
 		compton                           \
 		chrome-gnome-shell                \
 		curl                              \
@@ -91,9 +92,12 @@ endif
 		tidy                              \
 		tree                              \
 		vim-gtk                           \
+		volumeicon-alsa                   \
 		wget                              \
 		wmctrl                            \
+        xserver-xorg-input-synaptics      \
 		zsh
+	sudo usermod -aG bumblebee $${USER}
 	sudo snap install --classic code
 	sudo snap install --classic discord
 	# sudo snap install --classic docker

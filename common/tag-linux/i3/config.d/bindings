@@ -15,8 +15,9 @@ bindsym $mod1+p exec urxvt -title "Run Dialog" -g 80x25 -keysym.0xff0d " &\nexit
 # bindsym $mod3+F2 exec dmenu_run
 
 # lock screen
-bindsym $mod2+l exec sflock -f fixed -h
+bindsym $mod2+l         exec sflock -f fixed -h
 bindsym $mod2+backslash exec sflock -f fixed -h
+bindsym $mod5+q         exec sflock -f fixed -h
 # bindsym $mod2+l exec ~/.bin/i3lock-dpms.sh
 # bindsym $mod2+backslash exec ~/.bin/i3lock-dpms.sh
 # bindsym $mod2+l exec sxlock
@@ -283,6 +284,7 @@ mode "open" {
     bindsym $mod1+k exec google-chrome-stable --profile-directory=KitConcept,         mode "default"
     bindsym $mod1+o exec google-chrome-stable --profile-directory=Pessoal,            mode "default"
     bindsym d       exec discord,                                                     mode "default"
+    bindsym e       exec pycharm-community,                                           mode "default"
     bindsym f       exec firefox --class Firefox_pessoal,                             mode "default"
     bindsym o       exec opera,                                                       mode "default"
     bindsym s       exec slack,                                                       mode "default"
