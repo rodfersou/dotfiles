@@ -82,9 +82,9 @@ for_window  [window_type="dialog"]      floating enable
 #exec --no-startup-id xcape -e 'Control_L=Escape'
 
 
-exec --no-startup-id DISPLAY=:1 compton
+exec --no-startup-id compton
 exec --no-startup-id hsetroot -solid "#000000"
-exec --no-startup-id DISPLAY=:1 devilspie
+exec --no-startup-id devilspie
 #exec --no-startup-id xbacklight -set 10
 exec --no-startup-id sflock -f fixed -h
 # exec --no-startup-id ~/.bin/i3lock-dpms.sh
@@ -92,13 +92,13 @@ exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelt
 #exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
-exec --no-startup-id DISPLAY=:1 volumeicon
+exec --no-startup-id volumeicon
 exec --no-startup-id ~/.bin/ukuake.sh
 exec --no-startup-id udiskie -a -s
 exec --no-startup-id keynav
 exec --no-startup-id ~/.screenlayout/laptop.sh
 #exec --no-startup-id xgamma -gamma .7
-exec --no-startup-id DISPLAY=:1 xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7 --brightness 0.8
+exec --no-startup-id xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7 --brightness 0.8
 exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
 #exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
 
@@ -173,8 +173,8 @@ bindsym $mod1+9     workspace  9
 bindsym $mod1+0     workspace  10
 bindsym $mod1+equal workspace  RF
 bindsym $mod1+minus scratchpad show
-# bindsym $mod1+Left  workspace  prev
-# bindsym $mod1+Right workspace  next
+bindsym $mod1+Left  workspace  prev
+bindsym $mod1+Right workspace  next
 
 # move focused container to workspace
 bindsym $mod1+Shift+1     move container to workspace 1
@@ -188,8 +188,8 @@ bindsym $mod1+Shift+8     move container to workspace 8
 bindsym $mod1+Shift+9     move container to workspace 9
 bindsym $mod1+Shift+0     move container to workspace 10
 bindsym $mod1+Shift+minus move scratchpad
-# bindsym $mod1+Shift+Left  move workspace prev
-# bindsym $mod1+Shift+Right move workspace next
+bindsym $mod1+Shift+Left  move workspace prev
+bindsym $mod1+Shift+Right move workspace next
 
 bindsym $mod1+Shift+F1 move workspace to LVDS1
 bindsym $mod1+Shift+F2 move workspace to VGA1
