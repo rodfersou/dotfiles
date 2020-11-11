@@ -23,6 +23,7 @@ Pipfile
 pyvenv.cfg
 qa.cfg
 share
+tags
 TAGS
 yarn.lock
 default.nix
