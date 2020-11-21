@@ -82,13 +82,14 @@ for_window  [window_type="dialog"]      floating enable
 #exec --no-startup-id xcape -e 'Control_L=Escape'
 
 
+exec --no-startup-id bluetoothctl scan on
 exec --no-startup-id compton
 exec --no-startup-id hsetroot -solid "#000000"
-exec --no-startup-id devilspie
+#exec --no-startup-id devilspie
 #exec --no-startup-id xbacklight -set 10
 exec --no-startup-id sflock -f fixed -h
 # exec --no-startup-id ~/.bin/i3lock-dpms.sh
-exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
+# exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
 #exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
@@ -254,11 +255,14 @@ bindsym $mod1+t exec synclient TouchpadOff=0, mode "default"
 
 # Multimedia Keys
 # increase volume
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+# bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym $mod1+F11 exec amixer -q set Master 5%+ unmute
 # decrease volume
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+# bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+bindsym $mod1+F10 exec amixer -q set Master 5%- unmute
 # mute volume
-bindsym XF86AudioMute exec amixer -q set Master mute
+# bindsym XF86AudioMute exec amixer -q set Master mute
+bindsym $mod1+F12 exec amixer -q set Master mute
 # pause / play / next / previous
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -330,6 +334,8 @@ mode "keyboard" {
               mode "default"
     bindsym a exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys", \
               mode "default"
+    bindsym d exec "setxkbmap -layout us -variant intl; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+              mode "default"
     bindsym u exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
               mode "default"
 
@@ -340,14 +346,14 @@ mode "keyboard" {
 bindsym $mod1+y mode "keyboard"
 
 # change monitor back light
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym $mod1+XF86AudioLowerVolume exec xbacklight -dec 5
-bindsym $mod1+XF86AudioRaiseVolume exec xbacklight -inc 5
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+# bindsym $mod1+XF86AudioLowerVolume exec xbacklight -dec 5
+# bindsym $mod1+XF86AudioRaiseVolume exec xbacklight -inc 5
 
 # change window oppacity
-bindsym $mod1+Shift+XF86AudioLowerVolume exec compton-trans -c -- -10
-bindsym $mod1+Shift+XF86AudioRaiseVolume exec compton-trans -c -- +10
+# bindsym $mod1+Shift+XF86AudioLowerVolume exec compton-trans -c -- -10
+# bindsym $mod1+Shift+XF86AudioRaiseVolume exec compton-trans -c -- +10
 # bindsym --whole-window $mod+button4 exec compton-trans -c -5
 # bindsym --whole-window $mod+button5 exec compton-trans -c +5
 

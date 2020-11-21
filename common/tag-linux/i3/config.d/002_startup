@@ -16,13 +16,14 @@
 #exec --no-startup-id xcape -e 'Control_L=Escape'
 
 
+exec --no-startup-id bluetoothctl scan on
 exec --no-startup-id compton
 exec --no-startup-id hsetroot -solid "#000000"
-exec --no-startup-id devilspie
+#exec --no-startup-id devilspie
 #exec --no-startup-id xbacklight -set 10
 exec --no-startup-id sflock -f fixed -h
 # exec --no-startup-id ~/.bin/i3lock-dpms.sh
-exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
+# exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
 #exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
