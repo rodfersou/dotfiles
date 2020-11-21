@@ -9,7 +9,8 @@ bindsym $mod1+Shift+x exec xkill
 # bindsym $mod3+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod1+p exec urxvt -title "Run Dialog" -g 80x25 -keysym.0xff0d " &\nexit\n" -keysym.C-0xff0d "\n" -keysym.0xff1b "exit\n"
+bindsym $mod1+space exec urxvt -title "Run Dialog" -g 80x5 -keysym.0xff0d " &\nexit\n" -keysym.C-0xff0d "\n" -keysym.0xff1b "exit\n"
+# bindsym $mod1+p exec urxvt -title "Run Dialog" -g 80x5 -keysym.0xff0d " &\nexit\n" -keysym.C-0xff0d "\n" -keysym.0xff1b "exit\n"
 # bindsym $mod1+p exec /srv/env/bin/dmenu.sh
 # bindsym $mod1+p exec dmenu_run
 # bindsym $mod3+F2 exec dmenu_run
@@ -46,7 +47,7 @@ bindsym $mod1+f fullscreen
 bindsym $mod1+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod1+space focus mode_toggle
+# bindsym $mod1+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod1+a focus parent
