@@ -119,14 +119,15 @@ endif
 	gnome-extensions install wsmatrix@martin.zurowietz.de
 
 	sh <(curl -L https://nixos.org/nix/install)
+	nix-env -i -f packages-linux.nix
 endif
 ifeq ($(CURRENT_OS),Darwin)
 	brew install graphviz
-	brew cask install steam
+	# brew cask install steam
 
 	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+	nix-env -i -f packages-osx.nix
 endif
-	nix-env -i -f packages.nix
 
 .PHONY: install-plone-deps
 install-plone-apps:  ## Install Plone dependencies

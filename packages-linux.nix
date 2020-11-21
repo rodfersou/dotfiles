@@ -10,5 +10,5 @@ with import <nixpkgs> {};
 
   direnv
   robo3t
-  emacs
+  # emacs
 ]

@@ -181,4 +181,3 @@ setopt NO_CHECK_JOBS
 
 if [ -e /home/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval "$(direnv hook zsh)"
-
