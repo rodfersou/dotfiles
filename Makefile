@@ -122,7 +122,7 @@ endif
 endif
 ifeq ($(CURRENT_OS),Darwin)
 	brew install graphviz
-	brew cask install steam
+	# brew cask install steam
 
 	sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
 endif
