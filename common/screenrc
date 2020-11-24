@@ -33,7 +33,7 @@ bind l next
 hardstatus alwayslastline
 #hardstatus string "%w%=%m/%d %c"
 #hardstatus string "%{gk}[%{g}%H%{g}][ %{wk}%?%-Lw%?%{=b kR}|%{=d}%{W}%n*%f %t%?(%u)%?%{=b kR}|%{= kw}%?%+Lw%?%?%= %{G}][%{m}%l%{g}]%{=b g}[ %m/%d %c%a ]%{W}"
-hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]"
+hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]%-20=[ %Y-%m-%d %{b}%c ]"
 
 
 # ctrl-a a 1 => screen 11
