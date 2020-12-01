@@ -29,11 +29,12 @@ bind 0 select 10
 bind h prev
 bind l next
 
+# info screen "String Escapes"
 #hardstatus on
 hardstatus alwayslastline
 #hardstatus string "%w%=%m/%d %c"
 #hardstatus string "%{gk}[%{g}%H%{g}][ %{wk}%?%-Lw%?%{=b kR}|%{=d}%{W}%n*%f %t%?(%u)%?%{=b kR}|%{= kw}%?%+Lw%?%?%= %{G}][%{m}%l%{g}]%{=b g}[ %m/%d %c%a ]%{W}"
-hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]%-20=[ %Y-%m-%d %{b}%c ]"
+hardstatus string "%{gk}[%{g}%H%{g}][%{wk}%-w%{=b kR}|%{=d}%{W}%n%f%{=b kR}|%{= kw}%+w%{G}]%-20=%{= rw}[ %Y-%m-%d %c ]"
 
 
 # ctrl-a a 1 => screen 11
