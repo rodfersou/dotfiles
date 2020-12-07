@@ -11,7 +11,6 @@ cd $CURRENT_DIR
 alias_dir=$ENV_DIR/.direnv/aliases
 rm -rf "$alias_dir"
 
-# Example: export_alias zz "ls -la"
 export_alias() {
   local name=$1
   shift
