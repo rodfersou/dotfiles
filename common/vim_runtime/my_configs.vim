@@ -2,6 +2,9 @@
 " => General fixes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nofoldenable    " disable folding
+set foldlevel=99
+set foldlevelstart=99
+autocmd BufWinEnter * silent! :%foldopen!
 set encoding=UTF-8
 set number
 set autoread
