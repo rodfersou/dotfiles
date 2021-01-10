@@ -83,6 +83,7 @@ for_window  [window_type="dialog"]      floating enable
 
 
 exec --no-startup-id bluetoothctl scan on
+exec --no-startup-id sudo modprobe -r hid_magicmouse && sudo modprobe hid_magicmouse
 exec --no-startup-id compton
 exec --no-startup-id hsetroot -solid "#000000"
 #exec --no-startup-id devilspie
@@ -99,7 +100,7 @@ exec --no-startup-id udiskie -a -s
 exec --no-startup-id keynav
 exec --no-startup-id ~/.screenlayout/laptop.sh
 #exec --no-startup-id xgamma -gamma .7
-exec --no-startup-id xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7 --brightness 0.8
+exec --no-startup-id xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7 --brightness 0.5
 exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
 #exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
 
