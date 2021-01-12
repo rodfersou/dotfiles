@@ -9,11 +9,9 @@ alias -g Cfg='-G "\.cfg$"'
 alias -g Zcml='-G "\.zcml$"'
 alias -g Rf='-G "\.robot$"'
 
-# _ag() {
-#   dir=`pwd`
-#   cd /
-#   ag -f --nogroup --pager="less -XFR" $@ $dir
-#   cd $dir
-# }
-# alias ag_='declare -f _ag'
-# alias ag='_ag'
+_ag() {
+  dir=`pwd`
+  (cd / && ag -f --nogroup --pager="less -XFR" $@ $dir)
+}
+alias ag_='declare -f _ag'
+alias ag='_ag'
