@@ -7,7 +7,7 @@
 !  - use powerline font
 !URxvt*font: xft:Source Code Pro Medium:pixelsize=11:antialias=true:hinting=true
 !URxvt*font: xft:SauceCodePro Nerd Font:pixelsize=11:antialias=true:hinting=true
-URxvt*font: xft:Hack Nerd Font:pixelsize=14:antialias=true:hinting=true
+URxvt*font: xft:Hack Nerd Font:pixelsize=11:antialias=true:hinting=true
 !URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=11:antialias=true:hinting=true
 !URxvt*font: xft:Source Code Pro Medium-10
 !URxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=13:antialias=true:hinting=true
