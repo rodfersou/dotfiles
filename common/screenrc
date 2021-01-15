@@ -15,9 +15,10 @@ maptimeout 0
 bind h hardstatus ignore
 bind g hardstatus alwayslastline
 zombie kr
-bind u escape ^Aa
-bind s escape ^Ss
-bind z escape ^Zz
+bind A escape ^Aa
+bind S escape ^Ss
+bind D escape ^Dd
+bind Z escape ^Zz
 #escape ^Ss
 #escape ^Zz
 setenv SCREEN 1
