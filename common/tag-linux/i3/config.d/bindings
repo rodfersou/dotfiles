@@ -86,10 +86,10 @@ bindsym $mod1+Shift+minus move scratchpad
 bindsym $mod1+Shift+Left  move workspace prev
 bindsym $mod1+Shift+Right move workspace next
 
-bindsym $mod1+Shift+F1 move workspace to LVDS1
-bindsym $mod1+Shift+F2 move workspace to VGA1
-bindsym $mod1+Shift+F3 move workspace to HDMI1
-bindsym $mod1+Shift+F4 move workspace to eDP1
+# bindsym $mod1+Shift+F1 move workspace to LVDS1
+# bindsym $mod1+Shift+F2 move workspace to VGA1
+# bindsym $mod1+Shift+F3 move workspace to HDMI1
+# bindsym $mod1+Shift+F4 move workspace to eDP1
 
 # reload the configuration file
 bindsym $mod1+Shift+C reload

@@ -29,12 +29,13 @@ exec --no-startup-id sflock -f fixed -h
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
 exec --no-startup-id volumeicon
+exec --no-startup-id barrier
 exec --no-startup-id ~/.bin/ukuake.sh
 exec --no-startup-id udiskie -a -s
 exec --no-startup-id keynav
 exec --no-startup-id ~/.screenlayout/laptop.sh
 #exec --no-startup-id xgamma -gamma .7
-exec --no-startup-id xrandr --output eDP-1-1 --gamma 0.7:0.7:0.7 --brightness 0.7
+exec --no-startup-id xrandr --output eDP-1 --gamma 0.6:0.6:0.6 --brightness 0.5
 exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
 #exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
 
