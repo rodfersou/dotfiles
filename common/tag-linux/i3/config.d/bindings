@@ -164,56 +164,56 @@ bindsym XF86AudioPrev exec playerctl previous
 
 mode "environment" {
     bindsym e       exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
     bindsym $mod1+e exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym o       exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
     bindsym m       exec ~/.screenlayout/monitor.sh,                                      \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
     bindsym n       exec ~/.screenlayout/monitor.sh,                                      \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym t       exec ~/.screenlayout/tv.sh,                                           \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym c       exec ~/.screenlayout/tv.sh,                                           \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys",           \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym l       exec ~/.screenlayout/laptop.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym a       exec arandr,                                                          \
                     mode "default"
 

@@ -26,6 +26,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 font pango:DejaVu Sans Mono 10
 font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 font pango:Terminus 11px
+font pango:Terminus 18px
 assign [class="^Firefox$"]          RF
 assign [title="^Robot Framework$"]  RF
 
@@ -80,30 +81,30 @@ for_window  [window_type="dialog"]      floating enable
 #exec --no-startup-id update-notifier
 #exec --no-startup-id setxkbmap 'br'
 #exec --no-startup-id xcape -e 'Control_L=Escape'
-
-
-exec --no-startup-id bluetoothctl scan on
-exec --no-startup-id sudo modprobe -r hid_magicmouse && sudo modprobe hid_magicmouse
-exec --no-startup-id compton
-exec --no-startup-id hsetroot -solid "#000000"
+#exec --no-startup-id bluetoothctl scan on
+#exec --no-startup-id sudo modprobe -r hid_magicmouse && sudo modprobe hid_magicmouse
+#exec --no-startup-id compton
 #exec --no-startup-id devilspie
 #exec --no-startup-id xbacklight -set 10
-exec --no-startup-id sflock -f fixed -h
-# exec --no-startup-id ~/.bin/i3lock-dpms.sh
-# exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
+#exec --no-startup-id ~/.bin/i3lock-dpms.sh
+#exec --no-startup-id synclient TapButton3=2 VertScrollDelta=-111 HorizScrollDelta=-111
 #exec --no-startup-id synclient TouchpadOff=1
-exec --no-startup-id start-pulseaudio-x11
-# exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
-exec --no-startup-id volumeicon
-exec --no-startup-id barrier
-exec --no-startup-id ~/.bin/ukuake.sh
-exec --no-startup-id udiskie -a -s
-exec --no-startup-id keynav
-exec --no-startup-id ~/.screenlayout/laptop.sh
-#exec --no-startup-id xgamma -gamma .7
-exec --no-startup-id xrandr --output eDP-1 --gamma 0.6:0.6:0.6 --brightness 0.5
-exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
+#exec --no-startup-id urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD
+#exec --no-startup-id volumeicon
+#exec --no-startup-id barrier
+#exec --no-startup-id udiskie -a -s
+#exec --no-startup-id keynav
+#exec --no-startup-id xrandr --output DSI-1 --gamma 0.6:0.6:0.6 --brightness 0.6
 #exec --no-startup-id "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek"
+
+
+exec --no-startup-id hsetroot -solid "#000000"
+exec --no-startup-id sflock -f fixed -h
+exec --no-startup-id start-pulseaudio-x11
+exec --no-startup-id ~/.bin/ukuake.sh
+exec --no-startup-id ~/.screenlayout/default.sh
+exec --no-startup-id xgamma -gamma .6
+#exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
 
 
 exec i3-msg 'workspace 1'
@@ -273,56 +274,56 @@ bindsym XF86AudioPrev exec playerctl previous
 
 mode "environment" {
     bindsym e       exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
     bindsym $mod1+e exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym o       exec ~/.screenlayout/office.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
     bindsym m       exec ~/.screenlayout/monitor.sh,                                      \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
                     #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
     bindsym n       exec ~/.screenlayout/monitor.sh,                                      \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym t       exec ~/.screenlayout/tv.sh,                                           \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym c       exec ~/.screenlayout/tv.sh,                                           \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys",           \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym l       exec ~/.screenlayout/laptop.sh,                                       \
-                    exec "xbacklight -set 5"                                              \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym a       exec arandr,                                                          \
                     mode "default"
 

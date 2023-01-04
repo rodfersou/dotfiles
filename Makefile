@@ -63,7 +63,7 @@ endif
 		entr                              \
 		gimp                              \
 		git                               \
-		gnome-tweak-tool                  \
+		#gnome-tweak-tool                  \
 		gparted                           \
 		graphviz                          \
 		handbrake                         \

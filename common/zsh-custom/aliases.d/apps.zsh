@@ -4,7 +4,7 @@ if [ $CURRENT_OS = "Linux" ]; then
 fi
 
 if [ $CURRENT_OS = "Ubuntu" ]; then
-    export DISPLAY=:1
+    export DISPLAY=:0
 fi
 
 if [ $CURRENT_OS = "Darwin" ]; then
@@ -38,11 +38,11 @@ alias android='_android'
 alias moto='android 192.168.9.3:5555 &'
 alias htc='android 192.168.9.4:5555 &'
 
-_xgamma() {
-    xrandr --output eDP-1-1 --gamma $1:$1:$1
-}
-alias xgamma_='declare -f _xgamma'
-alias xgamma='_xgamma'
+# _xgamma() {
+#     xrandr --output eDP-1-1 --gamma $1:$1:$1
+# }
+# alias xgamma_='declare -f _xgamma'
+# alias xgamma='_xgamma'
 
 _show_ip() {
   if [ "$(uname -s)" = "Darwin" ]
