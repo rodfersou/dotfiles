@@ -179,8 +179,5 @@ export CLICOLOR_FORCE=1
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-setxkbmap 'us(altgr-intl)'
-xmodmap ~/.Xmodmap.d/us_swap_keys
-
 if [ -e /home/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval "$(direnv hook zsh)"

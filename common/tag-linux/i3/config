@@ -101,10 +101,12 @@ for_window  [window_type="dialog"]      floating enable
 exec --no-startup-id hsetroot -solid "#000000"
 exec --no-startup-id sflock -f fixed -h
 exec --no-startup-id start-pulseaudio-x11
-exec --no-startup-id ~/.bin/ukuake.sh
-exec --no-startup-id ~/.screenlayout/default.sh
+exec setxkbmap 'us(altgr-intl)'
+exec xmodmap ~/.Xmodmap.d/us_swap_keys
+#exec --no-startup-id ~/.screenlayout/default.sh
+exec --no-startup-id umpc-display-scaler
 exec --no-startup-id xgamma -gamma .6
-#exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
+exec --no-startup-id ~/.bin/ukuake.sh
 
 
 exec i3-msg 'workspace 1'
