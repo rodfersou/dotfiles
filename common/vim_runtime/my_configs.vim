@@ -2,22 +2,27 @@
 " => General fixes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nofoldenable    " disable folding
-set foldlevel=99
 set foldlevelstart=99
-autocmd BufWinEnter * silent! :%foldopen!
+set foldlevel=99
+au WinEnter * set nofen
+au WinLeave * set nofen
 set encoding=UTF-8
 set number
 set autoread
-let s:uname = system("uname -s")
-if s:uname == "Darwin\n"
-    set clipboard=unnamed
-endif
-if s:uname == "Linux\n"
-    set clipboard=unnamedplus
-endif
+au FocusLost,WinLeave * :silent! w
 
-set background=dark
-colorscheme zenburn
+set clipboard=unnamedplus
+function! ClipboardYank()
+    call system('xclip -i -selection clipboard &> /dev/null', @@)
+endfunction
+function! ClipboardPaste()
+    let @@ = system('xclip -o -selection clipboard &> /dev/null')
+endfunction
+vnoremap <silent> yy:call ClipboardYank()<cr>
+vnoremap <silent> dd:call ClipboardYank()<cr>
+nnoremap <silent> p:call ClipboardPaste()<cr>
+
+colorscheme solarized
 highlight Normal guibg=NONE ctermbg=NONE
 
 
@@ -40,10 +45,42 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Custom macros
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let @s='msgg/^fromV)k;sort i/^importV)k;sort i`s;noh'
-let @d='oimport pdb; pdb.set_trace()import ipdb; ipdb.set_trace()import debug'
-let @u='ofrom Products.CMFPlone.utils import safe_unicode'
+" let @d='oimport pdb; pdb.set_trace()import ipdb; ipdb.set_trace()import debug'
+" let @s='msgg/^fromV)k;sort i/^importV)k;sort i`s;noh'
+" let @u='ofrom Products.CMFPlone.utils import safe_unicode'
+" let @d='oimport ipdb; ipdb.set_trace()  # noqa'
+" let @d='o__import__("ipdb").set_trace()'
+let @d='obreakpoint()'
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language Client
+" (cd .vim_runtime/my_plugins && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git)
+" (cd .vim_runtime/my_plugins/LanguageClient-neovim && bash install.sh)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:python3_host_prog = '/asdf/shims/python3'
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_diagnosticsSignsMax = 0
+set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+nnoremap <leader>lcs :LanguageClientStart<CR>
+nnoremap <leader>l :call LanguageClient_contextMenu()<CR>
+nnoremap ] :call LanguageClient#textDocument_definition()<CR>
+nnoremap [ <C-O>
+nnoremap & :call LanguageClient_textDocument_rename()<CR>
+nnoremap <leader>r :call LanguageClient_textDocument_references()<CR>
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/lsp-logs')
+let g:LanguageClient_serverCommands["python"] = ['/pipx/bin/pylsp']
+
+function! MaybeFormat() abort
+    if !has_key(g:LanguageClient_serverCommands, &filetype)
+        return
+    endif
+
+    call LanguageClient#textDocument_formatting_sync()
+endfunction
+autocmd BufWritePre * call MaybeFormat()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -122,11 +159,16 @@ let g:easy_align_delimiters['d'] = {
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
+
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,17 +178,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " (cd .vim_runtime/my_plugins && git clone --depth=1 https://github.com/ryanoasis/vim-devicons.git)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-progress
-" (cd /srv && git clone --depth=1 https://github.com/komissarex/vim-progress.git
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:progress_uppercase = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => tagbar
-" (cd /srv && git clone --depth=1 https://github.com/preservim/tagbar.git
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Use ; as :

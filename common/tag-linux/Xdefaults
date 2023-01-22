@@ -38,7 +38,8 @@ ukuake.scrollBar: false
 URxvt.perl-ext-common:             matcher,fullscreen
 
 ! matcher
-URxvt.url-launcher:       google-chrome-stable
+!URxvt.url-launcher:       google-chrome-stable
+URxvt.url-launcher:       firefox
 URxvt.keysym.C-Delete:    perl:matcher:last
 URxvt.keysym.M-Delete:    perl:matcher:list
 URxvt.keysym.C-M-Delete:  perl:matcher:select
