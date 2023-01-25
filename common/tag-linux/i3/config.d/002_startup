@@ -30,17 +30,17 @@
 #exec --no-startup-id ~/.screenlayout/default.sh
 
 
-exec --no-startup-id hsetroot -solid "#000000"
-exec --no-startup-id sflock -f fixed -h
-exec --no-startup-id udiskie -a -s
-exec --no-startup-id start-pulseaudio-x11
-exec --no-startup-id nm-applet
-exec --no-startup-id umpc-display-scaler
-exec --no-startup-id umpc-display-rotate
-exec --no-startup-id xgamma -gamma .6
-exec --no-startup-id ~/.bin/ukuake.sh
-exec setxkbmap 'us(altgr-intl)'
-exec xmodmap ~/.Xmodmap.d/us_swap_keys
+# exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys"
+# exec --no-startup-id xgamma -gamma .6
+# exec --no-startup-id hsetroot -solid "#000000"
+# exec --no-startup-id sflock -f fixed -h
+# exec --no-startup-id udiskie -a -s
+# exec --no-startup-id start-pulseaudio-x11
+# exec --no-startup-id nm-applet
+# exec --no-startup-id blueman-applet
+# exec --no-startup-id mate-volume-control-status-icon 
+# exec --no-startup-id umpc-display-scaler
+# exec --no-startup-id umpc-display-rotate
+# exec --no-startup-id ~/.bin/ukuake.sh
 
-
-exec i3-msg 'workspace 1'
+exec --no-startup-id ~/.i3/startup.sh
