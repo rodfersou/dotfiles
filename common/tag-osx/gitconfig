@@ -15,19 +15,17 @@
   ; br      = branch
   ; ci      = commit -v
   ; co      = checkout
-  df        = diff
-  dt        = difftool -y
-  l         = log --name-only
-  ll        = log -p
-  mt        = mergetool -y
+  df      = diff
+  dt      = difftool -y
+  l       = log --name-only
+  ll      = log -p
+  mt      = mergetool -y
   ; pl      = pull --rebase
   ; ps      = push
   ; st      = status
-  empty     = commit --allow-empty -m 'Empty commit to run CI'
-  unci      = reset --soft HEAD^
+  unci    = reset --soft HEAD^
   unshallow = !git fetch --unshallow && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch origin && :
-  shallowup = !git update --rebase
-  unstage   = reset HEAD
+  unstage = reset HEAD
   ; unpull  = reset --hard HEAD^
 
 [user]
@@ -37,8 +35,21 @@
 [push]
   default = simple
 
+[pull]
+    rebase = false
+
 [core]
   excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
 
 [http]
   sslVerify = false
+[credential]
+    helper = "!f() { /home/docker/.vscode-server/bin/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a/node /tmp/vscode-remote-containers-1eb3b21715d6c81e239ad0f5ea9edbfaae1e5e0d.js $*; }; f"
+[safe]
+    directory = /home/rodrigo
+    directory = /home/rodrigo/docker
+    directory = /home/rodrigo/.dotfiles
+[filter "goreplace"]
+    smudge = sed 's~//replace~replace~'
+    clean = sed 's~replace~//replace~'

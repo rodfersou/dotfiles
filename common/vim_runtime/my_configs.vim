@@ -11,7 +11,7 @@ set number
 set autoread
 au FocusLost,WinLeave * :silent! w
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 function! ClipboardYank()
     call system('xclip -i -selection clipboard &> /dev/null', @@)
 endfunction
@@ -58,7 +58,8 @@ let @d='obreakpoint()'
 " (cd .vim_runtime/my_plugins && git clone --depth=1 --branch next https://github.com/autozimu/LanguageClient-neovim.git)
 " (cd .vim_runtime/my_plugins/LanguageClient-neovim && bash install.sh)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:python3_host_prog = '/asdf/shims/python3'
+"let g:python3_host_prog = '/asdf/shims/python3'
+let g:python3_host_prog = 'python'
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_diagnosticsSignsMax = 0
@@ -71,7 +72,8 @@ nnoremap & :call LanguageClient_textDocument_rename()<CR>
 nnoremap <leader>r :call LanguageClient_textDocument_references()<CR>
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/lsp-logs')
-let g:LanguageClient_serverCommands["python"] = ['/pipx/bin/pylsp']
+let g:LanguageClient_serverCommands["python"] = ['pylsp']
+let g:LanguageClient_serverCommands["html"] = []
 
 function! MaybeFormat() abort
     if !has_key(g:LanguageClient_serverCommands, &filetype)
@@ -80,7 +82,14 @@ function! MaybeFormat() abort
 
     call LanguageClient#textDocument_formatting_sync()
 endfunction
-autocmd BufWritePre * call MaybeFormat()
+" autocmd BufWritePre * call MaybeFormat()
+"lua<<
+"    local status, nvim_lsp = pcall(require, "nvim_lspconfig")
+"    if(status) then
+"        nvim_lsp.pyls.setup{}
+"    end
+".
+"autocmd BufWritePre * call <cmd>lua vim.lsp.buf.formatting()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree

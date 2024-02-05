@@ -1,6 +1,6 @@
 EXCLUDES="backup"
 DOTFILES_DIRS="$HOME/.dotfiles/common $HOME/.dotfiles/sensitive"
 UNDOTTED="Library"
-SYMLINK_DIRS="fonts ssh Atom sublime-text-2"
+SYMLINK_DIRS="fonts ssh Atom sublime-text-2 aws"
 TAGS="osx"
 UNDOTTED="projects"

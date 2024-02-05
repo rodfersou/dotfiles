@@ -1,5 +1,11 @@
-set go+=T
+"1.4.0
+
+loadplugins '\.(js|penta)$'
+group user
+map -count -modes=n,v j -builtin <count>5j
+map -count -modes=n,v k -builtin <count>5k
+set cdpath=''
+set guioptions=bCrsT
 set hintkeys=asdfgqwertzxcvb
 
-map -builtin j 5j
-map -builtin k 5k
+" vim: set ft=pentadactyl:

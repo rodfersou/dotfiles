@@ -5,8 +5,8 @@ startup_message off
 shell "zsh"
 # term xterm-vt220
 # sudo apt-get install ncurses-term
-term screen-256color
-#term xterm-256color
+#term screen-256color
+term xterm-256color
 #term rxvt-unicode-256color
 defflow off # turn off stupid flow-control (also see: stty -ixon in ~/.zshrc)
 shelltitle ''
