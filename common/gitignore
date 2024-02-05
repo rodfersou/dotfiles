@@ -29,4 +29,5 @@ TAGS
 yarn.lock
 shell.nix
 default.nix
+shell.nix
 omelette
