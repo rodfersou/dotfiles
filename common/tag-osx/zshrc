@@ -70,17 +70,17 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
-while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
-do
-    clear
-    if [[ "$WINDOW" == '1' ]]
-    then
-        (cd $HOME/.dotfiles && make)
-        clear
-    else
-        sleep 1
-    fi
-done
+# while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
+# do
+#     clear
+#     if [[ "$WINDOW" == '1' ]]
+#     then
+#         (cd $HOME/.dotfiles && make)
+#         clear
+#     else
+#         sleep 1
+#     fi
+# done
 
 source $ZSH/oh-my-zsh.sh
 
