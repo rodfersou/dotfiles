@@ -1,5 +1,5 @@
 EXCLUDES="backup"
 DOTFILES_DIRS="$HOME/.dotfiles/common $HOME/.dotfiles/sensitive"
 SYMLINK_DIRS="fonts ssh Atom sublime-text-2"
-TAGS="linux"
+TAGS="linux vim-newbs"
 UNDOTTED="projects"

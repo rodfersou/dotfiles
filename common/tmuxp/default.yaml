@@ -3,41 +3,41 @@ windows:
   - window_name: '01'
     window_index: 1
     shell_command_before:
-      - clear; (cd $HOME/.dotfiles && make)
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; (cd $HOME/.dotfiles && make); done; while true; do zsh -l; done
     focus: true
   - window_name: '02'
     window_index: 2
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '03'
     window_index: 3
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '04'
     window_index: 4
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '05'
     window_index: 5
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '06'
     window_index: 6
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '07'
     window_index: 7
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '08'
     window_index: 8
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '09'
     window_index: 9
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done
   - window_name: '10'
     window_index: 10
     shell_command_before:
-      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done
+      - clear; while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]; do clear; sleep 1; done;  while true; do zsh -l; done

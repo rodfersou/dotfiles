@@ -30,7 +30,7 @@ set -g -x LDFLAGS -L /usr/local/opt/sqlite/lib $LDFLAGS
 set -g -x LDFLAGS -L /usr/local/opt/expat/lib
 set -g -x CPPFLAGS -I /usr/local/opt/expat/include
 
-set -g -x TZ America/Sao_Paulo
+#set -g -x TZ America/Sao_Paulo
 set -g -x LC_ALL en_US.UTF-8
 set -g -x LANG en_US.UTF-8
 

@@ -139,7 +139,7 @@ export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHON_CONFIGURE_OPTS="--enable-unicode=ucs4 --enable-shared"
 export MACOSX_DEPLOYMENT_TARGET="10.15"
 export XMODIFIERS=''
-export EDITOR=vim
+export EDITOR=nvim
 export BULLETTRAIN_VIRTUALENV_SHOW=false
 export BULLETTRAIN_RUBY_SHOW=false
 export BULLETTRAIN_TIME_SHOW=false
@@ -149,7 +149,7 @@ unset LSCOLORS
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
-export TZ="America/Sao_Paulo"
+#export TZ="America/Sao_Paulo"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
@@ -166,6 +166,7 @@ export PATH="$PATH:/Users/rodrigo/.local/bin"
 export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
 
+alias ls="ls --color"
 alias vim="nvim"
 alias vi="nvim"
 alias oldvim="\vim"
