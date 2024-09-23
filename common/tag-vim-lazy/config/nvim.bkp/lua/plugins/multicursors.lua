@@ -1,6 +1,5 @@
 return {
   "smoka7/multicursors.nvim",
-  enabled = false,
   event = "VeryLazy",
   vscode = true,
   dependencies = {

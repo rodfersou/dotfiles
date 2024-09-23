@@ -8,8 +8,6 @@
 .tool-versions
 .webpack
 .direnv/
-_envrc
-.envrc
 __pycache__
 api/bootstrap-buildout.py
 audit.log

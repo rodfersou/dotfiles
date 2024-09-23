@@ -21,16 +21,16 @@ return {
     })
 		vim.keymap.set("n", "<F12>", ":Neotree toggle right<CR>", {})
 		vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<CR>", {})
-    vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-      pattern = {"*"},
-      callback = function()
-        if vim.fn.argc() == 0 then
-          require("neo-tree.command").execute({
-            toggle = true,
-            position = "right",
-          })
-        end
-      end
-    })
+    --vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    --  pattern = {"*"},
+    --  callback = function()
+    --    if vim.fn.argc() == 0 then
+    --      require("neo-tree.command").execute({
+    --        toggle = true,
+    --        position = "right",
+    --      })
+    --    end
+    --  end
+    --})
 	end
 }

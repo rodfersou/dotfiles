@@ -1,6 +1,5 @@
 return {
   "mg979/vim-visual-multi",
-  --enabled = false,
   lazy = false,
   init = function()
     vim.g.VM_theme = "iceblue"
