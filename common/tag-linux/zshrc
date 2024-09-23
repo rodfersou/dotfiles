@@ -172,7 +172,7 @@ bindkey -s "^\\" "fg\n"
 
 export PYTHONSTARTUP=~/.pythonrc.py
 export XMODIFIERS=''
-export EDITOR=vim
+export EDITOR=nvim
 export BULLETTRAIN_VIRTUALENV_SHOW=false
 export BULLETTRAIN_RUBY_SHOW=false
 export BULLETTRAIN_TIME_SHOW=false
@@ -180,7 +180,7 @@ export PYTEST_ADDOPTS="-s"
 unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
-export DISPLAY=:1
+#export DISPLAY=:1
 
 setopt NO_HUP
 setopt NO_CHECK_JOBS
@@ -188,3 +188,6 @@ alias vi=nvim
 
 if [ -e /home/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 eval "$(direnv hook zsh)"
+
+# Created by `pipx` on 2024-09-20 13:08:58
+export PATH="$PATH:/home/roadrunner/.local/bin"

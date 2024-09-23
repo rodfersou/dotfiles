@@ -97,7 +97,7 @@ alias topmem='_topmem'
 
 
 
-alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e screen -RRaAD'
+alias ukuake='urxvt -name "UKuake" +sb -pe default,kuake -kuake-hotkey F1 -e tmuxp load -y default'
 # alias vi='vim'
 # yaourt -S vi-vim-symlink
 alias Sb='subl . X &'

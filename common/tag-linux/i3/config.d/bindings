@@ -16,15 +16,15 @@ bindsym $mod1+space exec urxvt -title "Run Dialog" -g 80x5 -keysym.0xff0d " &\ne
 # bindsym $mod3+F2 exec dmenu_run
 
 # lock screen
-bindsym $mod2+l         exec sflock -f fixed -h
-bindsym $mod2+backslash exec sflock -f fixed -h
-bindsym $mod5+q         exec sflock -f fixed -h
+# bindsym $mod2+l         exec sflock -f fixed -h
+# bindsym $mod2+backslash exec sflock -f fixed -h
+# bindsym $mod5+q         exec sflock -f fixed -h
 # bindsym $mod2+l exec ~/.bin/i3lock-dpms.sh
 # bindsym $mod2+backslash exec ~/.bin/i3lock-dpms.sh
 # bindsym $mod2+l exec sxlock
 # bindsym $mod2+backslash exec sxlock
 # bindsym $mod2+l workspace LOCK, exec sxlock
-# bindsym $mod2+l workspace LOCK, exec i3lock -c 000000 -I 0
+bindsym $mod2+l workspace LOCK, exec i3lock -c 000000 -I 0
 # bindsym $mod2+l workspace LOCK, exec /srv/env/bin/i3lock_wrapper
 
 
@@ -286,8 +286,7 @@ bindsym $mod1+g mode "xgamma"
 
 mode "open" {
     bindsym $mod1+g exec google-chrome-stable --profile-directory=Guest,              mode "default"
-    bindsym $mod1+b exec google-chrome-stable --profile-directory=BoughtByMany,       mode "default"
-    bindsym $mod1+k exec google-chrome-stable --profile-directory=KitConcept,         mode "default"
+    bindsym $mod1+s exec google-chrome-stable --profile-directory=Solomia,            mode "default"
     bindsym $mod1+o exec google-chrome-stable --profile-directory=Pessoal,            mode "default"
     bindsym d       exec discord,                                                     mode "default"
     bindsym e       exec pycharm-community,                                           mode "default"

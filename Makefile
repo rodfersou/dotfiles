@@ -63,7 +63,7 @@ endif
 		entr                              \
 		gimp                              \
 		git                               \
-		#gnome-tweak-tool                  \
+		gnome-tweaks                      \
 		gparted                           \
 		graphviz                          \
 		handbrake                         \
@@ -74,7 +74,6 @@ endif
 		i3                                \
 		jq                                \
 		kdiff3                            \
-		libappindicator-dev               \
 		mc                                \
 		mkchromecast                      \
 		mpv                               \
@@ -91,21 +90,21 @@ endif
 		texlive-full                      \
 		tidy                              \
 		tree                              \
-		vim-gtk                           \
 		volumeicon-alsa                   \
 		wget                              \
 		wmctrl                            \
-        xserver-xorg-input-synaptics      \
+    xserver-xorg-input-synaptics      \
 		zsh
 	sudo usermod -aG bumblebee $${USER}
 	sudo snap install --classic code
 	sudo snap install --classic discord
 	# sudo snap install --classic docker
-	sudo snap install docker --channel=17.06/stable
-	sudo groupadd docker
-	sudo usermod -aG docker $${USER}
+	#sudo snap install docker --channel=17.06/stable
+	sudo snap install --stable docker
+	-sudo groupadd docker
+	-sudo usermod -aG docker $${USER}
 	sudo snap install --candidate mysql-workbench-community
-	sudo snap install --classic gitter-desktop
+	#sudo snap install --classic gitter-desktop
 	sudo snap install --classic hub
 	sudo snap install --classic postman
 	sudo snap install --classic pycharm-community
@@ -115,11 +114,11 @@ endif
 	sudo snap install --classic slack
 	sudo snap install --classic umbrello
 	sudo snap install --classic zoom-client
-	gnome-extensions install TopIcons@phocean.net
-	gnome-extensions install wsmatrix@martin.zurowietz.de
+	#gnome-extensions install TopIcons@phocean.net
+	#gnome-extensions install wsmatrix@martin.zurowietz.de
 
-	sh <(curl -L https://nixos.org/nix/install)
-	nix-env -i -f packages-linux.nix
+	#sh <(curl -L https://nixos.org/nix/install)
+	#nix-env -i -f packages-linux.nix
 endif
 ifeq ($(CURRENT_OS),Darwin)
 	brew install graphviz
