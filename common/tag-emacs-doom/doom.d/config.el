@@ -74,3 +74,29 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(setq warning-minimum-level :emergency)
+
+(setq treemacs-position 'right)
+(setq treemacs-default-visit-action 'treemacs-visit-node-close-treemacs)
+(global-set-key (kbd "<f12>") #'+treemacs/toggle)
+(defun my-after-init-hook ()
+  (when (= 1 (length command-line-args))
+    (+treemacs/toggle)))
+(add-hook 'after-init-hook 'my-after-init-hook)
+
+
+(map! :v "C-d" #'mc/edit-lines)
+(map! :n "C-d" #'evil-multiedit-match-symbol-and-next)
+
+;;(after! 'multiple-cursors
+;; (define-key mc/keymap (kbd "<ESC>") #'mc/keyboard-quit))
+
+
+(setq confirm-kill-emacs nil)
+
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
