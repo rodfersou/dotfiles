@@ -24,21 +24,22 @@ bindsym $mod1+space exec urxvt -title "Run Dialog" -g 80x5 -keysym.0xff0d " &\ne
 # bindsym $mod2+l exec sxlock
 # bindsym $mod2+backslash exec sxlock
 # bindsym $mod2+l workspace LOCK, exec sxlock
-bindsym $mod2+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && xset dpms force off
+bindsym $mod1+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && xset dpms force off
+bindsym $mod1+Shift+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && systemctl suspend
 # bindsym $mod2+l workspace LOCK, exec /srv/env/bin/i3lock_wrapper
 
 
 # change focus
-bindsym $mod1+$left  focus left
-bindsym $mod1+$down  focus down
-bindsym $mod1+$up    focus up
-bindsym $mod1+$right focus right
+#bindsym $mod1+$left  focus left
+#bindsym $mod1+$down  focus down
+#bindsym $mod1+$up    focus up
+#bindsym $mod1+$right focus right
 
 # move focused window
-bindsym $mod1+Shift+$left  move left
-bindsym $mod1+Shift+$down  move down
-bindsym $mod1+Shift+$up    move up
-bindsym $mod1+Shift+$right move right
+#bindsym $mod1+Shift+$left  move left
+#bindsym $mod1+Shift+$down  move down
+#bindsym $mod1+Shift+$up    move up
+#bindsym $mod1+Shift+$right move right
 
 # enter fullscreen mode for the focused container
 bindsym $mod1+f fullscreen
@@ -85,14 +86,19 @@ bindsym $mod1+Shift+0     move container to workspace 10
 bindsym $mod1+Shift+minus move scratchpad
 bindsym $mod1+Shift+Left  move workspace prev
 bindsym $mod1+Shift+Right move workspace next
+bindsym $mod2+Left        move workspace to output left
+bindsym $mod2+Right       move workspace to output right
 
 # bindsym $mod1+Shift+F1 move workspace to LVDS1
 # bindsym $mod1+Shift+F2 move workspace to VGA1
 # bindsym $mod1+Shift+F3 move workspace to HDMI1
 # bindsym $mod1+Shift+F4 move workspace to eDP1
+#bindsym $mod1+Shift+F1 move workspace to eDP-1
+#bindsym $mod1+Shift+F2 move workspace to DP-1
 
 # reload the configuration file
 bindsym $mod1+Shift+C reload
+
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod1+Shift+R exec cat ~/.i3/config.d/* > ~/.i3/config && i3-msg restart
@@ -108,16 +114,16 @@ mode "resize" {
     # Pressing right will grow   the window’s width.
     # Pressing up    will shrink the window’s height.
     # Pressing down  will grow   the window’s height.
-    bindsym $left  resize grow   width  10 px or 10 ppt
-    bindsym $down  resize shrink height 10 px or 10 ppt
-    bindsym $up    resize grow   height 10 px or 10 ppt
-    bindsym $right resize shrink width  10 px or 10 ppt
+    #bindsym $left  resize grow   width  10 px or 10 ppt
+    #bindsym $down  resize shrink height 10 px or 10 ppt
+    #bindsym $up    resize grow   height 10 px or 10 ppt
+    #bindsym $right resize shrink width  10 px or 10 ppt
 
     # same bindings, but for the arrow keys
-    # bindsym Left  resize grow   width  10 px or 10 ppt
-    # bindsym Right resize shrink width  10 px or 10 ppt
-    # bindsym Up    resize grow   height 10 px or 10 ppt
-    # bindsym Down  resize shrink height 10 px or 10 ppt
+    bindsym Left  resize grow   width  10 px or 10 ppt
+    bindsym Right resize shrink width  10 px or 10 ppt
+    bindsym Up    resize grow   height 10 px or 10 ppt
+    bindsym Down  resize shrink height 10 px or 10 ppt
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -145,7 +151,7 @@ bindsym $mod1+v split v
 
 # enable or disable touchpad
 bindsym $mod1+Shift+t exec synclient TouchpadOff=1, mode "default"
-bindsym $mod1+t exec synclient TouchpadOff=0, mode "default"
+bindsym $mod1+t       exec synclient TouchpadOff=0, mode "default"
 
 # Multimedia Keys
 # increase volume
@@ -162,6 +168,105 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+
+set $keyboard_mode Keyboard: [W-k]US Alt; [k]US; [a]bnt; [t]ek
+bindsym $mod1+y mode "$keyboard_mode"
+mode "$keyboard_mode" {
+    bindsym $mod1-k exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    mode "default"
+    bindsym k       exec "setxkbmap -layout us -variant intl; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    mode "default"
+    bindsym a       exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys", \
+                    mode "default"
+    bindsym t       exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek", \
+                    mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# change monitor back light
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+# bindsym $mod1+XF86AudioLowerVolume exec xbacklight -dec 5
+# bindsym $mod1+XF86AudioRaiseVolume exec xbacklight -inc 5
+
+# change window oppacity
+# bindsym $mod1+Shift+XF86AudioLowerVolume exec compton-trans -c -- -10
+# bindsym $mod1+Shift+XF86AudioRaiseVolume exec compton-trans -c -- +10
+# bindsym --whole-window $mod+button4 exec compton-trans -c -5
+# bindsym --whole-window $mod+button5 exec compton-trans -c +5
+
+# screenshots
+bindsym Print exec ~/.nix-profile/bin/escrotum -C -s
+#--selection-delay 3000
+
+set $gamma_mode Gamma: [W-g]Default; [g]Original; [1]-[0],[W-1]-[W-0]Levels
+bindsym $mod1+g mode "$gamma_mode"
+mode "$gamma_mode" {
+    bindsym 1       exec xgamma -gamma .1
+    bindsym 2       exec xgamma -gamma .2
+    bindsym 3       exec xgamma -gamma .3
+    bindsym 4       exec xgamma -gamma .4
+    bindsym 5       exec xgamma -gamma .5
+    bindsym 6       exec xgamma -gamma .6
+    bindsym 7       exec xgamma -gamma .7
+    bindsym 8       exec xgamma -gamma .8
+    bindsym 9       exec xgamma -gamma .9
+    bindsym 0       exec xgamma -gamma 1
+    bindsym g       exec xgamma -gamma 1, mode "default"
+    bindsym $mod1+g exec xgamma -gamma .7, mode "default"
+    bindsym $mod1+1 exec xgamma -gamma 1.1
+    bindsym $mod1+2 exec xgamma -gamma 1.2
+    bindsym $mod1+3 exec xgamma -gamma 1.3
+    bindsym $mod1+4 exec xgamma -gamma 1.4
+    bindsym $mod1+5 exec xgamma -gamma 1.5
+    bindsym $mod1+6 exec xgamma -gamma 1.6
+    bindsym $mod1+7 exec xgamma -gamma 1.7
+    bindsym $mod1+8 exec xgamma -gamma 1.8
+    bindsym $mod1+9 exec xgamma -gamma 1.9
+    bindsym $mod1+0 exec xgamma -gamma 2
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $brightness_mode Brightness: [W-b]Default; [b]Original; [1]-[0],[W-1]-[W-0]Levels
+bindsym $mod1+b mode "$brightness_mode"
+mode "$brightness_mode" {
+    bindsym 1       exec brightnessctl s 1000
+    bindsym 2       exec brightnessctl s 2000
+    bindsym 3       exec brightnessctl s 3000
+    bindsym 4       exec brightnessctl s 4000
+    bindsym 5       exec brightnessctl s 5000
+    bindsym 6       exec brightnessctl s 6000
+    bindsym 7       exec brightnessctl s 7000
+    bindsym 8       exec brightnessctl s 8000
+    bindsym 9       exec brightnessctl s 9000
+    bindsym 0       exec brightnessctl s 10000
+    bindsym b       exec brightnessctl s 9000, mode "default"
+    bindsym $mod1+b exec brightnessctl s 2000, mode "default"
+    bindsym $mod1+1 exec brightnessctl s 11000
+    bindsym $mod1+2 exec brightnessctl s 12000
+    bindsym $mod1+3 exec brightnessctl s 13000
+    bindsym $mod1+4 exec brightnessctl s 14000
+    bindsym $mod1+5 exec brightnessctl s 15000
+    bindsym $mod1+6 exec brightnessctl s 16000
+    bindsym $mod1+7 exec brightnessctl s 17000
+    bindsym $mod1+8 exec brightnessctl s 18000
+    bindsym $mod1+9 exec brightnessctl s 19000
+    bindsym $mod1+0 exec brightnessctl s 20000
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# echo 900 > /sys/class/backlight/intel_backlight/brightness
+
+set $environment_mode Keyboard: [W-k]US Alt; [k]US; [a]bnt; [t]ek
+bindsym $mod1+e mode "environment"
 mode "environment" {
     bindsym e       exec ~/.screenlayout/office.sh,                                       \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
@@ -221,126 +326,57 @@ mode "environment" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod1+e mode "environment"
 
-mode "keyboard" {
-    bindsym t exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek", \
-              mode "default"
-    bindsym a exec "setxkbmap 'br'; xmodmap ~/.Xmodmap.d/abnt_swap_keys", \
-              mode "default"
-    bindsym d exec "setxkbmap -layout us -variant intl; xmodmap ~/.Xmodmap.d/us_swap_keys", \
-              mode "default"
-    bindsym u exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
-              mode "default"
+set $open_mode Open: Chrome [W-o]Personal, [W-s]olomia, [W-g]uest; [f]irefox; [s]lack; [r]oblox; [g]Steam 
+set $chrome google-chrome-stable --password-store=basic --profile-directory
+set $brave brave-browser-stable --password-store=basic --profile-directory
+bindsym $mod1+o mode "$open_mode"
+mode "$open_mode" {
+    bindsym $mod1+g exec $chrome=Guest,   mode "default"
+    bindsym $mod1+s exec $chrome=Solomia, mode "default"
+    bindsym $mod1+o exec $chrome=Pessoal, mode "default"
+
+    bindsym $mod1+Shift+g exec $brave=Guest,   mode "default"
+    bindsym $mod1+Shift+s exec $brave=Solomia, mode "default"
+    bindsym $mod1+Shift+o exec $brave=Pessoal, mode "default"
+
+    bindsym f exec firefox --class Firefox_pessoal, mode "default"
+    bindsym s exec slack,                           mode "default"
+    bindsym g exec steam,                           mode "default"
+    bindsym r exec flatpak run org.vinegarhq.Sober, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+    #bindsym d       exec discord,                                                     mode "default"
+    #bindsym e       exec pycharm-community,                                           mode "default"
+    #bindsym o       exec opera,                                                       mode "default"
+    #bindsym s       exec apulse skypeforlinux,                                        mode "default"
+    #bindsym g       exec optirun -c jpeg steam,                                       mode "default"
+    #bindsym v       exec vlc,                                                         mode "default"
+    #bindsym t       exec thunderbird,                                                 mode "default"
+    #bindsym m       exec megasync,                                                    mode "default"
+    #bindsym l       exec /srv/koala/koala,                                            mode "default"
+    #bindsym k       exec fusermount -uz ~/Encrypted/Mega, \
+    #                exec urxvt -title "Decrypt" -g 80x25 -e sh -c "encfs -s ~/Cloud/Mega/encrypted ~/Encrypted/Mega && ls ~/Encrypted/Mega && sleep 1", \
+    #                mode "default"
+    #bindsym $mod1+m exec pkill -9 megasync,                                           mode "default"
+    #bindsym $mod1+s exec pkill -9 skypeforlinux,                                      mode "default"
+}
+
+set $menu_mode Menu: [o]pen; [e]nvironment; [b]rightness; [g]amma; [y]keyboard; [w]layout; [r]esize
+bindsym $mod1+m mode "$menu_mode"
+mode "$menu_mode" {
+    bindsym o mode "$open_mode"
+    bindsym e mode "environment"
+    bindsym b mode "$brightness_mode"
+    bindsym g mode "$gamma_mode"
+    bindsym y mode "$keyboard_mode"
+    bindsym w mode "layout"
+    bindsym r mode "resize"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod1+y mode "keyboard"
-
-# change monitor back light
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 5
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-# bindsym $mod1+XF86AudioLowerVolume exec xbacklight -dec 5
-# bindsym $mod1+XF86AudioRaiseVolume exec xbacklight -inc 5
-
-# change window oppacity
-# bindsym $mod1+Shift+XF86AudioLowerVolume exec compton-trans -c -- -10
-# bindsym $mod1+Shift+XF86AudioRaiseVolume exec compton-trans -c -- +10
-# bindsym --whole-window $mod+button4 exec compton-trans -c -5
-# bindsym --whole-window $mod+button5 exec compton-trans -c +5
-
-# screenshots
-bindsym Print exec escrotum -C -s
-
-mode "xgamma" {
-    bindsym 1       exec xgamma -gamma .1
-    bindsym 2       exec xgamma -gamma .2
-    bindsym 3       exec xgamma -gamma .3
-    bindsym 4       exec xgamma -gamma .4
-    bindsym 5       exec xgamma -gamma .5
-    bindsym 6       exec xgamma -gamma .6
-    bindsym 7       exec xgamma -gamma .7
-    bindsym 8       exec xgamma -gamma .8
-    bindsym 9       exec xgamma -gamma .9
-    bindsym 0       exec xgamma -gamma 1
-    bindsym g       exec xgamma -gamma 1, mode "default"
-    bindsym $mod1+g exec xgamma -gamma .7, mode "default"
-    bindsym $mod1+1 exec xgamma -gamma 1.1
-    bindsym $mod1+2 exec xgamma -gamma 1.2
-    bindsym $mod1+3 exec xgamma -gamma 1.3
-    bindsym $mod1+4 exec xgamma -gamma 1.4
-    bindsym $mod1+5 exec xgamma -gamma 1.5
-    bindsym $mod1+6 exec xgamma -gamma 1.6
-    bindsym $mod1+7 exec xgamma -gamma 1.7
-    bindsym $mod1+8 exec xgamma -gamma 1.8
-    bindsym $mod1+9 exec xgamma -gamma 1.9
-    bindsym $mod1+0 exec xgamma -gamma 2
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod1+g mode "xgamma"
-
-mode "brightness" {
-    bindsym 1       exec echo 100 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 2       exec echo 200 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 3       exec echo 300 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 4       exec echo 400 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 5       exec echo 500 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 6       exec echo 600 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 7       exec echo 700 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 8       exec echo 800 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 9       exec echo 900 > /sys/class/backlight/intel_backlight/brightness
-    bindsym 0       exec echo 1000 > /sys/class/backlight/intel_backlight/brightness
-    bindsym b       exec echo 900 > /sys/class/backlight/intel_backlight/brightness, mode "default"
-    bindsym $mod1+b exec echo 200 > /sys/class/backlight/intel_backlight/brightness, mode "default"
-    bindsym $mod1+1 exec echo 1100 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+2 exec echo 1200 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+3 exec echo 1300 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+4 exec echo 1400 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+5 exec echo 1500 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+6 exec echo 1600 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+7 exec echo 1700 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+8 exec echo 1800 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+9 exec echo 1900 > /sys/class/backlight/intel_backlight/brightness
-    bindsym $mod1+0 exec echo 2000 > /sys/class/backlight/intel_backlight/brightness
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod1+b mode "brightness"
-
-# echo 900 > /sys/class/backlight/intel_backlight/brightness
-
-mode "open" {
-    bindsym $mod1+g exec google-chrome-stable --profile-directory=Guest,              mode "default"
-    bindsym $mod1+s exec google-chrome-stable --profile-directory=Solomia,            mode "default"
-    bindsym $mod1+o exec google-chrome-stable --profile-directory=Pessoal,            mode "default"
-    bindsym d       exec discord,                                                     mode "default"
-    bindsym e       exec pycharm-community,                                           mode "default"
-    bindsym f       exec firefox --class Firefox_pessoal,                             mode "default"
-    bindsym o       exec opera,                                                       mode "default"
-    bindsym s       exec slack,                                                       mode "default"
-    # bindsym s       exec apulse skypeforlinux,                                        mode "default"
-    # bindsym g       exec optirun -c jpeg steam,                                       mode "default"
-    bindsym g       exec steam,                                                       mode "default"
-    bindsym r       exec flatpak run org.vinegarhq.Sober,                             mode "default"
-    bindsym v       exec vlc,                                                         mode "default"
-    bindsym t       exec thunderbird,                                                 mode "default"
-    bindsym m       exec megasync,                                                    mode "default"
-    # bindsym l       exec /srv/koala/koala,                                            mode "default"
-    bindsym k       exec fusermount -uz ~/Encrypted/Mega,                                                                                               \
-                    exec urxvt -title "Decrypt" -g 80x25 -e sh -c "encfs -s ~/Cloud/Mega/encrypted ~/Encrypted/Mega && ls ~/Encrypted/Mega && sleep 1", \
-                    mode "default"
-    bindsym $mod1+m exec pkill -9 megasync,                                           mode "default"
-    bindsym $mod1+s exec pkill -9 skypeforlinux,                                      mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod1+o mode "open"

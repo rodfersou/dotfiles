@@ -1,10 +1,12 @@
 [diff]
   tool = kdiff3
   ;tool = meld
+  colorMoved = default
 
 [merge]
   tool = kdiff3
   ;tool = meld
+  conflictstyle = diff3
 
 [color]
   diff   = auto
@@ -37,6 +39,13 @@
 
 [core]
   excludesfile = ~/.gitignore
+  pager = delta
+
+[delta]
+  navigate = true
+  dark = true
+  side-by-side = true
+  line-numbers = true
 
 [http]
   sslVerify = false

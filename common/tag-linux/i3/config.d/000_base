@@ -4,10 +4,10 @@ set $mod3 Mod1
 set $mod4 Mod3
 set $mod5 Control+Mod4
 
-set $up    k
-set $down  j
-set $left  h
-set $right l
+#set $up    k
+#set $down  j
+#set $left  h
+#set $right l
 
 
 workspace_layout tabbed

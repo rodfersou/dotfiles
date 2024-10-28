@@ -1,15 +1,23 @@
+export GTK_THEME=Adwaita:dark
+#export DISPLAY=:1
+
+/usr/libexec/gsd-xsettings &
+
 setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys
-sudo chgrp video /sys/class/backlight/intel_backlight/brightness
-sudo chmod g+w /sys/class/backlight/intel_backlight/brightness
-echo 200 > /sys/class/backlight/intel_backlight/brightness
-xgamma -gamma 0.7
+#sudo chgrp video /sys/class/backlight/intel_backlight/brightness
+#sudo chmod g+w /sys/class/backlight/intel_backlight/brightness
+#echo 200 > /sys/class/backlight/intel_backlight/brightness
+brightnessctl -P s 2000 &
+xgamma -gamma 0.6 &
+
+#dunst &
 
 tilda &
 urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F2 -e screen -RRaAD &
-# exec --no-startup-id hsetroot -solid "#000000"
-udiskie -a -s &
-# exec --no-startup-id start-pulseaudio-x11
+hsetroot -solid "#000000" &
+GTK_THEME=Adwaita:dark udiskie -a -s &
+pasystray &
 nm-applet &
-blueman-applet &
+GTK_THEME=Adwaita:dark blueman-applet &
 i3lock -c 000000 -I 0 &
 
