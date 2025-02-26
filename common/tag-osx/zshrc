@@ -66,9 +66,13 @@ plugins=(
   #asdf
 )
 
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
+#if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+#  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+#fi
+
+eval "$(flox activate -d ~ -m run)"
+#eval "$(flox activate -m run)"
+eval "$(direnv hook zsh)"
 
 # while [ -z "$(ls -A $HOME/.dotfiles/sensitive)" ]
 # do
@@ -159,12 +163,13 @@ export LANG=en_US.UTF-8
 # fi
 
 # if [ -e /Users/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-eval "$(direnv hook zsh)"
 
 # Created by `userpath` on 2020-11-21 14:34:46
-export PATH="$PATH:/Users/rodrigo/.local/bin"
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Users/rodrigo/.local/bin:$PATH"
+export PATH="/Users/rodrigo/.flox/run/aarch64-darwin.default.run/bin:$PATH"
+#export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS"
+
 
 alias ls="ls --color"
 alias vim="nvim"
