@@ -29,3 +29,7 @@ shell.nix
 default.nix
 shell.nix
 omelette
+.flox
+.envrc
+.ipynb_checkpoints/
+*.ipynb

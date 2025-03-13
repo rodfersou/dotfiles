@@ -131,7 +131,7 @@ export KEYTIMEOUT=1
 
 alias winetricks32='WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks'
 alias wine32='WINEPREFIX=~/.wine32 WINEARCH=win32 wine'
-alias steam='optirun -c jpeg steam'
+#alias steam='optirun -c jpeg steam'
 alias bwrap='bwrap --dev-bind / / bash'
 alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'
@@ -186,7 +186,9 @@ setopt NO_HUP
 setopt NO_CHECK_JOBS
 alias vi=nvim
 
-if [ -e /home/rodrigo/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rodrigo/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
+if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"; fi # added by Home Manager installer
+
 eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2024-09-20 13:08:58
@@ -197,3 +199,5 @@ export PATH="$HOME/projects/flutter/bin:$PATH"
 export LIBVA_DRIVER_NAME=iHD
 
 export GTK_THEME=Adwaita:dark
+export QT_QPA_PLATFORMTHEME=qt5ct
+eval "$(flox activate -m run)"

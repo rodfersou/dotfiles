@@ -123,7 +123,7 @@ alias Cc='_Cc'
 
 alias winetricks32='WINEPREFIX=~/.wine32 WINEARCH=win32 winetricks'
 alias wine32='WINEPREFIX=~/.wine32 WINEARCH=win32 wine'
-alias steam='optirun -c jpeg steam'
+#alias steam='optirun -c jpeg steam'
 alias bwrap='bwrap --dev-bind / / bash'
 alias increase_tmpfs='mount -o remount,size=5G,noatime /tmp'
 alias handbrake-gtk='ghb'

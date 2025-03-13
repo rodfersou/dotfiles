@@ -4,10 +4,10 @@ set $mod3 Mod1
 set $mod4 Mod3
 set $mod5 Control+Mod4
 
-#set $up    k
-#set $down  j
-#set $left  h
-#set $right l
+set $up    k
+set $down  j
+set $left  h
+set $right l
 
 
 workspace_layout tabbed
@@ -55,7 +55,7 @@ for_window [class="^MPlayer$"] move scratchpad, border pixel 1, resize shrink wi
 #for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
 #for_window [title="^Steam Keyboard$"]                                                floating enable
 #for_window [instance="Steam"]                                                        move G
-for_window  [title="^Hollow Knight$"]                                                 floating enable, resize shrink width 800px
+for_window  [title="^Hollow Knight$"] floating enable, resize shrink width 800px
 
 
 # treat dialogs
@@ -65,6 +65,8 @@ for_window  [title="^Hollow Knight$"]                                           
 #for_window [window_role="Preferences"] floating enable
 #for_window [window_type="menu"]        floating enable
 for_window  [window_type="dialog"]      floating enable
+
+for_window [title="Cursor$"], mark cursor, move scratchpad
 #exec --no-startup-id sxlock
 #exec --no-startup-id xsetroot -solid "#000000"
 #exec --no-startup-id volumeicon
@@ -137,22 +139,22 @@ bindsym $mod1+space exec urxvt -title "Run Dialog" -g 80x5 -keysym.0xff0d " &\ne
 # bindsym $mod2+l exec sxlock
 # bindsym $mod2+backslash exec sxlock
 # bindsym $mod2+l workspace LOCK, exec sxlock
-bindsym $mod1+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && xset dpms force off
-bindsym $mod1+Shift+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && systemctl suspend
+bindsym $mod2+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && xset dpms force off
+bindsym $mod2+Shift+l workspace LOCK, exec i3lock -c 000000 -I 0 & sleep 1 && systemctl suspend
 # bindsym $mod2+l workspace LOCK, exec /srv/env/bin/i3lock_wrapper
 
 
 # change focus
-#bindsym $mod1+$left  focus left
-#bindsym $mod1+$down  focus down
-#bindsym $mod1+$up    focus up
-#bindsym $mod1+$right focus right
+bindsym $mod1+$left  focus left
+bindsym $mod1+$down  focus down
+bindsym $mod1+$up    focus up
+bindsym $mod1+$right focus right
 
 # move focused window
-#bindsym $mod1+Shift+$left  move left
-#bindsym $mod1+Shift+$down  move down
-#bindsym $mod1+Shift+$up    move up
-#bindsym $mod1+Shift+$right move right
+bindsym $mod1+Shift+$left  move left
+bindsym $mod1+Shift+$down  move down
+bindsym $mod1+Shift+$up    move up
+bindsym $mod1+Shift+$right move right
 
 # enter fullscreen mode for the focused container
 bindsym $mod1+f fullscreen
@@ -182,8 +184,10 @@ bindsym $mod1+9     workspace  9
 bindsym $mod1+0     workspace  10
 bindsym $mod1+equal workspace  RF
 bindsym $mod1+minus scratchpad show
-bindsym $mod1+Left  workspace  prev
-bindsym $mod1+Right workspace  next
+bindsym F2 [con_mark="cursor"] fullscreen toggle, scratchpad show
+# bindsym $mod1+F1 scratchpad show
+bindsym $mod1+Left  focus      left
+bindsym $mod1+Right focus      right
 
 # move focused container to workspace
 bindsym $mod1+Shift+1     move container to workspace 1
@@ -197,8 +201,8 @@ bindsym $mod1+Shift+8     move container to workspace 8
 bindsym $mod1+Shift+9     move container to workspace 9
 bindsym $mod1+Shift+0     move container to workspace 10
 bindsym $mod1+Shift+minus move scratchpad
-bindsym $mod1+Shift+Left  move workspace prev
-bindsym $mod1+Shift+Right move workspace next
+bindsym $mod1+Shift+Left  move left
+bindsym $mod1+Shift+Right move right
 bindsym $mod2+Left        move workspace to output left
 bindsym $mod2+Right       move workspace to output right
 
@@ -346,9 +350,19 @@ mode "$gamma_mode" {
     bindsym Escape mode "default"
 }
 
-set $brightness_mode Brightness: [W-b]Default; [b]Original; [1]-[0],[W-1]-[W-0]Levels
+set $brightness_mode Brightness: [W-b]Default; [b]Original; [S-1]-[S-0],[1]-[0],[W-1]-[W-0]Levels
 bindsym $mod1+b mode "$brightness_mode"
 mode "$brightness_mode" {
+    bindsym Shift+1 exec brightnessctl s 50
+    bindsym Shift+2 exec brightnessctl s 100
+    bindsym Shift+3 exec brightnessctl s 200
+    bindsym Shift+4 exec brightnessctl s 300
+    bindsym Shift+5 exec brightnessctl s 400
+    bindsym Shift+6 exec brightnessctl s 500
+    bindsym Shift+7 exec brightnessctl s 600
+    bindsym Shift+8 exec brightnessctl s 700
+    bindsym Shift+9 exec brightnessctl s 800
+    bindsym Shift+0 exec brightnessctl s 900
     bindsym 1       exec brightnessctl s 1000
     bindsym 2       exec brightnessctl s 2000
     bindsym 3       exec brightnessctl s 3000
@@ -395,6 +409,13 @@ mode "environment" {
                     #exec "xgamma -gamma .7"                                               \
                     #exec "xbacklight -set 5"                                              \
     bindsym o       exec ~/.screenlayout/office.sh,                                       \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
+                    #exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+    bindsym g       exec ~/.screenlayout/glasses.sh,                                       \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
                     mode "default"
