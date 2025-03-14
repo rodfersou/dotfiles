@@ -37,4 +37,7 @@ for_window  [title="^Hollow Knight$"] floating enable, resize shrink width 800px
 #for_window [window_type="menu"]        floating enable
 for_window  [window_type="dialog"]      floating enable
 
-for_window [title="Cursor$"], mark cursor, move scratchpad
+for_window [title="Cursor$"],                   mark cursor, move scratchpadh
+for_window [title="Slack$"],                    mark slack,  move scratchpadh
+for_window [title="Microsoft Teams$"],          mark teams,  move scratchpadh
+for_window [title="^New Private Tab - Brave$"], mark nsfw,   move scratchpadh

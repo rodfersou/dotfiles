@@ -66,7 +66,10 @@ for_window  [title="^Hollow Knight$"] floating enable, resize shrink width 800px
 #for_window [window_type="menu"]        floating enable
 for_window  [window_type="dialog"]      floating enable
 
-for_window [title="Cursor$"], mark cursor, move scratchpad
+for_window [title="Cursor$"],                   mark cursor, move scratchpadh
+for_window [title="Slack$"],                    mark slack,  move scratchpadh
+for_window [title="Microsoft Teams$"],          mark teams,  move scratchpadh
+for_window [title="^New Private Tab - Brave$"], mark nsfw,   move scratchpadh
 #exec --no-startup-id sxlock
 #exec --no-startup-id xsetroot -solid "#000000"
 #exec --no-startup-id volumeicon
@@ -184,10 +187,27 @@ bindsym $mod1+9     workspace  9
 bindsym $mod1+0     workspace  10
 bindsym $mod1+equal workspace  RF
 bindsym $mod1+minus scratchpad show
-bindsym F2 [con_mark="cursor"] fullscreen toggle, scratchpad show
-# bindsym $mod1+F1 scratchpad show
-bindsym $mod1+Left  focus      left
-bindsym $mod1+Right focus      right
+
+bindsym $mod1+F1  [con_mark="scratch01"] fullscreen toggle, scratchpad show
+bindsym $mod1+F2  [con_mark="scratch02"] fullscreen toggle, scratchpad show
+bindsym $mod1+F3  [con_mark="scratch03"] fullscreen toggle, scratchpad show
+bindsym $mod1+F4  [con_mark="scratch04"] fullscreen toggle, scratchpad show
+bindsym $mod1+F5  [con_mark="scratch05"] fullscreen toggle, scratchpad show
+bindsym $mod1+F6  [con_mark="scratch06"] fullscreen toggle, scratchpad show
+bindsym $mod1+F7  [con_mark="scratch07"] fullscreen toggle, scratchpad show
+bindsym $mod1+F8  [con_mark="scratch08"] fullscreen toggle, scratchpad show
+bindsym $mod1+F9  [con_mark="scratch09"] fullscreen toggle, scratchpad show
+#bindsym $mod1+F10 [con_mark="scratch10"] fullscreen toggle, scratchpad show
+#bindsym $mod1+F11 [con_mark="scratch11"] fullscreen toggle, scratchpad show
+#bindsym $mod1+F12 [con_mark="scratch12"] fullscreen toggle, scratchpad show
+
+bindsym F2  [con_mark="cursor"] fullscreen toggle, scratchpad show
+bindsym F7  [con_mark="nsfw"]   fullscreen toggle, scratchpad show
+bindsym F12 [con_mark="slack"]  fullscreen toggle, scratchpad show
+bindsym F11 [con_mark="teams"]  fullscreen toggle, scratchpad show
+
+bindsym $mod1+Left  focus left
+bindsym $mod1+Right focus right
 
 # move focused container to workspace
 bindsym $mod1+Shift+1     move container to workspace 1
@@ -200,9 +220,23 @@ bindsym $mod1+Shift+7     move container to workspace 7
 bindsym $mod1+Shift+8     move container to workspace 8
 bindsym $mod1+Shift+9     move container to workspace 9
 bindsym $mod1+Shift+0     move container to workspace 10
-bindsym $mod1+Shift+minus move scratchpad
+
+bindsym $mod1+Shift+F1    mark scratch01, move scratchpad
+bindsym $mod1+Shift+F2    mark scratch02, move scratchpad
+bindsym $mod1+Shift+F3    mark scratch03, move scratchpad
+bindsym $mod1+Shift+F4    mark scratch04, move scratchpad
+bindsym $mod1+Shift+F5    mark scratch05, move scratchpad
+bindsym $mod1+Shift+F6    mark scratch06, move scratchpad
+bindsym $mod1+Shift+F7    mark scratch07, move scratchpad
+bindsym $mod1+Shift+F8    mark scratch08, move scratchpad
+bindsym $mod1+Shift+F9    mark scratch09, move scratchpad
+#bindsym $mod1+Shift+F10   mark scratch10, move scratchpad
+#bindsym $mod1+Shift+F11   mark scratch11, move scratchpad
+#bindsym $mod1+Shift+F12   mark scratch12, move scratchpad
+
 bindsym $mod1+Shift+Left  move left
 bindsym $mod1+Shift+Right move right
+
 bindsym $mod2+Left        move workspace to output left
 bindsym $mod2+Right       move workspace to output right
 
