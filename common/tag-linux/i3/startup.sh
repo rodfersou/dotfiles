@@ -13,8 +13,9 @@ xgamma -gamma 0.6 &
 
 #dunst &
 
-tilda &
-urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F2 -e screen -RRaAD &
+tabby &
+#tilda &
+#urxvt -name 'UKuake' +sb -pe default,kuake -kuake-hotkey F3 -e screen -RRaAD &
 hsetroot -solid "#000000" &
 GTK_THEME=Adwaita:dark udiskie -a -s &
 pasystray &

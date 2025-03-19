@@ -67,8 +67,8 @@ bindsym $mod1+7     workspace  7
 bindsym $mod1+8     workspace  8
 bindsym $mod1+9     workspace  9
 bindsym $mod1+0     workspace  10
-bindsym $mod1+equal workspace  RF
-bindsym $mod1+minus scratchpad show
+bindsym $mod1+minus workspace  Debug
+# bindsym $mod1+minus scratchpad show
 
 bindsym $mod1+F1  [con_mark="scratch01"] fullscreen toggle, scratchpad show
 bindsym $mod1+F2  [con_mark="scratch02"] fullscreen toggle, scratchpad show
@@ -79,14 +79,17 @@ bindsym $mod1+F6  [con_mark="scratch06"] fullscreen toggle, scratchpad show
 bindsym $mod1+F7  [con_mark="scratch07"] fullscreen toggle, scratchpad show
 bindsym $mod1+F8  [con_mark="scratch08"] fullscreen toggle, scratchpad show
 bindsym $mod1+F9  [con_mark="scratch09"] fullscreen toggle, scratchpad show
-#bindsym $mod1+F10 [con_mark="scratch10"] fullscreen toggle, scratchpad show
+#bindsym $mod1+F10 [con_mark="scratch10"] fullscreen toggle, scratchpad shocursorw
 #bindsym $mod1+F11 [con_mark="scratch11"] fullscreen toggle, scratchpad show
 #bindsym $mod1+F12 [con_mark="scratch12"] fullscreen toggle, scratchpad show
 
-bindsym F2  [con_mark="cursor"] fullscreen toggle, scratchpad show
-bindsym F7  [con_mark="nsfw"]   fullscreen toggle, scratchpad show
-bindsym F12 [con_mark="slack"]  fullscreen toggle, scratchpad show
-bindsym F11 [con_mark="teams"]  fullscreen toggle, scratchpad show
+
+set $center_screen border pixel 0, resize set 100ppt 94ppt, move position center, move down 14px
+bindsym F1 [con_mark="tabby"]  scratchpad show, $center_screen
+bindsym F2 [con_mark="cursor"] scratchpad show, $center_screen
+bindsym F3 [con_mark="teams"]  scratchpad show, $center_screen
+bindsym F4 [con_mark="slack"]  scratchpad show, $center_screen
+bindsym F7 [con_mark="nsfw"]   scratchpad show, $center_screen
 
 bindsym $mod1+Left  focus left
 bindsym $mod1+Right focus right
@@ -102,6 +105,7 @@ bindsym $mod1+Shift+7     move container to workspace 7
 bindsym $mod1+Shift+8     move container to workspace 8
 bindsym $mod1+Shift+9     move container to workspace 9
 bindsym $mod1+Shift+0     move container to workspace 10
+bindsym $mod1+Shift+minus move container to workspace Debug
 
 bindsym $mod1+Shift+F1    mark scratch01, move scratchpad
 bindsym $mod1+Shift+F2    mark scratch02, move scratchpad

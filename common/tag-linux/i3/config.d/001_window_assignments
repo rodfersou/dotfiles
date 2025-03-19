@@ -1,11 +1,12 @@
-assign [class="^Firefox$"]          RF
-assign [title="^Robot Framework$"]  RF
+# assign [class="^Firefox$"]          RF
+# assign [title="^Robot Framework$"]  RF
+assign [title="^DevTools"] Debug
 
 
 #for_window [instance="UKuake"]                              floating enable, border pixel 1, exec ~/.i3/resize.sh 57 77
 for_window  [title="Decrypt"]                                floating enable, border pixel 1
 for_window  [title="Run Dialog"]                             floating enable
-for_window  [title="xfce4-notifyd"]                          floating enable, border pixel 1, move RF
+# for_window  [title="xfce4-notifyd"]                          floating enable, border pixel 1, move RF
 for_window  [title="^Spreed - the speed reading extension$"] floating enable
 
 for_window [class="^Koala$"]       floating disable
@@ -37,6 +38,7 @@ for_window  [title="^Hollow Knight$"] floating enable, resize shrink width 800px
 #for_window [window_type="menu"]        floating enable
 for_window  [window_type="dialog"]      floating enable
 
+for_window [class="^tabby$"],                   mark tabby, move scratchpadh
 for_window [title="Cursor$"],                   mark cursor, move scratchpadh
 for_window [title="Slack$"],                    mark slack,  move scratchpadh
 for_window [title="Microsoft Teams$"],          mark teams,  move scratchpadh
