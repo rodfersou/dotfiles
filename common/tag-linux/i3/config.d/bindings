@@ -68,7 +68,6 @@ bindsym $mod1+8     workspace  8
 bindsym $mod1+9     workspace  9
 bindsym $mod1+0     workspace  10
 bindsym $mod1+minus workspace  Debug
-# bindsym $mod1+minus scratchpad show
 
 bindsym $mod1+F1  [con_mark="scratch01"] fullscreen toggle, scratchpad show
 bindsym $mod1+F2  [con_mark="scratch02"] fullscreen toggle, scratchpad show
@@ -84,12 +83,15 @@ bindsym $mod1+F9  [con_mark="scratch09"] fullscreen toggle, scratchpad show
 #bindsym $mod1+F12 [con_mark="scratch12"] fullscreen toggle, scratchpad show
 
 
-set $center_screen border pixel 0, resize set 100ppt 94ppt, move position center, move down 14px
-bindsym F1 [con_mark="tabby"]  scratchpad show, $center_screen
-bindsym F2 [con_mark="cursor"] scratchpad show, $center_screen
-bindsym F3 [con_mark="teams"]  scratchpad show, $center_screen
-bindsym F4 [con_mark="slack"]  scratchpad show, $center_screen
-bindsym F7 [con_mark="nsfw"]   scratchpad show, $center_screen
+set $center_screen border pixel 0, resize set 100ppt 95ppt, move position center, move down 15px
+# bindsym F1 [class="^tabby$"] scratchpad show, $center_screen
+# bindsym F1 [class="^org.wezfurlong.wezterm$"] scratchpad show, $center_screen
+bindsym F1 [class="^Gnome-terminal$"] scratchpad show, $center_screen
+bindsym F2 [class="^Cursor$"]                scratchpad show, $center_screen
+bindsym F3 [class="^teams-for-linux$"]       scratchpad show, $center_screen
+bindsym F4 [class="^Slack$"]                 scratchpad show, $center_screen
+bindsym F7 [con_mark="nsfw"]                 scratchpad show, $center_screen
+bindsym $mod1+equal                          scratchpad show, $center_screen
 
 bindsym $mod1+Left  focus left
 bindsym $mod1+Right focus right
@@ -105,6 +107,7 @@ bindsym $mod1+Shift+7     move container to workspace 7
 bindsym $mod1+Shift+8     move container to workspace 8
 bindsym $mod1+Shift+9     move container to workspace 9
 bindsym $mod1+Shift+0     move container to workspace 10
+# bindsym $mod1+Shift+minus move container to workspace Debug
 bindsym $mod1+Shift+minus move container to workspace Debug
 
 bindsym $mod1+Shift+F1    mark scratch01, move scratchpad
@@ -123,6 +126,8 @@ bindsym $mod1+Shift+F9    mark scratch09, move scratchpad
 bindsym $mod1+Shift+Left  move left
 bindsym $mod1+Shift+Right move right
 
+bindsym $mod2+Up          move workspace to output up
+bindsym $mod2+Down        move workspace to output down
 bindsym $mod2+Left        move workspace to output left
 bindsym $mod2+Right       move workspace to output right
 
@@ -168,8 +173,9 @@ mode "resize" {
 }
 bindsym $mod1+r mode "resize"
 
-# change container layout (stacked, tabbed, default)
-mode "layout" {
+set $layout_mode Menu: [w]tabbed; [s]tacking; [e]default
+bindsym $mod1+w mode "$layout_mode"
+mode "$layout_mode" {
     bindsym s layout stacking, mode "default"
     bindsym w layout tabbed,   mode "default"
     bindsym e layout default,  mode "default"
@@ -178,7 +184,6 @@ mode "layout" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod1+w mode "layout"
 
 # split in horizontal orientation
 bindsym $mod1+s split h
@@ -328,6 +333,12 @@ mode "environment" {
                     mode "default"
                     #exec "xgamma -gamma .7"                                               \
                     #exec "xbacklight -set 5"                                              \
+    bindsym $mod1+Shift+e exec ~/.screenlayout/office2.sh,                                       \
+                    exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/tek",          \
+                    exec "killall -9 keynav; keynav"                                      \
+                    mode "default"
+                    #exec "xgamma -gamma .7"                                               \
+                    #exec "xbacklight -set 5"                                              \
     bindsym o       exec ~/.screenlayout/office.sh,                                       \
                     exec "setxkbmap 'us(altgr-intl)'; xmodmap ~/.Xmodmap.d/us_swap_keys", \
                     exec "killall -9 keynav; keynav"                                      \
@@ -381,23 +392,26 @@ mode "environment" {
     bindsym Escape mode "default"
 }
 
-set $open_mode Open: Chrome [W-o]Personal, [W-s]olomia, [W-g]uest; [f]irefox; [s]lack; [r]oblox; [g]Steam 
-set $chrome google-chrome-stable --password-store=basic --profile-directory
-set $brave brave-browser-stable --password-store=basic --profile-directory
+set $open_mode Open: Chrome [W-o]Personal, [W-h]eon, [W-d]gn, [W-g]uest; [f]irefox; [s]lack; [t]eams; [r]oblox; [g]Steam 
+set $chrome google-chrome-stable --password-store=basic --allow-running-insecure-content --profile-directory
+set $brave brave-browser-stable --password-store=basic --allow-running-insecure-content --profile-directory
 bindsym $mod1+o mode "$open_mode"
 mode "$open_mode" {
-    bindsym $mod1+g exec $chrome=Guest,   mode "default"
-    bindsym $mod1+s exec $chrome=Solomia, mode "default"
-    bindsym $mod1+o exec $chrome=Pessoal, mode "default"
+    bindsym $mod1+g               exec $chrome=Guest,   mode "default"
+    bindsym $mod1+h workspace 1,  exec $chrome=Solomia, mode "default"
+    bindsym $mod1+d workspace 2,  exec $chrome=DGN,     mode "default"
+    bindsym $mod1+o workspace 10, exec $chrome=Pessoal, mode "default"
 
-    bindsym $mod1+Shift+g exec $brave=Guest,   mode "default"
-    bindsym $mod1+Shift+s exec $brave=Solomia, mode "default"
-    bindsym $mod1+Shift+o exec $brave=Pessoal, mode "default"
+    bindsym $mod1+Shift+g               exec $brave=Guest,   mode "default"
+    bindsym $mod1+Shift+h workspace 1,  exec $brave=Solomia, mode "default"
+    bindsym $mod1+Shift+d workspace 2,  exec $brave=DGN,     mode "default"
+    bindsym $mod1+Shift+o workspace 10, exec $brave=Pessoal, mode "default"
 
-    bindsym f exec firefox --class Firefox_pessoal, mode "default"
-    bindsym s exec slack,                           mode "default"
-    bindsym g exec steam,                           mode "default"
-    bindsym r exec flatpak run org.vinegarhq.Sober, mode "default"
+    bindsym f exec firefox --class Firefox_pessoal,                              mode "default"
+    bindsym s exec slack,                                                        mode "default"
+    bindsym t exec $HOME/.flox/run/x86_64-linux.default.run/bin/teams-for-linux, mode "default"
+    bindsym g exec steam,                                                        mode "default"
+    bindsym r exec flatpak run org.vinegarhq.Sober,                              mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

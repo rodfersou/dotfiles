@@ -189,7 +189,6 @@ alias vi=nvim
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi # added by Nix installer
 if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"; fi # added by Home Manager installer
 
-eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2024-09-20 13:08:58
 export PATH="$HOME/.local/bin:$PATH"
@@ -201,3 +200,4 @@ export LIBVA_DRIVER_NAME=iHD
 export GTK_THEME=Adwaita:dark
 export QT_QPA_PLATFORMTHEME=qt5ct
 eval "$(flox activate -m run)"
+eval "$(direnv hook zsh)"

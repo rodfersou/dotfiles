@@ -33,3 +33,4 @@ omelette
 .envrc
 .ipynb_checkpoints/
 *.ipynb
+deno.lock
