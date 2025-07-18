@@ -6,7 +6,7 @@ unbuffer bluetoothctl | while read -r line; do
         echo "Device connected: $device"
         if bluetoothctl info "$device" | grep -qi "keyboard"; then
             echo "Keyboard connected: $device"
-            sleep 0.3
+            sleep 0.5
             setxkbmap 'us(altgr-intl)'
             xmodmap "$HOME/.Xmodmap.d/us_swap_keys"
             echo "keyboard configuration updated"

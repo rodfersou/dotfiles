@@ -29,8 +29,8 @@ shell.nix
 default.nix
 shell.nix
 omelette
-.flox
-.envrc
+# .flox
+# .envrc
 .ipynb_checkpoints/
 *.ipynb
 deno.lock

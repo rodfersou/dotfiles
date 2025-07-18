@@ -25,6 +25,7 @@ nm-applet &
 GTK_THEME=Adwaita:dark blueman-applet &
 keynav &
 i3lock -c 000000 -I 0 &
+antimicrox &
 
 
 ~/.i3/update_xmodmap.sh &

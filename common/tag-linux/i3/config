@@ -69,7 +69,7 @@ for_window  [window_type="dialog"]      floating enable
 
 # for_window [class="^tabby$"], move scratchpad
 # for_window [class="^org.wezfurlong.wezterm$"], move scratchpad
-for_window [class="^gnome-terminal-server$"],   move scratchpad
+for_window [class="^Gnome-terminal$"],          move scratchpad
 for_window [class="^Cursor$"],                  move scratchpad
 for_window [class="^teams-for-linux$"],         move scratchpad
 for_window [class="^Slack$"],                   move scratchpad
@@ -208,12 +208,12 @@ bindsym $mod1+F9  [con_mark="scratch09"] fullscreen toggle, scratchpad show
 set $center_screen border pixel 0, resize set 100ppt 95ppt, move position center, move down 15px
 # bindsym F1 [class="^tabby$"] scratchpad show, $center_screen
 # bindsym F1 [class="^org.wezfurlong.wezterm$"] scratchpad show, $center_screen
-bindsym F1 [class="^Gnome-terminal$"] scratchpad show, $center_screen
-bindsym F2 [class="^Cursor$"]                scratchpad show, $center_screen
-bindsym F3 [class="^teams-for-linux$"]       scratchpad show, $center_screen
-bindsym F4 [class="^Slack$"]                 scratchpad show, $center_screen
-bindsym F7 [con_mark="nsfw"]                 scratchpad show, $center_screen
-bindsym $mod1+equal                          scratchpad show, $center_screen
+bindsym F1 [class="^Gnome-terminal$"]  scratchpad show, $center_screen
+bindsym F2 [class="^Cursor$"]          scratchpad show, $center_screen
+bindsym F3 [class="^teams-for-linux$"] scratchpad show, $center_screen
+bindsym F4 [class="^Slack$"]           scratchpad show, $center_screen
+bindsym F7 [con_mark="nsfw"]           scratchpad show, $center_screen
+bindsym $mod1+equal                    scratchpad show, $center_screen
 
 bindsym $mod1+Left  focus left
 bindsym $mod1+Right focus right
@@ -575,5 +575,6 @@ mode "$menu_mode" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    tray_output primary
     status_command i3status
 }

@@ -86,12 +86,12 @@ bindsym $mod1+F9  [con_mark="scratch09"] fullscreen toggle, scratchpad show
 set $center_screen border pixel 0, resize set 100ppt 95ppt, move position center, move down 15px
 # bindsym F1 [class="^tabby$"] scratchpad show, $center_screen
 # bindsym F1 [class="^org.wezfurlong.wezterm$"] scratchpad show, $center_screen
-bindsym F1 [class="^Gnome-terminal$"] scratchpad show, $center_screen
-bindsym F2 [class="^Cursor$"]                scratchpad show, $center_screen
-bindsym F3 [class="^teams-for-linux$"]       scratchpad show, $center_screen
-bindsym F4 [class="^Slack$"]                 scratchpad show, $center_screen
-bindsym F7 [con_mark="nsfw"]                 scratchpad show, $center_screen
-bindsym $mod1+equal                          scratchpad show, $center_screen
+bindsym F1 [class="^Gnome-terminal$"]  scratchpad show, $center_screen
+bindsym F2 [class="^Cursor$"]          scratchpad show, $center_screen
+bindsym F3 [class="^teams-for-linux$"] scratchpad show, $center_screen
+bindsym F4 [class="^Slack$"]           scratchpad show, $center_screen
+bindsym F7 [con_mark="nsfw"]           scratchpad show, $center_screen
+bindsym $mod1+equal                    scratchpad show, $center_screen
 
 bindsym $mod1+Left  focus left
 bindsym $mod1+Right focus right

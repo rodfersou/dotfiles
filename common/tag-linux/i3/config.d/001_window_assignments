@@ -40,7 +40,7 @@ for_window  [window_type="dialog"]      floating enable
 
 # for_window [class="^tabby$"], move scratchpad
 # for_window [class="^org.wezfurlong.wezterm$"], move scratchpad
-for_window [class="^gnome-terminal-server$"],   move scratchpad
+for_window [class="^Gnome-terminal$"],          move scratchpad
 for_window [class="^Cursor$"],                  move scratchpad
 for_window [class="^teams-for-linux$"],         move scratchpad
 for_window [class="^Slack$"],                   move scratchpad
